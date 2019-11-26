@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="librarian">
+
+	<resultMap id="librarianMap" type="example.entity.Librarian">
+	</resultMap>
+	
+
+	
+	<!-- auto generate default query -->
+	<select id="queryLibrarian"
+		parameterType="java.util.Map"
+		resultMap="librarianMap">
+		SELECT 
+				TD.id ,
+				TD.name,
+				TD.password,
+				TD.phone,
+				TD.createDate ,
+				TD.updateDate
+		  FROM librarian TD
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			1 = 1
+		</trim>
+
+	</select>
+	
+		<!-- auto generate default count -->
+
+
+</mapper>
+<!--
+sqlMap生成描述:
+
+-->

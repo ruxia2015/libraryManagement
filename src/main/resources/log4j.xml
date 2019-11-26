@@ -34,5 +34,6 @@
   <root>
     <priority value="${org.apache.cocoon.log4j.loglevel}"/>
     <appender-ref ref="CORE"/>
+    <appender-ref ref="stdout"/>
   </root>
 </log4j:configuration>

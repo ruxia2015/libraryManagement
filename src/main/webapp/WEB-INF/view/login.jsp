@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>登录页面</title>
 
-    <link rel="stylesheet" type="text/css" href="login.css"/>
-    <script type="text/javascript" src="login.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 </head>
 
 <body>
 <div id="login_frame">
 
-    <p id="image_logo"><img src="../image/1.jpg" style="width:90px;height:50px;"></p>
+    <p id="image_logo"><img src="${pageContext.request.contextPath}/image/1.jpg" style="width:90px;height:50px;"></p>
     <form method="post" >
         <div>
             <p><label class="label_input">用户名:</label>&nbsp<input type="text" id="username" class="text_field"/></p>
