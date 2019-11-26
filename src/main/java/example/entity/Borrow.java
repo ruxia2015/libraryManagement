@@ -2,7 +2,8 @@ package example.entity;
 
 import java.util.Date;
 
-public class borrow {
+public class Borrow {
+    private int id;
     private String userName;
     private String bookName;
     private int quantity;
@@ -10,13 +11,12 @@ public class borrow {
     private Date endDate;
     private String returnDate;
 
-    public borrow(String userName, String bookName, int quantity, Date stareDate, Date endDate, String returnDate) {
-        this.userName = userName;
-        this.bookName = bookName;
-        this.quantity = quantity;
-        this.stareDate = stareDate;
-        this.endDate = endDate;
-        this.returnDate = returnDate;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserName() {
