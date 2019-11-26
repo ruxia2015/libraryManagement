@@ -2,7 +2,8 @@ package example.entity;
 
 import java.util.Date;
 
-public class books {
+public class Books {
+    private int id;
     private int isbn;
     private String bookName;
     private String bookAuthor;
@@ -13,16 +14,12 @@ public class books {
     private int bookTotal;
     private int bookQuantity;
 
-    public books(int isbn, String bookName, String bookAuthor, String bookPicture, Double bookPrice, Date createDate, Date updateDate, int bookTotal, int bookQuantity) {
-        this.isbn = isbn;
-        this.bookName = bookName;
-        this.bookAuthor = bookAuthor;
-        this.bookPicture = bookPicture;
-        this.bookPrice = bookPrice;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
-        this.bookTotal = bookTotal;
-        this.bookQuantity = bookQuantity;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIsbn() {

@@ -3,19 +3,20 @@ package example.entity;
 
 import java.util.Date;
 
-public class uesr {
+public class Uesr {
+    private int id;
     private String userName;
     private String userPassword;
-    private int phone;
+    private String phone;
     private Date createDate;
     private Date updateDate;
 
-    public uesr(String userName, String userPassword, int phone, Date createDate, Date updateDate) {
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.phone = phone;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -34,11 +35,11 @@ public class uesr {
         this.userPassword = userPassword;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
