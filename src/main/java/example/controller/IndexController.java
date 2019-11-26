@@ -11,4 +11,16 @@ public class IndexController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("toList")
+    public String toList(){
+
+        return "list";
+    }
+
+    @RequestMapping("listData")
+    public String listData(){
+
+        return "listData";
+    }
 }
