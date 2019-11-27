@@ -1,10 +1,9 @@
 package example.service;
 
-import org.springframework.stereotype.Service;
+import example.entity.User;
 
-@Service
 public interface LoginService {
 
-    Boolean Sgin(String name, String psd);
+    Boolean   findUser(String name,String psd);
 
 }
