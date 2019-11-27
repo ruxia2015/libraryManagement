@@ -29,6 +29,34 @@
         <property name="exposeContextBeansAsAttributes" value="true"/>
     </bean>
 
+    <!--&lt;!&ndash; 注册类型转换以及验证功能 &ndash;&gt;-->
+    <!--<bean id="webBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">-->
+        <!--<property name="validator">-->
+            <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />-->
+        <!--</property>-->
+        <!--<property name="conversionService">-->
+            <!--<ref bean="conversionService" />-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="requestMappingHandlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <!--<property name="webBindingInitializer" ref="webBindingInitializer" />-->
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/plain;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+                <bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+
     <!-- 自动扫描装配 -->
     <context:component-scan base-package="example.controller"/>
 </beans>

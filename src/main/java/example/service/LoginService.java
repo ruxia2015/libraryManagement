@@ -4,6 +4,8 @@ import example.entity.User;
 
 public interface LoginService {
 
-    Boolean   findUser(String name,String psd);
 
+    User findUserByName(String name);
+
+    Boolean userLogin(String name, String psd);
 }

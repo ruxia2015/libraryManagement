@@ -6,21 +6,31 @@
     <title>登录页面</title>
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
+    <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 </head>
+
+<script>
+    var _contextPath = "${pageContext.request.contextPath}";//js文件中无法使用jsp中的该对象，故在此处定一个变量，以便login.js文件引用
+
+    <c:if test="${not empty error}">
+    alert("${error}")
+    </c:if>
+
+</script>
 
 <body>
 <div id="login_frame">
 
     <p id="image_logo"><img src="${pageContext.request.contextPath}/image/1.jpg" style="width:90px;height:50px;"></p>
-    <form method="post"  onsubmit="submitForm()">
+    <form id="loginForm" method="post"  onsubmit="return submitForm();" action="${pageContext.request.contextPath}/user/sgin">
         <div>
-            <p><label class="label_input">用户名:</label>&nbsp<input type="text" id="username" class="text_field"/></p>
-            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="text" id="password" class="text_field"/></p>
+            <p><label class="label_input">用户名:</label>&nbsp<input type="text" id="username" name="name" class="text_field" required/></p>
+            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password" name="psd" id="password" class="text_field"/></p>
         </div>
         <div id="login_control">
-            <input type="button" id="btn_login" value="登录" οnclick="login();"/>
-            <input type="button" id="btn_enroll" value="注册" οnclick="enroll();"/>
+            <input type="submit" id="btn_login" value="登录"  />
+            <input type="button" id="btn_enroll" value="注册" onclick="register();"/>
             <a id="forget_pwd" href="forget_pwd.html">忘记密码？</a>
         </div>
     </form>

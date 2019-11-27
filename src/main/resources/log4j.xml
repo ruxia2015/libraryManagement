@@ -31,6 +31,10 @@
     </layout>
   </appender>
 
+  <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+
+  </appender>
+
   <root>
     <priority value="${org.apache.cocoon.log4j.loglevel}"/>
     <appender-ref ref="CORE"/>
