@@ -3,6 +3,7 @@ package example.service.impl;
 import example.dao.LoginDao;
 import example.entity.User;
 import example.service.LoginService;
+import example.util.WebContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,9 @@ public class LoginServiceImpl implements LoginService {
             return false;
         }
         //此处将值写入的session中，以便验证登陆。session对象可以从request中获取，controller中传入，或者写一个工具进行获取
+
+        WebContextUtils.addToSession(WebContextUtils.SESSION_CURRENT_USER,user);
+
         return true;
     }
 }
