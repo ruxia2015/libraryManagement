@@ -7,10 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/user")
-public class LoginController {
+public class LoginController extends HttpServlet {
 
     @Autowired
     private LoginService loginService;
@@ -22,9 +26,9 @@ public class LoginController {
 
     //如果name或者psd为null，在哪里去验证，并且返回前端
     @RequestMapping("/sgin")
-    public String  sgin(String name, String psd, ModelMap response){
+    public String  sgin(String name, String psd, ModelMap response, HttpServletRequest request){
 
-        Boolean b = loginService.userLogin(name,psd);
+        Boolean b = loginService.userLogin(name,psd,request);
         if(b ==false){
             //弹出提示框显示用户名或密码错误
             response.put("error","用户名或者密码错误");
@@ -50,4 +54,8 @@ public class LoginController {
         return true;
 
     }
+
+
+
+
 }

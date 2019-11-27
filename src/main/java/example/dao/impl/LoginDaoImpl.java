@@ -3,13 +3,13 @@ package example.dao.impl;
 import example.dao.LoginDao;
 import example.entity.User;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+@Repository
 public class LoginDaoImpl implements LoginDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
