@@ -18,6 +18,7 @@ public class LoginController {
         return "login";
     }
 
+    //如果name或者psd为null，在哪里去验证，并且返回前端
     @RequestMapping("/sgin")
     public String  sgin(String name, String psd){
 
