@@ -2,6 +2,7 @@ package example.entity;
 
 import java.util.Date;
 
+
 public class Librarian {
     private int id;
     private String name;

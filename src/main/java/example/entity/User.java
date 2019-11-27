@@ -3,7 +3,8 @@ package example.entity;
 
 import java.util.Date;
 
-public class Uesr {
+
+public class User {
     private int id;
     private String userName;
     private String userPassword;
