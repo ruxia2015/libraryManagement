@@ -11,4 +11,6 @@ public interface LoginService {
     User findUserByName(String name);
 
     Boolean userLogin(String name, String psd, HttpServletRequest  request);
+
+    Boolean addUser(String name, String psd, String phone);
 }

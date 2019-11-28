@@ -12,12 +12,17 @@
 
 <script>
     var _contextPath = "${pageContext.request.contextPath}";//js文件中无法使用jsp中的该对象，故在此处定一个变量，以便login.js文件引用
-
+    //错误信息提示，error由后台返回
     <c:if test="${not empty error}">
     alert("${error}")
     </c:if>
-
 </script>
+<script type="text/javascript">
+    function register2() {
+        window.location.href = _contextPath + "/user/register"
+    }
+</script>
+
 
 <body>
 <div id="login_frame">
@@ -30,7 +35,7 @@
         </div>
         <div id="login_control">
             <input type="submit" id="btn_login" value="登录"  />
-            <input type="button" id="btn_enroll" value="注册" onclick="register();"/>
+            <input type="button" id="btn_enroll" value="注册" onclick="register2();"/>
             <a id="forget_pwd" href="forget_pwd.html">忘记密码？</a>
         </div>
     </form>

@@ -6,9 +6,7 @@
 
 	<resultMap id="userMap" type="example.entity.User">
 	</resultMap>
-	
 
-	
 	<!-- auto generate default query -->
 	<select id="findUser"
 		parameterType="java.util.Map"
@@ -33,6 +31,11 @@
 
 
 	</select>
+
+	<insert id="addUser">
+		INSERT INTO USER ( userName, userPassword, phone)
+		values (#{userName}, #{userPassword},#{phone})
+	</insert>
 	
 		<!-- auto generate default count -->
 

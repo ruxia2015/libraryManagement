@@ -1,15 +1,15 @@
 $(document).ready(function () {
-    var $username = $("#username");
-    $username.blur(function () {
+    $("#username").blur(function () {
+        var $username = $("#username");
         $.ajax({
-            url: _contextPath + "/user/valid",
+            url: _contextPath + "/user/registration",
             data: {userName: $username.val()},
-            async:false,
+            async: true,
             dataType: "json",
 
             success: function f(res) {//成功后不显示
                 if (res != true) {
-                    alert("用户名错误");
+                    $("#hint").html(该用户名已存在);
                 }
 
             },
@@ -20,19 +20,4 @@ $(document).ready(function () {
         })
 
     })
-
-
 })
-
-//引用jQuery框架
-function submitForm() {
-
-       return true;
-
-}
-
-
-
-
-
-

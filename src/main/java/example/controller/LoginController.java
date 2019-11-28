@@ -24,6 +24,13 @@ public class LoginController extends HttpServlet {
         return "login";
     }
 
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+
+
     //如果name或者psd为null，在哪里去验证，并且返回前端
     @RequestMapping("/sgin")
     public String  sgin(String name, String psd, ModelMap response, HttpServletRequest request){
@@ -54,8 +61,32 @@ public class LoginController extends HttpServlet {
         return true;
 
     }
+    @ResponseBody
+    @RequestMapping("/registration")
+    public Boolean registration(String userName){
+        if(userName == null){  //用户没输入
+            return false;
+        }
+        User user = loginService.findUserByName(userName);
+        //1、此处调用service类，根据用户名查找用户
+        if (user == null) {  //用户名可用
+            return true;
+        }
+        return false;//用户已存在
+    }
 
+@RequestMapping("registerMethod")
+    public String  registerMethod(String name, String psd,String phone, ModelMap response){
+        Boolean b = loginService.addUser(name, psd,phone );
+    if(b ==false){
+        //弹出提示框显示用户名或密码错误
+        response.put("error","注册失败，请重试！");
 
-
-
+        return "register";
+    }
+    //弹出一个确认框，点击确认后，在跳转
+    return "login";
 }
+}
+
+
