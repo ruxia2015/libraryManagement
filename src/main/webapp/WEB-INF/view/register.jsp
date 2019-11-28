@@ -12,25 +12,68 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/register.css"/>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/register.js"></script>
 </head>
 <script type="text/javascript" >
+    $(function(){
+
+        $("#registerForm").validate({
+            rules:{
+                psd:"required",
+                psd2:{
+                    equalTo: "#password"
+                },
+                name:{
+                    required:true,
+                    remote:"${pageContext.request.contextPath}/user/notExists/userName"
+                   /* <!-- 这种写法相当于
+                     传入的data {
+                      name: function() {  当前对象的name
+                                return $(this).val();  当前对象的值
+                            }
+                     -->*/
+                    <%--remote:{--%>
+                        <%--url: "${pageContext.request.contextPath}/user/notExists/userName",     //后台处理程序--%>
+                        <%--type: "post",               //数据发送方式--%>
+                        <%--dataType: "json",           //接受数据格式--%>
+                        <%--data: {                     //要传递的数据--%>
+                            <%--userName: function() {--%>
+                                <%--return $("#username").val();--%>
+                            <%--}--%>
+                        <%--}--%>
+                    <%--}--%>
+                }
+            },
+            messages:{
+                psd:"密码不能为空",
+                username:{
+                    required:"用户名不能为空"
+                }
+            }
+        })
+
+
+    });
+
     function getbake() {
         window.history.back(-1)
     }
 
 </script>
-<body>
+<body >
 <div id="register">
 
-    <form id="registerForm" method="post"  onsubmit="return submitForm();" action="${pageContext.request.contextPath}/user/registerMethod">
+    <form id="registerForm" method="post" action="${pageContext.request.contextPath}/user/registerMethod">
         <div>
             <p>
-                <label class="label_input">用户名:</label>&nbsp<input type="text" placeholder="用户名" id="username" name="name" class="text_field" required/>
+                <label class="label_input">用户名:</label>&nbsp
+                <input type="text" placeholder="用户名" id="username" name="name" class="text_field"  />
                 <span id = "hint"></span>
             </p>
-            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password"  placeholder="密码" name="psd" id="password" class="text_field"/></p>
-            <p><label class="label_input">再一次密码:</label>&nbsp<input  placeholder="确认密码" type="password" name="psd2" id="password" class="text_field"/></p>
+            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password"  placeholder="密码" name="psd" id="password" class="text_field" required/></p>
+            <p><label class="label_input">再一次密码:</label>&nbsp<input  placeholder="确认密码" type="password" name="psd2" id="password2" class="text_field" /></p>
             <p><label class="label_input">电话:</label>&nbsp<input type="text"  placeholder="电话号码" name="phone" id="phone" class="text_field"/></p>
         </div>
         <div id="register_control";>

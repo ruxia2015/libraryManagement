@@ -56,17 +56,39 @@ public class LoginController extends HttpServlet {
         //1、此处调用service类，根据用户名查找用户
 
         if (user == null) {
-            return true;
+            return false;
         }
         return true;
 
     }
+
+    @ResponseBody
+    @RequestMapping("/notExists/userName")
+    public Boolean notExistsUserName(String name) {
+/*
+        返回map对象的原因：可以将错误原因推送给前端，如果只是布尔类型的，就只有一个false，这两种方式都可以。根据个人习惯以及实际的情况
+        如果是找的插件去验证，就要根据插件的要求进行返回。
+*/
+        User user = loginService.findUserByName(name);
+        //1、此处调用service类，根据用户名查找用户
+
+        if (user == null) {
+            return true;
+        }
+        return false;
+
+    }
+
+
+
     @ResponseBody
     @RequestMapping("/registration")
     public Boolean registration(String userName){
-        if(userName == null){  //用户没输入
+        if(userName == null || userName.trim().equals("")){  //用户没输入
             return false;
         }
+
+
         User user = loginService.findUserByName(userName);
         //1、此处调用service类，根据用户名查找用户
         if (user == null) {  //用户名可用
