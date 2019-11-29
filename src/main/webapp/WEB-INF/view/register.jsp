@@ -22,7 +22,11 @@
 
         $("#registerForm").validate({
             rules:{
-                psd:"required",
+                psd:{
+                    required:true,
+                    pwdLength:true
+
+                },
                 psd2:{
                     equalTo: "#password"
                 },
@@ -49,7 +53,9 @@
                 phone:"required"
             },
             messages:{
-                psd:"密码不能为空",
+                psd:{
+                    required:"密码不能为空"
+                },
                 psd2:"密码不一致，请重输",
                 name:{
                     required:"用户名不能为空",
@@ -59,13 +65,13 @@
             },
 
         })
-        $("#password").validate.addMethod("pwdLength",function (value,element) {
+        $.validator.addMethod("pwdLength",function (value,element) {
             var tal = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W_]).{4,20}$/;
             return this.optional(element)||(tal.test(value));
         },"密码为4到20位");
 
     })
-    function getbake() {
+    function goBack() {
         window.history.back(-1)
     }
 
@@ -86,7 +92,7 @@
         </div>
         <div id="register_control";>
             <input type="submit" id="btn_register" value="注册" />
-            <input type="button" id="btn_return" value="返回"  onclick="getbake();"/>
+            <input type="button" id="btn_return" value="返回"  onclick="goBack();"/>
         </div>
     </form>
 </div>
