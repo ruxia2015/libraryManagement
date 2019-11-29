@@ -4,6 +4,7 @@ import example.entity.User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Service
 public interface LoginService {
@@ -12,5 +13,5 @@ public interface LoginService {
 
     Boolean userLogin(String name, String psd, HttpServletRequest  request);
 
-    Boolean addUser(String name, String psd, String phone);
+    Boolean addUser(String name, String psd, String phone, Date date);
 }

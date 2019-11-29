@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 
 @Service
@@ -37,8 +38,8 @@ public class LoginServiceImpl implements LoginService {
         return true;
     }
 
-    public Boolean  addUser(String name, String psd, String phone) {
-        int i = loginDao.addUser(name, psd, phone);
+    public Boolean  addUser(String name, String psd, String phone, Date date) {
+        int i = loginDao.addUser(name, psd, phone, date);
        if(i==1){
            return true;
        }else {

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,11 +20,12 @@ public class LoginDaoImpl implements LoginDao {
         return sqlSessionTemplate.selectOne("user.findUser",params);
     }
 
-    public int addUser(String name, String psd, String phone) {
+    public int addUser(String name, String psd, String phone, Date date) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("userName",name);
         params.put("userPassword",psd);
         params.put("phone",phone);
+        params.put("createDate",date);
         return sqlSessionTemplate.insert("user.addUser",params);
     }
 }

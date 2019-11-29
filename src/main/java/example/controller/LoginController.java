@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/user")
@@ -74,9 +75,9 @@ public class LoginController extends HttpServlet {
 
         if (user == null) {
             return true;
+        }else {
+            return false;
         }
-        return false;
-
     }
 
 
@@ -98,8 +99,9 @@ public class LoginController extends HttpServlet {
     }
 
 @RequestMapping("registerMethod")
-    public String  registerMethod(String name, String psd,String phone, ModelMap response){
-        Boolean b = loginService.addUser(name, psd,phone );
+    public String  registerMethod(String name, String psd, String phone, Date createDate, ModelMap response){
+        Date date  = new Date();
+        Boolean b = loginService.addUser(name, psd,phone,date );
     if(b ==false){
         //弹出提示框显示用户名或密码错误
         response.put("error","注册失败，请重试！");

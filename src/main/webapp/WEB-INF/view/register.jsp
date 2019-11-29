@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/register.css"/>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/additional-methods.js"></script>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/register.js"></script>
 </head>
@@ -44,19 +45,26 @@
                             <%--}--%>
                         <%--}--%>
                     <%--}--%>
-                }
+                },
+                phone:"required"
             },
             messages:{
                 psd:"密码不能为空",
-                username:{
-                    required:"用户名不能为空"
-                }
-            }
+                psd2:"密码不一致，请重输",
+                name:{
+                    required:"用户名不能为空",
+                    remote:"用户名已存在，请重输！"
+                },
+                phone: "电话号码不能为空"
+            },
+
         })
+        $("#password").validate.addMethod("pwdLength",function (value,element) {
+            var tal = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W_]).{4,20}$/;
+            return this.optional(element)||(tal.test(value));
+        },"密码为4到20位");
 
-
-    });
-
+    })
     function getbake() {
         window.history.back(-1)
     }
