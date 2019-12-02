@@ -18,16 +18,19 @@
 <script type="text/javascript">
 
 window.onload = function () {
-    alert();
     var pageNo = 1;
-    var pageNum = 10;
+    var obj =document.getElementById("pageNum");
+    var pageNum = obj.options[obj.selectedIndex].value;
+    obj.onchange = function(){
+        pageNum = obj.options[obj.selectedIndex].value;
+    }
+    // alert();
     $.ajax({
         url: "${pageContext.request.contextPath}/user/selectAllUserList",
         data:{
             "pageNo":pageNo,"pageNum":pageNum
         },
         type:"post",
-        contentType: 'application/json;charset=utf-8',
         dataType:"Json",
         success:function (resp) {
             console.log(resp);
@@ -41,36 +44,35 @@ window.onload = function () {
             console.log(html);
             list.innerHTML = html;
 
-            var listPage = document.getElementById("dataPage");
-            var htmlPage="<tr>"
-            if( pageIndex != 1){
-                htmlPage = htmlPage + "<td onclick='demo("+(1)+")'>首页</td>"
-                htmlPage = htmlPage + "<td onclick='demo("+(pageIndex-1)+")'>"+(pageIndex-1)+"</td>"
-            }
-            htmlPage = htmlPage + "<td>当前页</td>"
-            if( pageIndex != pageCount){
-                htmlPage = htmlPage + "<td onclick='demo("+(pageIndex+1)+")'>"+(pageIndex+1)+"</td>"
-            }
-            htmlPage = htmlPage +  " </tr>"
-            listPage.innerHTML = htmlPage;
+            // var listPage = document.getElementById("dataPage");
+            // var htmlPage="<tr>"
+            // if( pageIndex != 1){
+            //     htmlPage = htmlPage + "<td onclick='demo("+(1)+")'>首页</td>"
+            //     htmlPage = htmlPage + "<td onclick='demo("+(pageIndex-1)+")'>"+(pageIndex-1)+"</td>"
+            // }
+            // htmlPage = htmlPage + "<td>当前页</td>"
+            // if( pageIndex != pageCount){
+            //     htmlPage = htmlPage + "<td onclick='demo("+(pageIndex+1)+")'>"+(pageIndex+1)+"</td>"
+            // }
+            // htmlPage = htmlPage +  " </tr>"
+            // listPage.innerHTML = htmlPage;
         }
     })
 }
+
+
 </script>
 
 
 <body>
     <div>
-        <div id="box">当前每页数据：</div>
-        <div id="down">
-            <ul class="pageNum">
-                <li>5</li>
-                <li>10</li>
-                <li>20</li>
-                <li>50</li>
-                <li>100</li>
-            </ul>
-        </div>
+        <label>每页数据条数：</label>
+       <select id = "pageNum" >
+           <option selected = "selected">5</option>
+           <option >10</option>
+           <option >20</option>
+           <option >100</option>
+       </select>
         <table>
             <thead>
                 <tr>

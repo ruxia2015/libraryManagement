@@ -47,10 +47,10 @@ public class LoginController extends HttpServlet {
 
     @ResponseBody
     @RequestMapping("/selectAllUserList")
-    public Map<String , Object> selectAllUserList(@RequestParam String page){
+    public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageNum){
         Map <String ,Object> map = new HashMap<String, Object>();
-//        List<User> userList = loginService.selectAllUserList(pageNo,pageNum);
-//        map.put("list",userList);
+        List<User> userList = loginService.selectAllUserList(pageNo,pageNum);
+        map.put("list",userList);
         return map;
     }
 
