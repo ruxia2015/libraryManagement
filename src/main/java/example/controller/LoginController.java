@@ -47,8 +47,7 @@ public class LoginController extends HttpServlet {
 
     @ResponseBody
     @RequestMapping("/selectAllUserList")
-    public Map<String , Object> selectAllUserList(@RequestBody String page){
-        System.out.println(page);
+    public Map<String , Object> selectAllUserList(@RequestParam String page){
         Map <String ,Object> map = new HashMap<String, Object>();
 //        List<User> userList = loginService.selectAllUserList(pageNo,pageNum);
 //        map.put("list",userList);
