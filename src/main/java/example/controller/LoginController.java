@@ -5,13 +5,13 @@ import example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
+import javax.swing.*;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -30,6 +30,30 @@ public class LoginController extends HttpServlet {
         return "register";
     }
 
+
+    @RequestMapping("/selectUsers")
+    public String  selectUsers(){
+        return "selectUsers";
+    }
+    @ResponseBody
+    @RequestMapping("/selectAllUser")
+    public Map<String , Object> selectAllUser(Integer pageIndex){
+        System.out.println("pageIndex=" +pageIndex);
+        Map <String ,Object> map = new HashMap<String, Object>();
+        List<User> userList = loginService.selectAllUser();
+        map.put("list",userList);
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectAllUserList")
+    public Map<String , Object> selectAllUserList(@RequestBody String page){
+        System.out.println(page);
+        Map <String ,Object> map = new HashMap<String, Object>();
+//        List<User> userList = loginService.selectAllUserList(pageNo,pageNum);
+//        map.put("list",userList);
+        return map;
+    }
 
 
     //如果name或者psd为null，在哪里去验证，并且返回前端
@@ -109,6 +133,7 @@ public class LoginController extends HttpServlet {
         return "register";
     }
     //弹出一个确认框，点击确认后，在跳转
+    JOptionPane.showMessageDialog(null,"注册成功!");
     return "login";
 }
 }

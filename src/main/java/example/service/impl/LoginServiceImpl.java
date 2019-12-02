@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -47,5 +48,18 @@ public class LoginServiceImpl implements LoginService {
        }
 
     }
+
+    public List<User> selectAllUser() {
+        List<User> userList =  loginDao.selectAllUser();
+        return userList;
+    }
+
+    public List<User> selectAllUserList(int pageNo, int pageNum){
+        List<User> userList =  loginDao.selectAllUserList(pageNo,pageNum);
+        return userList;
+
+    }
+
+
 
 }

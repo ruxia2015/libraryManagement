@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -28,4 +29,18 @@ public class LoginDaoImpl implements LoginDao {
         params.put("createDate",date);
         return sqlSessionTemplate.insert("user.addUser",params);
     }
+
+    public List<User> selectAllUser() {
+        return sqlSessionTemplate.selectList("selectAllUser");
+    }
+
+    public List<User> selectAllUserList(int pageNo,int pageNum){
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("pageNo" ,pageNo);
+        params.put("pageNum" ,pageNum);
+        return sqlSessionTemplate.selectList("user.selectAllUserList",params);
+    }
+
+    //    public List<User> selectAllUser() {
+//    }
 }

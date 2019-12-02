@@ -32,10 +32,20 @@
 
 	</select>
 
+	<select id="selectAllUser" resultType="example.entity.User">
+		select * from user
+	</select>
+
+	<select id="selectAllUserList" resultType="example.entity.User">
+		select * from user limit #{pageNo} ,#{pageNum}
+	</select>
+
 	<insert id="addUser">
 		INSERT INTO USER ( userName, userPassword, phone, createDate)
 		values (#{userName}, #{userPassword}, #{phone}, #{createDate})
 	</insert>
+
+
 	
 		<!-- auto generate default count -->
 

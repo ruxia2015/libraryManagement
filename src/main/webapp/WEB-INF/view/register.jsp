@@ -66,8 +66,8 @@
 
         })
         $.validator.addMethod("pwdLength",function (value,element) {
-            var tal = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W_]).{4,20}$/;
-            return this.optional(element)||(tal.test(value));
+            var tal = /^[a-zA-Z0-9-.!@#$%^&*()+?><]{4,20}$/;
+            return this.optional(element) || (tal.test(value));
         },"密码为4到20位");
 
     })
@@ -86,7 +86,7 @@
                 <input type="text" placeholder="用户名" id="username" name="name" class="text_field"  />
                 <span id = "hint"></span>
             </p>
-            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password"  placeholder="密码" name="psd" id="password" class="text_field" required/></p>
+            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password"  placeholder="4-20位密码" name="psd" id="password" class="text_field" required/></p>
             <p><label class="label_input">再一次密码:</label>&nbsp<input  placeholder="确认密码" type="password" name="psd2" id="password2" class="text_field" /></p>
             <p><label class="label_input">电话:</label>&nbsp<input type="text"  placeholder="电话号码" name="phone" id="phone" class="text_field"/></p>
         </div>

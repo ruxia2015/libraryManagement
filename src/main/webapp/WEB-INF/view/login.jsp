@@ -21,6 +21,10 @@
     function register2() {
         window.location.href = _contextPath + "/user/register"
     }
+
+    function selectUsers2() {
+        window.location.href = _contextPath + "/user/selectUsers"
+    }
 </script>
 
 
@@ -37,6 +41,9 @@
             <input type="submit" id="btn_login" value="登录"  />
             <input type="button" id="btn_enroll" value="注册" onclick="register2();"/>
             <a id="forget_pwd" href="forget_pwd.html">忘记密码？</a>
+        </div>
+        <div>
+            <input type="button" id="selectUsers" value="读者查询" onclick="selectUsers2()"/>
         </div>
     </form>
 </div>
