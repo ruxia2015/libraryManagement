@@ -23,8 +23,21 @@ window.onload = function () {
     var pageNum = obj.options[obj.selectedIndex].value;
     obj.onchange = function(){
         pageNum = obj.options[obj.selectedIndex].value;
+        refreshPage(pageNo,pageNum);
     }
+    refreshPage(pageNo,pageNum)
     // alert();
+
+}
+
+function skip() {
+    var pageNo = document.getElementById("selestPageNo");
+    var obj =document.getElementById("pageNum");
+    var pageNum = obj.options[obj.selectedIndex].value;
+    refreshPage(pageNo,pageNum);
+}
+
+function refreshPage(pageNo , pageNum) {
     $.ajax({
         url: "${pageContext.request.contextPath}/user/selectAllUserList",
         data:{
@@ -44,20 +57,21 @@ window.onload = function () {
             console.log(html);
             list.innerHTML = html;
 
-            // var listPage = document.getElementById("dataPage");
-            // var htmlPage="<tr>"
-            // if( pageIndex != 1){
-            //     htmlPage = htmlPage + "<td onclick='demo("+(1)+")'>首页</td>"
-            //     htmlPage = htmlPage + "<td onclick='demo("+(pageIndex-1)+")'>"+(pageIndex-1)+"</td>"
-            // }
-            // htmlPage = htmlPage + "<td>当前页</td>"
-            // if( pageIndex != pageCount){
-            //     htmlPage = htmlPage + "<td onclick='demo("+(pageIndex+1)+")'>"+(pageIndex+1)+"</td>"
-            // }
-            // htmlPage = htmlPage +  " </tr>"
-            // listPage.innerHTML = htmlPage;
+            var pageCount =100;
+             var listPage = document.getElementById("dataPage");
+             var htmlPage="<tr>"
+             if( pageNo != 1){
+                htmlPage = htmlPage + "<td onclick='pageIndex()'>首页</td>"
+                htmlPage = htmlPage + "<td onclick='pageIndex()'>"+(pageNo-1)+"</td>"
+             }
+             htmlPage = htmlPage + "<td>当前页</td>"
+             if( pageNo != pageCount){
+                 htmlPage = htmlPage + "<td onclick='pageIndex()'>"+(pageNo+1)+"</td>"
+             }htmlPage = htmlPage +  " </tr>"
+             listPage.innerHTML = htmlPage;
         }
     })
+
 }
 
 
@@ -70,7 +84,7 @@ window.onload = function () {
        <select id = "pageNum" >
            <option selected = "selected">5</option>
            <option >10</option>
-           <option >20</option>
+           <option >2</option>
            <option >100</option>
        </select>
         <table>
@@ -96,9 +110,13 @@ window.onload = function () {
         <table>
             <thead id="dataPage">
                 <tr>
-                    <td >1</td>
-                    <td >2</td>
-                    <td >3</td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td>
+                        <input type="text"  placeholder="跳转的页数" id = "selestPageNo">
+                        <input type="button" onclick="skip();" value="跳转">
+                    </td>
                 </tr>
             </thead>
         </table>
