@@ -19,38 +19,47 @@
 
 window.onload = function () {
     var pageNo = 1;
-    var obj =document.getElementById("pageNum");
-    var pageNum = obj.options[obj.selectedIndex].value;
+    var obj =document.getElementById("pageSize");
+    var pageSize = obj.options[obj.selectedIndex].value;
     obj.onchange = function(){
-        pageNum = obj.options[obj.selectedIndex].value;
-        refreshPage(pageNo,pageNum);
+        //传入当前页数
+        pageSize = obj.options[obj.selectedIndex].value;
+        refreshPage(pageNo,pageSize);
     }
-    refreshPage(pageNo,pageNum)
+    refreshPage(pageNo,pageSize)
     // alert();
 
 }
 
 function skip() {
     var pageNo = document.getElementById("selestPageNo");
-    var obj =document.getElementById("pageNum");
-    var pageNum = obj.options[obj.selectedIndex].value;
-    refreshPage(pageNo,pageNum);
+    var obj =document.getElementById("pageSize");
+    var pageSize = obj.options[obj.selectedIndex].value;
+    refreshPage(pageNo,pageSize);
 }
 
 function goPage(pageNo){
     //pageNum-->pageSize  仍然取下拉列表中的值
-    var obj =document.getElementById("pageNum");
-    var pageNum = obj.options[obj.selectedIndex].value;
-
-    refreshPage(pageNo,pageNum);
+    var obj =document.getElementById("pageSize");
+    var pageSize = obj.options[obj.selectedIndex].value;
+    refreshPage(pageNo,pageSize);
 
 }
 
-function refreshPage(pageNo , pageNum) {
+function goLast(pageCount){
+    //pageNum-->pageSize  仍然取下拉列表中的值
+    var pageNo = pageCount;
+    var obj =document.getElementById("pageSize");
+    var pageSize = obj.options[obj.selectedIndex].value;
+    refreshPage(pageNo,pageSize);
+
+}
+
+function refreshPage(pageNo , pageSize) {
     $.ajax({
         url: "${pageContext.request.contextPath}/user/selectAllUserList",
         data:{
-            "pageNo":pageNo,"pageNum":pageNum
+            "pageNo":pageSize,"pageSize":pageSize
         },
         type:"post",
         dataType:"Json",
@@ -66,7 +75,7 @@ function refreshPage(pageNo , pageNum) {
             console.log(html);
             list.innerHTML = html;
 
-            var pageCount =100;
+            var pageCount =resp.pageCount;
              var listPage = document.getElementById("dataPage");
              var htmlPage="<tr>"
 
@@ -77,22 +86,23 @@ function refreshPage(pageNo , pageNum) {
              htmlPage = htmlPage + "<td>当前页"+pageNo+"</td>"
              if( pageNo != pageCount){
                  htmlPage = htmlPage + "<td><button   onclick='goPage("+(pageNo+1)+")'>"+(pageNo+1)+"</button></td>"
+                 htmlPage = htmlPage + "<td><button onclick='goPage("+pageCount+")'>尾页</button></td>"
              }
+
+             htmlPage = htmlPage+" <td><input type=\"text\"  placeholder=\"跳转的页数\" id = \"selestPageNo\">\n" +
+                 "                        <input type=\"button\" onclick=\"skip();\" value=\"跳转\"></td>"
              htmlPage = htmlPage +  " </tr>"
              listPage.innerHTML = htmlPage;
         }
     })
-
 }
-
-
 </script>
 
 
 <body>
     <div>
         <label>每页数据条数：</label>
-       <select id = "pageNum" >
+       <select id = "pageSize" >
            <option selected = "selected">5</option>
            <option >10</option>
            <option >2</option>
@@ -124,10 +134,7 @@ function refreshPage(pageNo , pageNum) {
                     <td ></td>
                     <td ></td>
                     <td ></td>
-                    <td>
-                        <input type="text"  placeholder="跳转的页数" id = "selestPageNo">
-                        <input type="button" onclick="skip();" value="跳转">
-                    </td>
+                    <td></td>
                 </tr>
             </thead>
         </table>

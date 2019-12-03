@@ -1,5 +1,6 @@
 package example.controller;
 
+import example.entity.Page;
 import example.entity.User;
 import example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +48,16 @@ public class LoginController extends HttpServlet {
 
     @ResponseBody
     @RequestMapping("/selectAllUserList")
-    public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageNum){
+    public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageSize){
+        Page page = new Page();
+        page.setPageSize(pageSize);
         Map <String ,Object> map = new HashMap<String, Object>();
-        List<User> userList = loginService.selectAllUserList(pageNo,pageNum);
+        List<User> listUser = loginService.selectAllUser();
+        List<User> userList = loginService.selectAllUserList(pageNo,pageSize);
+        page.setToatalNum(listUser.size());
+        int pageCount = page.getTotalPageNum();
         map.put("list",userList);
+        map.put("pageCount",pageCount);
         return map;
     }
 

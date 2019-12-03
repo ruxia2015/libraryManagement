@@ -9,6 +9,10 @@ public class Page {
     private int toatalNum; //总数据
     private List<Object> list = new ArrayList<Object>();  //装数据的集合
 
+    public Page(){
+
+    }
+
     public Page(int pageNo, int pageSize, int toatalNum, List<Object> list) {
         this.pageNo = pageNo;
         this.pageSize = pageSize;
@@ -56,9 +60,9 @@ public class Page {
     //获得总页数
     public int getTotalPageNum(){
         if(toatalNum%pageSize == 0){
-            return toatalNum%pageSize;
+            return toatalNum/pageSize;
         }else {
-            return  toatalNum%pageSize+1;
+            return  toatalNum/pageSize+1;
         }
     }
 
