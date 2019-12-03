@@ -37,6 +37,14 @@ function skip() {
     refreshPage(pageNo,pageNum);
 }
 
+function goPage(pageNo){
+    var obj =document.getElementById("pageNum");
+    var pageNum = obj.options[obj.selectedIndex].value;
+
+    refreshPage(pageNo,pageNum);
+
+}
+
 function refreshPage(pageNo , pageNum) {
     $.ajax({
         url: "${pageContext.request.contextPath}/user/selectAllUserList",
@@ -60,14 +68,16 @@ function refreshPage(pageNo , pageNum) {
             var pageCount =100;
              var listPage = document.getElementById("dataPage");
              var htmlPage="<tr>"
+
              if( pageNo != 1){
-                htmlPage = htmlPage + "<td onclick='pageIndex()'>首页</td>"
-                htmlPage = htmlPage + "<td onclick='pageIndex()'>"+(pageNo-1)+"</td>"
+                htmlPage = htmlPage + "<td><button onclick='goPage(1)'>首页</button></td>"
+                htmlPage = htmlPage + "<td><button   onclick='goPage("+(pageNo-1)+")'>"+(pageNo-1)+"</button></td>"
              }
-             htmlPage = htmlPage + "<td>当前页</td>"
+             htmlPage = htmlPage + "<td>当前页"+pageNo+"</td>"
              if( pageNo != pageCount){
-                 htmlPage = htmlPage + "<td onclick='pageIndex()'>"+(pageNo+1)+"</td>"
-             }htmlPage = htmlPage +  " </tr>"
+                 htmlPage = htmlPage + "<td><button   onclick='goPage("+(pageNo+1)+")'>"+(pageNo+1)+"</button></td>"
+             }
+             htmlPage = htmlPage +  " </tr>"
              listPage.innerHTML = htmlPage;
         }
     })
