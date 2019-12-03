@@ -38,6 +38,7 @@ function skip() {
 }
 
 function goPage(pageNo){
+    //pageNum-->pageSize  仍然取下拉列表中的值
     var obj =document.getElementById("pageNum");
     var pageNum = obj.options[obj.selectedIndex].value;
 
