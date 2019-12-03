@@ -40,6 +40,14 @@
 		select * from user limit #{pageNo} ,#{pageNum}
 	</select>
 
+	<select id="queryUser" resultType="example.entity.User">
+		select * from user <where>
+		 <if test="userName != null">
+			name like "%"#{userName}"%"
+		 </if>
+	</where>
+	</select>
+
 	<insert id="addUser">
 		INSERT INTO USER ( userName, userPassword, phone, createDate)
 		values (#{userName}, #{userPassword}, #{phone}, #{createDate})

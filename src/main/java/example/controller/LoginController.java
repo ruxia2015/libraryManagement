@@ -49,6 +49,7 @@ public class LoginController extends HttpServlet {
     @ResponseBody
     @RequestMapping("/selectAllUserList")
     public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageSize){
+
         Page page = new Page();
         page.setPageSize(pageSize);
         Map <String ,Object> map = new HashMap<String, Object>();
@@ -58,6 +59,16 @@ public class LoginController extends HttpServlet {
         int pageCount = page.getTotalPageNum();
         map.put("list",userList);
         map.put("pageCount",pageCount);
+        return map;
+    }
+
+    //根据用户名查找用户
+    @ResponseBody
+    @RequestMapping("/queryUser")
+    public Map<String ,Object> queryUser(@RequestParam String queryUser){
+        Map <String ,Object> map = new HashMap<String, Object>();
+        List<User> listUser = loginService.queryUser(queryUser);
+        map.put("list",listUser);
         return map;
     }
 

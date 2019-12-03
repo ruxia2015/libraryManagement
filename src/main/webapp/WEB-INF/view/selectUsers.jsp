@@ -96,6 +96,33 @@ function refreshPage(pageNo , pageSize) {
         }
     })
 }
+function queryUser() {
+    var queryUser = $("#queryUser");
+    alert(queryUser);
+    $.ajax({
+        url: "${pageContext.request.contextPath}/user/queryUser",
+        data:{
+            "queryUser":queryUser
+        },
+        type:"post",
+        dataType: "Json",
+        success:function (rep) {
+            if(rep ==null || rep.size()==0){
+                alert("未输入用户名或未找到该用户！")
+            }
+            var list = document.getElementById("dataBody");
+            var html="";
+            var index = 0;
+            for(;index< resp.list.length; index++){
+                html = html +  "<tr><td>"+(index+1)+"</td><td>"+resp.list[index].userName+"</td><td>"+resp.list[index].phone+"</td></tr>";
+            }
+            console.log(index);
+            console.log(html);
+            list.innerHTML = html;
+        }
+
+    })
+}
 </script>
 
 
@@ -108,6 +135,8 @@ function refreshPage(pageNo , pageSize) {
            <option >2</option>
            <option >100</option>
        </select>
+        <input type="text" id = "queryUser" placeholder="用户名字">
+        <input type="button" onclick="queryUser()" value="查询">
         <table>
             <thead>
                 <tr>

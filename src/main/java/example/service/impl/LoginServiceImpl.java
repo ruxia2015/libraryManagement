@@ -57,9 +57,12 @@ public class LoginServiceImpl implements LoginService {
     public List<User> selectAllUserList(int pageNo, int pageNum){
         List<User> userList =  loginDao.selectAllUserList(pageNo,pageNum);
         return userList;
-
     }
 
+    public List<User> queryUser(String userName){
+        List<User> userList =  loginDao.queryUser(userName);
+        return userList;
+    }
 
 
 }

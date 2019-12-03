@@ -13,4 +13,6 @@ public interface LoginDao {
 
     List<User> selectAllUser();
     List<User> selectAllUserList(int pageNo,int pageNum);
+
+    List<User> queryUser(String userName);
 }

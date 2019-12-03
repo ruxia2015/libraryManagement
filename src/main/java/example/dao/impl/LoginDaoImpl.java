@@ -43,4 +43,10 @@ public class LoginDaoImpl implements LoginDao {
 
     //    public List<User> selectAllUser() {
 //    }
+
+    public List<User> queryUser(String userName){
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("userName" ,userName);
+        return sqlSessionTemplate.selectList("userName",userName);
+    }
 }
