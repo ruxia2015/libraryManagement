@@ -23,6 +23,7 @@ window.onload = function () {
     var pageSize = obj.options[obj.selectedIndex].value;
     obj.onchange = function(){
         //传入当前页数
+        pageNo= $("#pageNum").val();
         pageSize = obj.options[obj.selectedIndex].value;
         refreshPage(pageNo,pageSize);
     }
@@ -39,6 +40,7 @@ function skip() {
 }
 
 function goPage(pageNo){
+    $("#pageNum").val(pageNo);
     //pageNum-->pageSize  仍然取下拉列表中的值
     var obj =document.getElementById("pageSize");
     var pageSize = obj.options[obj.selectedIndex].value;
@@ -59,11 +61,12 @@ function refreshPage(pageNo , pageSize) {
     $.ajax({
         url: "${pageContext.request.contextPath}/user/selectAllUserList",
         data:{
-            "pageNo":pageSize,"pageSize":pageSize
+            "pageNo":pageNo,"pageSize":pageSize
         },
         type:"post",
         dataType:"Json",
         success:function (resp) {
+            $("#count").text(resp.count);
             console.log(resp);
             var list = document.getElementById("dataBody");
             var html="";
@@ -86,18 +89,26 @@ function refreshPage(pageNo , pageSize) {
              htmlPage = htmlPage + "<td>当前页"+pageNo+"</td>"
              if( pageNo != pageCount){
                  htmlPage = htmlPage + "<td><button   onclick='goPage("+(pageNo+1)+")'>"+(pageNo+1)+"</button></td>"
+                 alert(pageNo+1);
                  htmlPage = htmlPage + "<td><button onclick='goPage("+pageCount+")'>尾页</button></td>"
              }
 
+
+
+             htmlPage = htmlPage+" <td>\n" +
+                 "                <label>总页数：</label><span id = \"pagesNum\"></span>\n" +
+                 "            </td>";
              htmlPage = htmlPage+" <td><input type=\"text\"  placeholder=\"跳转的页数\" id = \"selestPageNo\">\n" +
                  "                        <input type=\"button\" onclick=\"skip();\" value=\"跳转\"></td>"
              htmlPage = htmlPage +  " </tr>"
              listPage.innerHTML = htmlPage;
+             $("#pagesNum").text(resp.pageCount);
         }
     })
 }
 function queryUser() {
-    var queryUser = $("#queryUser");
+    var queryUser = $("#queryUser").val();
+
     alert(queryUser);
     $.ajax({
         url: "${pageContext.request.contextPath}/user/queryUser",
@@ -106,8 +117,8 @@ function queryUser() {
         },
         type:"post",
         dataType: "Json",
-        success:function (rep) {
-            if(rep ==null || rep.size()==0){
+        success:function (resp) {
+            if(resp ==null || resp.list.length==0){
                 alert("未输入用户名或未找到该用户！")
             }
             var list = document.getElementById("dataBody");
@@ -128,6 +139,8 @@ function queryUser() {
 
 <body>
     <div>
+
+        <input type="hidden" id = "pageNum" value="1">
         <label>每页数据条数：</label>
        <select id = "pageSize" >
            <option selected = "selected">5</option>
@@ -135,8 +148,10 @@ function queryUser() {
            <option >2</option>
            <option >100</option>
        </select>
+        <label>总条数：</label><span id = "count"></span>
         <input type="text" id = "queryUser" placeholder="用户名字">
         <input type="button" onclick="queryUser()" value="查询">
+        <input type="button" onclick="refreshPage()" value="刷新">
         <table>
             <thead>
                 <tr>
@@ -147,24 +162,13 @@ function queryUser() {
             </thead>
             <tbody  id="dataBody">
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
             </tbody>
+
 
 
         </table>
         <table>
             <thead id="dataPage">
-                <tr>
-                    <td ></td>
-                    <td ></td>
-                    <td ></td>
-                    <td></td>
-                </tr>
             </thead>
         </table>
 

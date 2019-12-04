@@ -49,16 +49,16 @@ public class LoginController extends HttpServlet {
     @ResponseBody
     @RequestMapping("/selectAllUserList")
     public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageSize){
-
         Page page = new Page();
         page.setPageSize(pageSize);
         Map <String ,Object> map = new HashMap<String, Object>();
-        List<User> listUser = loginService.selectAllUser();
+       int count = loginService.count();
         List<User> userList = loginService.selectAllUserList(pageNo,pageSize);
-        page.setToatalNum(listUser.size());
+        page.setToatalNum(count);
         int pageCount = page.getTotalPageNum();
         map.put("list",userList);
         map.put("pageCount",pageCount);
+        map.put("count",count);
         return map;
     }
 
@@ -71,6 +71,8 @@ public class LoginController extends HttpServlet {
         map.put("list",listUser);
         return map;
     }
+
+    //刷新界面
 
 
     //如果name或者psd为null，在哪里去验证，并且返回前端

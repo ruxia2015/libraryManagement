@@ -64,5 +64,9 @@ public class LoginServiceImpl implements LoginService {
         return userList;
     }
 
+    public int count(){
+        return loginDao.count();
+    }
+
 
 }

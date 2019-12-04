@@ -35,8 +35,9 @@ public class LoginDaoImpl implements LoginDao {
     }
 
     public List<User> selectAllUserList(int pageNo,int pageNum){
+        int startNo = (pageNo-1)*pageNum;
         Map <String ,Object> params = new HashMap<String, Object>();
-        params.put("pageNo" ,pageNo);
+        params.put("pageNo" ,startNo);
         params.put("pageNum" ,pageNum);
         return sqlSessionTemplate.selectList("user.selectAllUserList",params);
     }
@@ -47,6 +48,10 @@ public class LoginDaoImpl implements LoginDao {
     public List<User> queryUser(String userName){
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("userName" ,userName);
-        return sqlSessionTemplate.selectList("userName",userName);
+        return sqlSessionTemplate.selectList("user.queryUser",params);
+    }
+
+    public int count(){
+        return sqlSessionTemplate.selectOne("user.count");
     }
 }

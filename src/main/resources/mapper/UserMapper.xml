@@ -40,10 +40,15 @@
 		select * from user limit #{pageNo} ,#{pageNum}
 	</select>
 
+	<select id="count" resultType="int">
+		select count(*) as count from user
+	</select>
+
+
 	<select id="queryUser" resultType="example.entity.User">
 		select * from user <where>
 		 <if test="userName != null">
-			name like "%"#{userName}"%"
+			userName like "%"#{userName}"%"
 		 </if>
 	</where>
 	</select>
