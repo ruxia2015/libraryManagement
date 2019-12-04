@@ -59,7 +59,7 @@
 		</where>
 	</select>
 
-	//根据用户名称查询出所有的用户，并且分页
+<!--	根据用户名称查询出所有的用户，并且分页-->
 	<select id="queryAllUser" resultType="example.entity.User">
 		select * from user
 		<where>

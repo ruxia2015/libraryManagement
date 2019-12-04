@@ -20,7 +20,7 @@ public interface LoginService {
     List<User> selectAllUserList(int pageNo, int pageNum);
     List<User> queryUser(String userName);
 
-    int count();
+    int count(String userName);
 
 
     List<User> queryAllUser(int pageNo, int pageNum, String userName);

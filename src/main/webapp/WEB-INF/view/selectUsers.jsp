@@ -25,7 +25,7 @@ window.onload = function () {
     obj.onchange = function(){
         //传入当前页数
          userName = $("#queryUser").val();
-        pageNo= $("#pageNum").val();
+        pageNo= 1;
         pageSize = obj.options[obj.selectedIndex].value;
         refreshPage(pageNo,pageSize,userName);
     }
@@ -38,7 +38,6 @@ window.onload = function () {
 function skip() {
     var pageNo = $("#selestPageNo").val();
     var count = $("#pagesNum").text();
-    alert(pageNo,count);
     pageNo = parseInt(pageNo);
     count = parseInt(count);
     if(pageNo>0&&pageNo<=count){
@@ -109,7 +108,7 @@ function refreshPage(pageNo , pageSize, userName) {
 }
 function queryUser() {
     var userName = $("#queryUser").val();
-    var pageNo= $("#pageNum").val();
+    var pageNo= 1;
     var obj =document.getElementById("pageSize");
     var pageSize = obj.options[obj.selectedIndex].value;
     refreshPage(pageNo,pageSize,userName);

@@ -162,7 +162,7 @@ public class LoginController extends HttpServlet {
         Page page = new Page();
         page.setPageSize(pageSize);
         Map <String ,Object> map = new HashMap<String, Object>();
-        int count = loginService.count();
+        int count = loginService.count(userName);
         List<User> userList = loginService.queryAllUser(pageNo,pageSize, userName);
         page.setToatalNum(count);
         int pageCount = page.getTotalPageNum();
