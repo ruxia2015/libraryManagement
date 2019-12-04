@@ -19,49 +19,50 @@
 
 window.onload = function () {
     var pageNo = 1;
+    var userName = $("#queryUser").val();
     var obj =document.getElementById("pageSize");
     var pageSize = obj.options[obj.selectedIndex].value;
     obj.onchange = function(){
         //传入当前页数
+         userName = $("#queryUser").val();
         pageNo= $("#pageNum").val();
         pageSize = obj.options[obj.selectedIndex].value;
-        refreshPage(pageNo,pageSize);
+        refreshPage(pageNo,pageSize,userName);
     }
-    refreshPage(pageNo,pageSize)
+    refreshPage(pageNo,pageSize,userName)
     // alert();
 
 }
 
+//跳转
 function skip() {
-    var pageNo = document.getElementById("selestPageNo");
-    var obj =document.getElementById("pageSize");
-    var pageSize = obj.options[obj.selectedIndex].value;
-    refreshPage(pageNo,pageSize);
+    var pageNo = $("#selestPageNo").val();
+    var count = $("#pagesNum").text();
+    alert(pageNo,count);
+    pageNo = parseInt(pageNo);
+    count = parseInt(count);
+    if(pageNo>0&&pageNo<=count){
+        goPage(pageNo);
+    }
 }
 
 function goPage(pageNo){
+    var userName = $("#queryUser").val();
     $("#pageNum").val(pageNo);
     //pageNum-->pageSize  仍然取下拉列表中的值
     var obj =document.getElementById("pageSize");
     var pageSize = obj.options[obj.selectedIndex].value;
-    refreshPage(pageNo,pageSize);
+    refreshPage(pageNo,pageSize,userName);
 
 }
 
-function goLast(pageCount){
-    //pageNum-->pageSize  仍然取下拉列表中的值
-    var pageNo = pageCount;
-    var obj =document.getElementById("pageSize");
-    var pageSize = obj.options[obj.selectedIndex].value;
-    refreshPage(pageNo,pageSize);
 
-}
-
-function refreshPage(pageNo , pageSize) {
+function refreshPage(pageNo , pageSize, userName) {
+    pageNo = parseInt(pageNo);
     $.ajax({
-        url: "${pageContext.request.contextPath}/user/selectAllUserList",
+        url: "${pageContext.request.contextPath}/user/queryAllUser",
         data:{
-            "pageNo":pageNo,"pageSize":pageSize
+            "pageNo":pageNo, "pageSize":pageSize, "userName":userName
         },
         type:"post",
         dataType:"Json",
@@ -78,6 +79,7 @@ function refreshPage(pageNo , pageSize) {
             console.log(html);
             list.innerHTML = html;
 
+
             var pageCount =resp.pageCount;
              var listPage = document.getElementById("dataPage");
              var htmlPage="<tr>"
@@ -89,7 +91,6 @@ function refreshPage(pageNo , pageSize) {
              htmlPage = htmlPage + "<td>当前页"+pageNo+"</td>"
              if( pageNo != pageCount){
                  htmlPage = htmlPage + "<td><button   onclick='goPage("+(pageNo+1)+")'>"+(pageNo+1)+"</button></td>"
-                 alert(pageNo+1);
                  htmlPage = htmlPage + "<td><button onclick='goPage("+pageCount+")'>尾页</button></td>"
              }
 
@@ -107,32 +108,11 @@ function refreshPage(pageNo , pageSize) {
     })
 }
 function queryUser() {
-    var queryUser = $("#queryUser").val();
-
-    alert(queryUser);
-    $.ajax({
-        url: "${pageContext.request.contextPath}/user/queryUser",
-        data:{
-            "queryUser":queryUser
-        },
-        type:"post",
-        dataType: "Json",
-        success:function (resp) {
-            if(resp ==null || resp.list.length==0){
-                alert("未输入用户名或未找到该用户！")
-            }
-            var list = document.getElementById("dataBody");
-            var html="";
-            var index = 0;
-            for(;index< resp.list.length; index++){
-                html = html +  "<tr><td>"+(index+1)+"</td><td>"+resp.list[index].userName+"</td><td>"+resp.list[index].phone+"</td></tr>";
-            }
-            console.log(index);
-            console.log(html);
-            list.innerHTML = html;
-        }
-
-    })
+    var userName = $("#queryUser").val();
+    var pageNo= $("#pageNum").val();
+    var obj =document.getElementById("pageSize");
+    var pageSize = obj.options[obj.selectedIndex].value;
+    refreshPage(pageNo,pageSize,userName);
 }
 </script>
 

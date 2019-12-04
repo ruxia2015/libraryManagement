@@ -54,4 +54,13 @@ public class LoginDaoImpl implements LoginDao {
     public int count(){
         return sqlSessionTemplate.selectOne("user.count");
     }
+
+    public List<User> queryAllUser(int pageNo, int pageNum, String userName){
+        int startNo = (pageNo-1)*pageNum;
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("pageNo" ,startNo);
+        params.put("pageNum" ,pageNum);
+        params.put("userName",userName);
+        return sqlSessionTemplate.selectList("user.queryAllUser",params);
+    }
 }

@@ -46,21 +46,21 @@ public class LoginController extends HttpServlet {
         return map;
     }
 
-    @ResponseBody
-    @RequestMapping("/selectAllUserList")
-    public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageSize){
-        Page page = new Page();
-        page.setPageSize(pageSize);
-        Map <String ,Object> map = new HashMap<String, Object>();
-       int count = loginService.count();
-        List<User> userList = loginService.selectAllUserList(pageNo,pageSize);
-        page.setToatalNum(count);
-        int pageCount = page.getTotalPageNum();
-        map.put("list",userList);
-        map.put("pageCount",pageCount);
-        map.put("count",count);
-        return map;
-    }
+//    @ResponseBody
+//    @RequestMapping("/selectAllUserList")
+//    public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageSize){
+//        Page page = new Page();
+//        page.setPageSize(pageSize);
+//        Map <String ,Object> map = new HashMap<String, Object>();
+//       int count = loginService.count();
+//        List<User> userList = loginService.selectAllUserList(pageNo,pageSize);
+//        page.setToatalNum(count);
+//        int pageCount = page.getTotalPageNum();
+//        map.put("list",userList);
+//        map.put("pageCount",pageCount);
+//        map.put("count",count);
+//        return map;
+//    }
 
     //根据用户名查找用户
     @ResponseBody
@@ -155,6 +155,22 @@ public class LoginController extends HttpServlet {
     JOptionPane.showMessageDialog(null,"注册成功!");
     return "login";
 }
+
+    @ResponseBody
+    @RequestMapping("/queryAllUser")
+    public Map<String , Object> queryAllUser(@RequestParam Integer pageNo,@RequestParam Integer pageSize, @RequestParam String userName){
+        Page page = new Page();
+        page.setPageSize(pageSize);
+        Map <String ,Object> map = new HashMap<String, Object>();
+        int count = loginService.count();
+        List<User> userList = loginService.queryAllUser(pageNo,pageSize, userName);
+        page.setToatalNum(count);
+        int pageCount = page.getTotalPageNum();
+        map.put("list",userList);
+        map.put("pageCount",pageCount);
+        map.put("count",count);
+        return map;
+    }
 }
 
 

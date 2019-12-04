@@ -67,6 +67,10 @@ public class LoginServiceImpl implements LoginService {
     public int count(){
         return loginDao.count();
     }
+    public List<User> queryAllUser(int pageNo, int pageNum, String userName){
+        List<User> userList =  loginDao.queryAllUser(pageNo,pageNum,userName);
+        return userList;
+    }
 
 
 }

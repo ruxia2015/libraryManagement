@@ -21,5 +21,8 @@ public interface LoginService {
     List<User> queryUser(String userName);
 
     int count();
+
+
+    List<User> queryAllUser(int pageNo, int pageNum, String userName);
 }
 

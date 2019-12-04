@@ -17,4 +17,8 @@ public interface LoginDao {
     List<User> queryUser(String userName);
 
     int count();
+
+
+    List<User> queryAllUser(int pageNo,int pageNum, String userName);
+
 }

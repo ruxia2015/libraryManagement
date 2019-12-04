@@ -42,16 +42,34 @@
 
 	<select id="count" resultType="int">
 		select count(*) as count from user
+		<where>
+			<if test="userName != null">
+				userName like "%"#{userName}"%"
+			</if>
+		</where>
 	</select>
 
 
 	<select id="queryUser" resultType="example.entity.User">
-		select * from user <where>
-		 <if test="userName != null">
-			userName like "%"#{userName}"%"
-		 </if>
-	</where>
+		select * from user
+		<where>
+			 <if test="userName != null">
+				userName like "%"#{userName}"%"
+			 </if>
+		</where>
 	</select>
+
+	//根据用户名称查询出所有的用户，并且分页
+	<select id="queryAllUser" resultType="example.entity.User">
+		select * from user
+		<where>
+			<if test="userName != null">
+				userName like "%"#{userName}"%"
+			</if>
+		</where>
+		limit #{pageNo} ,#{pageNum}
+	</select>
+
 
 	<insert id="addUser">
 		INSERT INTO USER ( userName, userPassword, phone, createDate)
