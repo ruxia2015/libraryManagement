@@ -27,19 +27,28 @@
         <property name="prefix" value="/WEB-INF/view/"/><!--设置JSP文件的目录位置-->
         <property name="suffix" value=".jsp"/>
         <property name="exposeContextBeansAsAttributes" value="true"/>
+        <property name="order" value="1"/>
     </bean>
 
     <!-- 配置freeMarker的模板路径 -->
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="WEB-INF/freemaker/" />
-        <property name="defaultEncoding" value="UTF-8" />
+        <property name="templateLoaderPath" value="/WEB-INF/freemaker/"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape"/>
+            </map>
+        </property>
     </bean>
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
     <!-- freemarker视图解析器 -->
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
         <property name="suffix" value=".ftl" />
         <property name="contentType" value="text/html;charset=UTF-8" />
         <!-- 此变量值为pageContext.request, 页面使用方法：rc.contextPath -->
         <property name="requestContextAttribute" value="rc" />
+        <property name="order" value="0"/>
     </bean>
 
     <!--&lt;!&ndash; 注册类型转换以及验证功能 &ndash;&gt;-->
