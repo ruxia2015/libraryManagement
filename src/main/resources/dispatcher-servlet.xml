@@ -49,6 +49,7 @@
         <!-- 此变量值为pageContext.request, 页面使用方法：rc.contextPath -->
         <property name="requestContextAttribute" value="rc" />
         <property name="order" value="0"/>
+        <property name="cache" value="false"/>
     </bean>
 
     <!--&lt;!&ndash; 注册类型转换以及验证功能 &ndash;&gt;-->
