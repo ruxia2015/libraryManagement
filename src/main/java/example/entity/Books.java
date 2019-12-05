@@ -6,8 +6,10 @@ public class Books {
     private int id;
     private int isbn;
     private String bookName;
+    private String bookSynopsis;
     private String bookAuthor;
     private String bookPicture;
+    private String bookType;
     private Double bookPrice;
     private Date createDate;
     private Date updateDate;
@@ -38,6 +40,14 @@ public class Books {
         this.bookName = bookName;
     }
 
+    public String getBookSynopsis() {
+        return bookSynopsis;
+    }
+
+    public void setBookSynopsis(String bookSynopsis) {
+        this.bookSynopsis = bookSynopsis;
+    }
+
     public String getBookAuthor() {
         return bookAuthor;
     }
@@ -52,6 +62,14 @@ public class Books {
 
     public void setBookPicture(String bookPicture) {
         this.bookPicture = bookPicture;
+    }
+
+    public String getBookType() {
+        return bookType;
+    }
+
+    public void setBookType(String bookType) {
+        this.bookType = bookType;
     }
 
     public Double getBookPrice() {

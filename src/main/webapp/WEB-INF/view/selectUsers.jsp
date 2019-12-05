@@ -118,7 +118,6 @@ function queryUser() {
 
 <body>
     <div>
-
         <input type="hidden" id = "pageNum" value="1">
         <label>每页数据条数：</label>
        <select id = "pageSize" >

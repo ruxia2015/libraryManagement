@@ -10,7 +10,7 @@ public class bookInfoController {
     @RequestMapping("/books")
     public ModelAndView show(){
        ModelAndView modelAndView = new ModelAndView("books");
-       modelAndView.addObject("name","老铁");
+       modelAndView.addObject("name1","老铁");
         return modelAndView;
     }
 }
