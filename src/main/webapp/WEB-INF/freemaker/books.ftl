@@ -8,7 +8,7 @@
     <input type="hidden" value="1" name="pageno">
     <h1 style="text-align: center;">书库</h1>
     <label>图书分类</label>
-        <select name="book_Type" onmousedown="if(this.options.length>3){this.size=6}" onblur="this.size=0" onchange="this.size=0">
+        <select name="book_Type" onmousedown="if(this.options.length>3){this.size=6}" onblur="this.size=0" >
             <option value="0">全部</option>
             <#list bookTypeList as typeList>
                 <option value="${typeList.id}" >${typeList.bookTypeName}</option>
