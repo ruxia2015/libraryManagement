@@ -72,7 +72,6 @@ public class LoginController extends HttpServlet {
         return map;
     }
 
-    //刷新界面
 
 
     //如果name或者psd为null，在哪里去验证，并且返回前端
@@ -80,6 +79,7 @@ public class LoginController extends HttpServlet {
     public String  sgin(String name, String psd, ModelMap response, HttpServletRequest request){
 
         Boolean b = loginService.userLogin(name,psd,request);
+        User user = loginService.findUserByName(name);
         if(b ==false){
             //弹出提示框显示用户名或密码错误
             response.put("error","用户名或者密码错误");
@@ -87,7 +87,10 @@ public class LoginController extends HttpServlet {
             return "login";//TODO 跳转到登录页面视图[jsp页面] ,在JSP页面中将错误信息显示出来就可以
         }
         return "index"; //此处不建议写跳转到视图，如果这个视图页面需要传入一些值，就需要再写一遍，建议使用转发（redirect），跳转到对应的请求地址
+
     }
+
+
 
     @ResponseBody
     @RequestMapping("/valid")
@@ -141,7 +144,7 @@ public class LoginController extends HttpServlet {
         return false;//用户已存在
     }
 
-@RequestMapping("registerMethod")
+@RequestMapping("/registerMethod")
     public String  registerMethod(String name, String psd, String phone, Date createDate, ModelMap response){
         Date date  = new Date();
         Boolean b = loginService.addUser(name, psd,phone,date );

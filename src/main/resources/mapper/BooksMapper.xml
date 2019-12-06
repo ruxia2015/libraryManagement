@@ -6,5 +6,24 @@
 	<resultMap id="booksMap" type="example.entity.Books">
 	</resultMap>
 
+	<select id="queryAllBooks" resultType="example.entity.Books" >
+		select * from books
+		<where>
+			<if test="bookName != null">
+				bookName like "%"#{bookName}"%" or bookAuthor like "%"#{bookName}"%"
+			</if>
+		</where>
+	</select>
+
+	<select id="queryAllBooksCount" resultType="int" >
+		select count(*) from books
+		<if test="bookName != null">
+			bookName like "%"#{bookName}"%" or bookAuthor like "%"#{bookName}"%"
+		</if>
+	</select>
+
+	<select id="queryBook" resultType="example.entity.Books">
+		select * from books where id= #{id}
+	</select>
 
 </mapper>

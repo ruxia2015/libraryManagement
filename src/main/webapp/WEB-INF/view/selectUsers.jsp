@@ -52,10 +52,7 @@ function goPage(pageNo){
     var obj =document.getElementById("pageSize");
     var pageSize = obj.options[obj.selectedIndex].value;
     refreshPage(pageNo,pageSize,userName);
-
 }
-
-
 function refreshPage(pageNo , pageSize, userName) {
     pageNo = parseInt(pageNo);
     $.ajax({
@@ -118,7 +115,7 @@ function queryUser() {
 
 <body>
     <div>
-        <input type="hidden" id = "pageNum" value="1">
+        <input type="hidden" id = "pageNo" value="1">
         <label>每页数据条数：</label>
        <select id = "pageSize" >
            <option selected = "selected">5</option>
@@ -139,11 +136,7 @@ function queryUser() {
                 </tr>
             </thead>
             <tbody  id="dataBody">
-
             </tbody>
-
-
-
         </table>
         <table>
             <thead id="dataPage">

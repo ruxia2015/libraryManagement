@@ -15,6 +15,7 @@ public class Books {
     private Date updateDate;
     private int bookTotal;
     private int bookQuantity;
+    private String booksParticulars;
 
     public int getId() {
         return id;
@@ -110,5 +111,13 @@ public class Books {
 
     public void setBookQuantity(int bookQuantity) {
         this.bookQuantity = bookQuantity;
+    }
+
+    public String getBooksParticulars() {
+        return booksParticulars;
+    }
+
+    public void setBooksParticulars(String booksParticulars) {
+        this.booksParticulars = booksParticulars;
     }
 }

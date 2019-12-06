@@ -33,9 +33,7 @@ public class LoginServiceImpl implements LoginService {
         }
         //此处将值写入的session中，以便验证登陆。session对象可以从request中获取，controller中传入，或者写一个工具进行获取
         HttpSession session = request.getSession();
-        session.setAttribute("name",name);
-        session.setAttribute("psd",psd);
-
+        session.setAttribute("user",user);
         return true;
     }
 
