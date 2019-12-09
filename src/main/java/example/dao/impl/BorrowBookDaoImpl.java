@@ -2,12 +2,14 @@ package example.dao.impl;
 
 import example.dao.BorrowBookDao;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class BorrowBookDaoImpl implements BorrowBookDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;

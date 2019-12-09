@@ -10,17 +10,15 @@
         function goBack() {
             window.history.back(-1);
         }
-
     </script>
 </head>
 <body>
 <div>
     <img src="${rc.contextPath}/image/骆驼祥子.jpg">
     <textarea >${book.booksParticulars}</textarea>
-
 </div>
 <div>
-    <input type="button" onclick="goBack()" value="返回>
+   <input type="button" onclick="goBack()" value="返回">
 </div>
 </body>
 </html>
