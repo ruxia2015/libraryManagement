@@ -72,6 +72,9 @@
         <#--   -->
         <#--}-->
 
+        function returnBook(id) {
+            window.location.href = "${rc.contextPath}/book/returnBook";
+        }
     </script>
 </head>
 <body>
@@ -131,7 +134,7 @@
                         <td>
                             <a href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}" >借阅</a>
 <#--                            <input type="button" id = "borrowBook" onclick="borrowBook()" value="借阅">-->
-                            <input type="button" id = "returnBook" onclick="returnBook()" value="还书">
+                            <input type="button" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">
                         </td>
                     </tr>
                 </#list>

@@ -44,4 +44,13 @@ public class BookInfoController {
         modelAndView.addObject("date",date);
         return modelAndView;
     }
+    @RequestMapping("/returnBook")
+    public ModelAndView returnBook(int id){
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView("returnBook");
+        Books book = bookService.queryBook(id);
+        modelAndView.addObject("book",book);
+        modelAndView.addObject("date",date);
+        return modelAndView;
+    }
 }

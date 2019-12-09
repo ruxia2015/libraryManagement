@@ -14,23 +14,39 @@
        <table>
            <tr>
                <td>还书人：</td>
-               <td></td>
+               <td>
+                   <input readOnly="true"  type="text"  name="userName" value=" ${Session["user"].userName}">
+               </td>
            </tr>
            <tr>
                <td>书名：</td>
-               <td></td>
+               <td>
+                   <input readOnly="true"  type="text"  name="bookName" value="${book.bookName}">
+               </td>
            </tr>
            <tr>
                <td>数量：</td>
-               <td></td>
+               <td>
+                   <input readOnly="true"  type="text" name="quantity" value="1">
+               </td>
            </tr>
            <tr>
                <td>开始时间：</td>
-               <td></td>
+               <td>
+                   <input readOnly="true"  type="text" name="startDate" ">
+               </td>
            </tr>
            <tr>
-               <td>归还时间：</td>
-               <td></td>
+               <td>预计归还时间：</td>
+               <td>
+                   <input readOnly="true"  type="text" name="startDate" ">
+               </td>
+           </tr>
+           <tr>
+               <td>实际归还时间：</td>
+               <td>
+                   <input readOnly="true"  type="text" name="startDate" ">
+               </td>
            </tr>
            <tr>
                <td>是否逾期：</td>
