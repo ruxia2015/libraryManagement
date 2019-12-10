@@ -26,4 +26,8 @@
 		select * from books where id= #{id}
 	</select>
 
+	<select id="findBooksByName" resultType="example.entity.Books">
+		select * from books where bookName= #{bookName}
+	</select>
+
 </mapper>

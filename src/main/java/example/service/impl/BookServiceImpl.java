@@ -27,4 +27,8 @@ public class BookServiceImpl implements BookService {
     public Books queryBook(int id) {
         return bookDao.queryBook(id);
     }
+
+    public Books findBooksByName(String bookName) {
+        return bookDao.findBooksByName(bookName);
+    }
 }

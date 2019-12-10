@@ -1,6 +1,7 @@
 package example.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Books {
     private int id;
@@ -16,6 +17,11 @@ public class Books {
     private int bookTotal;
     private int bookQuantity;
     private String booksParticulars;
+
+
+    private List<User> userList;//一本书有多个读者
+    private List<Borrow> borrowList;//一本书有多个借书单
+
 
     public int getId() {
         return id;
@@ -119,5 +125,21 @@ public class Books {
 
     public void setBooksParticulars(String booksParticulars) {
         this.booksParticulars = booksParticulars;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+    public List<Borrow> getBorrowList() {
+        return borrowList;
+    }
+
+    public void setBorrowList(List<Borrow> borrowList) {
+        this.borrowList = borrowList;
     }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface LoginDao {
     User findUser(String name);
+    User findUserByName2(String userName);
+
 
     int addUser(String name, String psd, String phone, Date date);
 

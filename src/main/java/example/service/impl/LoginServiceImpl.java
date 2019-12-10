@@ -21,6 +21,11 @@ public class LoginServiceImpl implements LoginService {
         User user = loginDao.findUser(name);
         return user;
     }
+    public User findUserByName2(String userName) {
+        User user = loginDao.findUserByName2(userName);
+        return user;
+    }
+
 
 
     public Boolean userLogin(String name, String psd, HttpServletRequest request) {

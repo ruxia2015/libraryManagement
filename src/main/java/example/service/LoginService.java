@@ -11,6 +11,8 @@ import java.util.List;
 public interface LoginService {
 
     User findUserByName(String name);
+    User findUserByName2(String userName);
+
 
     Boolean userLogin(String name, String psd, HttpServletRequest  request);
 

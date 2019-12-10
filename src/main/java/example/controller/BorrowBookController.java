@@ -1,8 +1,10 @@
 package example.controller;
 
 import example.entity.Books;
+import example.entity.User;
 import example.service.BookService;
 import example.service.BorrowBookService;
+import example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ public class BorrowBookController {
     private BorrowBookService borrowBookService;
     @Autowired
     private BookService bookService;
+    @Autowired
+    private LoginService loginService;
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //@RequestMapping("/addBorrow")
 //public ModelAndView modelAndView(String userName, String bookName, int bookQuantity, Date startDate, Date returnDate){
@@ -41,8 +45,12 @@ public class BorrowBookController {
         int quantity1 = Integer.parseInt(quantity);
         Date startDate1 = sdf.parse(startDate);
         Date returnDate1 = sdf.parse(returnDate);
+        User user = loginService.findUserByName2(userName);
+        int userId = user.getId();
+        Books books = bookService.findBooksByName(bookName);
+        int booksId = books.getId();
         ModelAndView modelAndView = new ModelAndView("succeedBorrow");
-        int i = borrowBookService.borrowBook(userName, bookName, quantity1, startDate1, returnDate1);
+        int i = borrowBookService.borrowBook(userName, bookName, quantity1, startDate1, returnDate1, userId, booksId);
         modelAndView.addObject("i",i);
         return modelAndView;
     }catch (Exception e){

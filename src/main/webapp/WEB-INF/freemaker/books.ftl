@@ -73,7 +73,7 @@
         <#--}-->
 
         function returnBook(id) {
-            window.location.href = "${rc.contextPath}/book/returnBook";
+            window.location.href = "${rc.contextPath}/book/returnBook?id="+id;
         }
     </script>
 </head>
@@ -125,17 +125,31 @@
                         <td>${bookList.bookName}</td>
                         <td>${bookList.bookAuthor}</td>
                         <td>${bookList.bookType}</td>
-                        <td>${bookList.bookPrice}</td>
+                        <td>${bookList.bookPrice}元</td>
                         <td>${bookList.bookTotal}</td>
                         <td>${bookList.bookQuantity}</td>
                         <td>
                            <a href="${rc.contextPath}/book/particulars?id=${bookList.id}" >图书详情</a>
                         </td>
-                        <td>
-                            <a href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}" >借阅</a>
-<#--                            <input type="button" id = "borrowBook" onclick="borrowBook()" value="借阅">-->
-                            <input type="button" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">
-                        </td>
+                        <#if bookList.bookQuantity == 0 >
+                            <td>
+                                <a href ="javascript:return false" style="opacity: 0.2">借阅</a>
+                            </td>
+                        <#elseif bookList.bookQuantity gte 0>
+                            <td>
+                                <a href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}" >借阅</a>
+                            </td>
+                        </#if>
+                        <#if bookList.bookQuantity == bookList.bookTotal>
+                            <td>
+                                <input type="button" disabled="disabled" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">
+                            </td>
+                        <#elseif bookList.bookQuantity lt bookList.bookTotal>
+                            <td>
+                                <input type="button" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">
+                            </td>
+                        </#if>
+
                     </tr>
                 </#list>
 

@@ -6,10 +6,13 @@
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/additional-methods.js"></script>
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
-    function goBack() {
-    window.history.back(-1);
-    }
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back(-1);
+        }
+    </script>
 </head>
+<h2>还书单</h2>
     <form>
        <table>
            <tr>

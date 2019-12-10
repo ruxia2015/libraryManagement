@@ -21,6 +21,12 @@ public class LoginDaoImpl implements LoginDao {
         return sqlSessionTemplate.selectOne("user.findUser",params);
     }
 
+    public User findUserByName2(String userName) {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("userName",userName);
+        return sqlSessionTemplate.selectOne("user.findUserByName2",params);
+    }
+
     public int addUser(String name, String psd, String phone, Date date) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("userName",name);

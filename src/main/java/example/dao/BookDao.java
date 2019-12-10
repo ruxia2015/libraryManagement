@@ -11,4 +11,6 @@ public interface BookDao {
     List<Books> queryAllBooks(String bookName);
 
     Books queryBook(int id);
+
+    Books findBooksByName(String bookName);
 }

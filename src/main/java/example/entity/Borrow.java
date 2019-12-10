@@ -10,6 +10,12 @@ public class Borrow {
     private Date stareDate;
     private Date endDate;
     private String returnDate;
+    private int userId;
+    private int booksId;
+
+
+    private User user;
+    private Books books;
 
     public int getId() {
         return id;
@@ -65,5 +71,37 @@ public class Borrow {
 
     public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getBooksId() {
+        return booksId;
+    }
+
+    public void setBooksId(int booksId) {
+        this.booksId = booksId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Books getBooks() {
+        return books;
+    }
+
+    public void setBooks(Books books) {
+        this.books = books;
     }
 }

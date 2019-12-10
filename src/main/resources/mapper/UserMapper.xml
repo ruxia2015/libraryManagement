@@ -18,7 +18,7 @@
 				TD.phone,
 				TD.createDate ,
 				TD.updateDate
-		  FROM user  as TD
+		  FROM book_users  as TD
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			1 = 1
 			<if test="id!=null and id !=''">
@@ -33,15 +33,15 @@
 	</select>
 
 	<select id="selectAllUser" resultType="example.entity.User">
-		select * from user
+		select * from book_users
 	</select>
 
 	<select id="selectAllUserList" resultType="example.entity.User">
-		select * from user limit #{pageNo} ,#{pageNum}
+		select * from book_users limit #{pageNo} ,#{pageNum}
 	</select>
 
 	<select id="count" resultType="int">
-		select count(*) as count from user
+		select count(*) as count from book_users
 		<where>
 			<if test="userName != null">
 				userName like "%"#{userName}"%"
@@ -51,7 +51,7 @@
 
 
 	<select id="queryUser" resultType="example.entity.User">
-		select * from user
+		select * from book_users
 		<where>
 			 <if test="userName != null">
 				userName like "%"#{userName}"%"
@@ -61,7 +61,7 @@
 
 <!--	根据用户名称查询出所有的用户，并且分页-->
 	<select id="queryAllUser" resultType="example.entity.User">
-		select * from user
+		select * from book_users
 		<where>
 			<if test="userName != null">
 				userName like "%"#{userName}"%"
@@ -72,10 +72,13 @@
 
 
 	<insert id="addUser">
-		INSERT INTO USER ( userName, userPassword, phone, createDate)
+		INSERT INTO book_users ( userName, userPassword, phone, createDate)
 		values (#{userName}, #{userPassword}, #{phone}, #{createDate})
 	</insert>
 
+	<select id="findUserByName2" resultType="example.entity.User">
+		select * from book_users where userName = #{userName}
+	</select>
 
 	
 		<!-- auto generate default count -->

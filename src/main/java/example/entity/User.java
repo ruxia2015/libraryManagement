@@ -1,8 +1,7 @@
 package example.entity;
 
-
 import java.util.Date;
-
+import java.util.List;
 
 public class User {
     private int id;
@@ -11,6 +10,9 @@ public class User {
     private String phone;
     private Date createDate;
     private Date updateDate;
+
+    private List<Borrow> borrowList;//一个读者有多张借书单
+    private List<Books> booksList;  //一个读者有多本书
 
     public int getId() {
         return id;
@@ -58,5 +60,21 @@ public class User {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public List<Borrow> getBorrowList() {
+        return borrowList;
+    }
+
+    public void setBorrowList(List<Borrow> borrowList) {
+        this.borrowList = borrowList;
+    }
+
+    public List<Books> getBooksList() {
+        return booksList;
+    }
+
+    public void setBooksList(List<Books> booksList) {
+        this.booksList = booksList;
     }
 }
