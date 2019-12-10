@@ -55,7 +55,7 @@
                <td>是否逾期：</td>
                <td>
                     <input type="radio" name="sex" value="是">
-                    <input type="radio" name="sex" value="否">
+                    <input checked="checked" type="radio" name="sex" value="否">
                </td>
            </tr>
        </table>

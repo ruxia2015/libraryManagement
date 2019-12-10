@@ -8,8 +8,8 @@
 	</resultMap>
 
 	<insert id="addBorrow" >
-		INSERT INTO borrow ( userName, bookName,quantity , startDate, returnDate)
-		values (#{userName}, #{bookName}, #{bookQuantity}, #{startDate}, #{returnDate})
+		INSERT INTO borrow ( userName, bookName,quantity , startDate, returnDate, userId, bookId)
+		values (#{userName}, #{bookName}, #{bookQuantity}, #{startDate}, #{returnDate}, #{userId}, #{bookId})
 	</insert>
 
 </mapper>

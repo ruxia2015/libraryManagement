@@ -22,7 +22,7 @@
             <td>借书人：</td>
             <#--               <td>${sessionScope.user.getUserName()}</td>-->
             <td>
-                <input readOnly="true"  type="text"  name="userName" value=" ${Session["user"].userName}">
+                <input readOnly="true"  type="text"  name="userName" value="${Session["user"].userName}">
             </td>
         </tr>
         <tr>

@@ -40,6 +40,12 @@ public class BookDaoImpl implements BookDao {
     public Books findBooksByName(String bookName) {
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("bookName",bookName);
-        return sqlSessionTemplate.selectOne("queryBook",params);
+        return sqlSessionTemplate.selectOne("findBooksByName",params);
+    }
+
+    public int updateBooksQuantity(int id){
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id",id);
+        return sqlSessionTemplate.selectOne("updateBooksQuantity",params);
     }
 }

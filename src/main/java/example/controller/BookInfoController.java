@@ -53,4 +53,10 @@ public class BookInfoController {
         modelAndView.addObject("date",date);
         return modelAndView;
     }
+
+    @RequestMapping("updateBooksQuantity")
+    public int updateBooksQuantity (int id){
+        int i = bookService.updateBooksQuantity(id);
+        return i;
+    }
 }

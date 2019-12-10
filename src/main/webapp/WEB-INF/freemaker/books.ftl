@@ -139,15 +139,15 @@
                             <td>
                                 <a href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}" >借阅</a>
                             </td>
-                        </#if>
-                        <#if bookList.bookQuantity == bookList.bookTotal>
-                            <td>
-                                <input type="button" disabled="disabled" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">
-                            </td>
-                        <#elseif bookList.bookQuantity lt bookList.bookTotal>
-                            <td>
-                                <input type="button" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">
-                            </td>
+<#--                        </#if>-->
+<#--                        <#if bookList.bookQuantity == bookList.bookTotal>-->
+<#--                            <td>-->
+<#--                                <input type="button" disabled="disabled" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">-->
+<#--                            </td>-->
+<#--                        <#elseif bookList.bookQuantity lt bookList.bookTotal>-->
+<#--                            <td>-->
+<#--                                <input type="button" id = "returnBook" onclick="returnBook(${bookList.id})" value="还书">-->
+<#--                            </td>-->
                         </#if>
 
                     </tr>

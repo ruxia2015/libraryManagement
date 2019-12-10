@@ -9,5 +9,5 @@ import java.util.Date;
 @Service
 public interface BorrowBookService {
 
-    int borrowBook(String userName, String bookName, int bookQuantity, Date startDate, Date returnDate, int userId,int booksId);
+    int borrowBook(String userName, String bookName, int bookQuantity, Date startDate, Date returnDate, int userId,int bookId);
 }

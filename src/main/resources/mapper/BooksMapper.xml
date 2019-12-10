@@ -30,4 +30,7 @@
 		select * from books where bookName= #{bookName}
 	</select>
 
+	<update id="updateBooksQuantity" >
+		update books set bookQuantity = bookQuantity-1 where id = #{id}
+	</update>
 </mapper>

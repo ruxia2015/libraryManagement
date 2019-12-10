@@ -13,7 +13,7 @@ import java.util.Map;
 public class BorrowBookDaoImpl implements BorrowBookDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
-    public int borrowBook(String userName, String bookName, int bookQuantity, Date startDate, Date returnDate, int userId,int booksId) {
+    public int borrowBook(String userName, String bookName, int bookQuantity, Date startDate, Date returnDate, int userId,int bookId) {
             Map<String,Object> params = new HashMap<String,Object>();
             params.put("userName",userName);
             params.put("bookName",bookName);
@@ -21,7 +21,7 @@ public class BorrowBookDaoImpl implements BorrowBookDao {
             params.put("startDate",startDate);
             params.put("returnDate",returnDate);
             params.put("userId",userId);
-            params.put("booksId",booksId);
+            params.put("bookId",bookId);
             return sqlSessionTemplate.insert("borrow.addBorrow",params);
         }
 

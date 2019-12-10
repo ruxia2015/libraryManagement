@@ -7,11 +7,12 @@
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
     <title></title>
     <script  type="text/javascript">
-        var s = 5;
+        var s = 3;
         var intervalid;
         intervalid = setInterval("fun()", 1000);
         function fun() {
             if (s == 0) {
+                window.location.href = "${rc.contextPath}/book/updateBooksQuantity?id="${books.id};
                 window.location.href = "${rc.contextPath}/book/books";
                 clearInterval(intervalid);
             }
@@ -23,6 +24,7 @@
 <body>
     <#if i ==1>
         借书成功
+
     </#if>
        <p>将在 <span id="mes">3</span> 秒钟后返回首页！</p>
 </body>

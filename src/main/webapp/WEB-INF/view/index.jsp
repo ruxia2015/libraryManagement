@@ -92,7 +92,7 @@
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">读者信息 <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="${pageContext.request.contextPath}/user/selectUsers" class="small-box-footer">读者信息 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

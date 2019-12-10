@@ -42,15 +42,16 @@ public class BorrowBookController {
     @RequestMapping("/succeedBorrow")
     public ModelAndView succeedBorrow(String userName, String bookName, String quantity, String startDate, String returnDate){
     try {
-        int quantity1 = Integer.parseInt(quantity);
+        Integer quantity1 = Integer.parseInt(quantity);
         Date startDate1 = sdf.parse(startDate);
         Date returnDate1 = sdf.parse(returnDate);
         User user = loginService.findUserByName2(userName);
         int userId = user.getId();
         Books books = bookService.findBooksByName(bookName);
-        int booksId = books.getId();
+        int bookId = books.getId();
         ModelAndView modelAndView = new ModelAndView("succeedBorrow");
-        int i = borrowBookService.borrowBook(userName, bookName, quantity1, startDate1, returnDate1, userId, booksId);
+        int i = borrowBookService.borrowBook(userName, bookName, quantity1, startDate1, returnDate1, userId, bookId);
+        modelAndView.addObject("books",books);
         modelAndView.addObject("i",i);
         return modelAndView;
     }catch (Exception e){

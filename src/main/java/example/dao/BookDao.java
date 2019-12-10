@@ -13,4 +13,6 @@ public interface BookDao {
     Books queryBook(int id);
 
     Books findBooksByName(String bookName);
+
+    int updateBooksQuantity(int id);
 }
