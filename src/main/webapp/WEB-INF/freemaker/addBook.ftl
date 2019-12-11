@@ -46,7 +46,13 @@
             </tr>
             <tr>
                 <td>图书封面：</td>
-                <td><input type="file" name="bookPicture"></td>
+                <td>
+
+                    <form name="serForm" action="${rc.contextPath}/util/picture" method="post"  enctype="multipart/form-data">
+                        <input type="file" name="file">
+                        <input type="submit" value="图片上传"/>
+                    </form>
+                </td>
             </tr>
             <tr>
                 <td> 图书类别：</td>
