@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50630
 File Encoding         : 65001
 
-Date: 2019-12-10 13:44:08
+Date: 2019-12-11 14:09:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,27 +23,28 @@ CREATE TABLE `books` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `isbn` int(255) DEFAULT NULL COMMENT '国际标准图书编码',
   `bookName` varchar(255) NOT NULL COMMENT '图书名称',
-  `bookSynopsis` varchar(255) DEFAULT NULL COMMENT '图书简介',
   `bookAuthor` varchar(255) DEFAULT NULL COMMENT '作者',
-  `booksParticulars` varchar(255) DEFAULT NULL COMMENT '图书详情',
+  `bookParticulars` varchar(255) DEFAULT NULL COMMENT '图书详情',
   `bookType` varchar(255) DEFAULT NULL COMMENT '图书类型',
   `bookPicture` varchar(255) DEFAULT NULL COMMENT '封面',
   `bookPrice` double DEFAULT NULL COMMENT '价格',
-  `caerteDate` datetime DEFAULT NULL COMMENT '创建时间',
+  `createDate` datetime DEFAULT NULL COMMENT '创建时间',
   `updateDate` datetime DEFAULT NULL COMMENT '更新时间',
   `bookTotal` int(255) DEFAULT NULL COMMENT '书的总数量',
   `bookQuantity` int(255) DEFAULT NULL COMMENT '可以借的数量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of books
 -- ----------------------------
-INSERT INTO `books` VALUES ('1', '123', '骆驼祥子', '车夫祥子。。。', '老舍', '此书为老舍经典著作之一，也是必读名著。。。', '文学', 'E:\\图书馆图片\\骆驼祥子.jpg', '69.8', '2019-12-05 17:27:53', '2019-12-05 17:28:03', '10', '5');
-INSERT INTO `books` VALUES ('2', '1234', '西游记', '唐僧和3大徒弟前往西天取经。。。', '吴承恩', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:07:37', null, '50', '0');
-INSERT INTO `books` VALUES ('3', '12345', '三国演义', '曹操、刘备、孙权争天下。。。', '罗贯中', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:10:01', null, '50', '20');
-INSERT INTO `books` VALUES ('4', '123456', '水浒传', '以宋江领导的起义军为主要题材，通过一系列梁山英雄反抗压迫、英勇斗争的生动故事', '施耐庵', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:11:27', null, '50', '50');
-INSERT INTO `books` VALUES ('5', '1234567', '红楼梦', '贾宝玉、林黛玉、薛宝钗三个人之间的感情纠葛为主线通过对一些日常事件的描述体现了在贾府的大观园中以金陵十二钗为主体的众女子的爱恨情愁。', '曹雪芹', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:13:18', null, '50', '40');
+INSERT INTO `books` VALUES ('1', '123', '骆驼祥子', '老舍', '此书为老舍经典著作之一，也是必读名著。。。', '文学', 'E:\\图书馆图片\\骆驼祥子.jpg', '69.8', '2019-12-05 17:27:53', '2019-12-05 17:28:03', '10', '4');
+INSERT INTO `books` VALUES ('2', '1234', '西游记', '吴承恩', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:07:37', null, '50', '0');
+INSERT INTO `books` VALUES ('3', '12345', '三国演义', '罗贯中', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:10:01', null, '50', '19');
+INSERT INTO `books` VALUES ('4', '123456', '水浒传', '施耐庵', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:11:27', null, '50', '47');
+INSERT INTO `books` VALUES ('5', '1234567', '红楼梦', '曹雪芹', '此书为中国四大名著之一', '文学', null, '99.8', '2019-12-09 14:13:18', null, '50', '37');
+INSERT INTO `books` VALUES ('6', '7', '7', null, '7', '5', '7', '7', '2019-12-11 11:46:22', null, '7', '7');
+INSERT INTO `books` VALUES ('7', '8', '8', null, '8', '娱乐时尚', '2.png', '8', '2019-12-11 14:07:43', null, '8', '8');
 
 -- ----------------------------
 -- Table structure for book_type
@@ -53,7 +54,7 @@ CREATE TABLE `book_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bookTypeName` varchar(255) DEFAULT NULL COMMENT '图书类型',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book_type
@@ -77,6 +78,7 @@ INSERT INTO `book_type` VALUES ('16', '法律');
 INSERT INTO `book_type` VALUES ('17', '政治/军事');
 INSERT INTO `book_type` VALUES ('18', '青春');
 INSERT INTO `book_type` VALUES ('19', '婚恋');
+INSERT INTO `book_type` VALUES ('20', '其它');
 
 -- ----------------------------
 -- Table structure for book_users
@@ -126,7 +128,7 @@ CREATE TABLE `borrow` (
   `endDate` datetime DEFAULT NULL,
   `returnDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of borrow
@@ -145,6 +147,18 @@ INSERT INTO `borrow` VALUES ('11', null, ' 2', null, '骆驼祥子', '1', '2019-
 INSERT INTO `borrow` VALUES ('12', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
 INSERT INTO `borrow` VALUES ('13', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
 INSERT INTO `borrow` VALUES ('14', null, ' 1', null, '水浒传', '1', '2019-12-09 00:00:00', null, '2019-12-19 00:00:00');
+INSERT INTO `borrow` VALUES ('15', null, '2', null, '三国演义', '1', '2019-12-10 00:00:00', null, '2019-12-19 00:00:00');
+INSERT INTO `borrow` VALUES ('16', null, '2', null, '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-20 00:00:00');
+INSERT INTO `borrow` VALUES ('17', '16', '333', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrow` VALUES ('18', '5', '2', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrow` VALUES ('19', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrow` VALUES ('20', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrow` VALUES ('21', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrow` VALUES ('22', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-19 00:00:00');
+INSERT INTO `borrow` VALUES ('23', '5', '2', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2020-01-04 00:00:00');
+INSERT INTO `borrow` VALUES ('24', '5', '2', '1', '骆驼祥子', '1', '2019-12-10 00:00:00', null, '2019-12-28 00:00:00');
+INSERT INTO `borrow` VALUES ('25', '3', '1', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-21 00:00:00');
+INSERT INTO `borrow` VALUES ('26', '3', '1', '4', '水浒传', '1', '2019-12-11 00:00:00', null, '2019-12-28 00:00:00');
 
 -- ----------------------------
 -- Table structure for librarian
