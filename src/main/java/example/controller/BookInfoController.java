@@ -34,8 +34,9 @@ public class BookInfoController {
     }
 
         @RequestMapping("/addBookSucceed")
-        public ModelAndView addBookSucceed(int bookIsbn, String bookName, String bookAuthor,
-                                           String bookParticulars, String bookPicture, String bookType,  double bookPrice ,int bookTotal, int bookQuantity){
+        public ModelAndView addBookSucceed(Integer bookIsbn, String bookName, String bookAuthor,
+                                           String bookParticulars, String bookPicture, String bookType,  Double bookPrice ,Integer bookTotal, Integer bookQuantity){
+
             ModelAndView modelAndView = new ModelAndView("addBookSucceed");
             Date date = new Date();
             int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookPicture, bookType,

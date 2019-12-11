@@ -26,10 +26,10 @@
     <h2>新增书籍</h2>
 </div>
 <div class=" div_table">
-    <form action="${rc.contextPath}/book/addBookSucceed" method="post">
+    <form action="${rc.contextPath}/book/addBookSucceed" method="post" enctype="multipart/form-data">
         <table>
             <tr>
-                <td width="100px"> isbn：</td>
+                <td width="100px"> 国际编码：</td>
                 <td width="100px"><input type="text" name="bookIsbn" placeholder="数字"></td>
             </tr>
             <tr>
@@ -47,11 +47,7 @@
             <tr>
                 <td>图书封面：</td>
                 <td>
-
-                    <form name="serForm" action="${rc.contextPath}/util/picture" method="post"  enctype="multipart/form-data">
-                        <input type="file" name="file">
-                        <input type="submit" value="图片上传"/>
-                    </form>
+                    <input type="file" name="picture">
                 </td>
             </tr>
             <tr>

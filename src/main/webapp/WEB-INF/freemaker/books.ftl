@@ -121,7 +121,7 @@
                         <td>
                             ${bookList_index+1}
                         </td>
-                        <td>${bookList.isbn}</td>
+                        <td>${bookList.bookIsbn}</td>
                         <td>${bookList.bookName}</td>
                         <td>${bookList.bookAuthor!""}</td>
                         <td>${bookList.bookType}</td>

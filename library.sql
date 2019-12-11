@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50630
 File Encoding         : 65001
 
-Date: 2019-12-11 14:09:09
+Date: 2019-12-11 15:54:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `isbn` int(255) DEFAULT NULL COMMENT '国际标准图书编码',
+  `bookIsbn` int(255) DEFAULT NULL COMMENT '国际标准图书编码',
   `bookName` varchar(255) NOT NULL COMMENT '图书名称',
   `bookAuthor` varchar(255) DEFAULT NULL COMMENT '作者',
   `bookParticulars` varchar(255) DEFAULT NULL COMMENT '图书详情',

@@ -35,7 +35,7 @@
 	</update>
 
 	<insert id="addBook" >
-		INSERT INTO books ( isbn, bookName, bookAuthor, bookParticulars, bookType,bookPicture,
+		INSERT INTO books (bookIsbn, bookName, bookAuthor, bookParticulars, bookType,bookPicture,
 		bookPrice, createDate, bookTotal, bookQuantity)
 		values (#{bookIsbn}, #{bookName},#{bookAuthor},  #{bookParticulars}, #{bookType}, #{bookPicture},
 		#{bookPrice}, #{createDate}, #{bookTotal}, #{bookQuantity})
