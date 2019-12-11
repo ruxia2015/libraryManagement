@@ -1,12 +1,12 @@
 package example.dao;
 
-import example.entity.BookType;
 import example.entity.Books;
 
+import java.util.Date;
 import java.util.List;
 
 public interface BookDao {
-    List<BookType> queryBookType ();
+
     int count(String bookName);
     List<Books> queryAllBooks(String bookName);
 
@@ -15,4 +15,6 @@ public interface BookDao {
     Books findBooksByName(String bookName);
 
     int updateBooksQuantity(int id);
+
+    int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookPicture, String bookType, double bookPrice, Date date, int bookTotal, int bookQuantity);
 }

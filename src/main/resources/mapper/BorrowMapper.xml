@@ -12,6 +12,11 @@
 		values (#{userName}, #{bookName}, #{bookQuantity}, #{startDate}, #{returnDate}, #{userId}, #{bookId})
 	</insert>
 
+	<select id="borrowMessage" resultType="example.entity.Borrow">
+		SELECT * FROM borrow where userName = #{userName}
+	</select>
+
+
 </mapper>
 <!--
 sqlMap生成描述:

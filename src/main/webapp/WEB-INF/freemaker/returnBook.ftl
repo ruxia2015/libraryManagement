@@ -42,13 +42,13 @@
            <tr>
                <td>预计归还时间：</td>
                <td>
-                   <input readOnly="true"  type="text" name="startDate" ">
+                   <input readOnly="true"  type="text" name="returnDate" ">
                </td>
            </tr>
            <tr>
                <td>实际归还时间：</td>
                <td>
-                   <input readOnly="true"  type="text" name="startDate" ">
+                   <input readOnly="true"  type="text" name="endDate" ">
                </td>
            </tr>
            <tr>

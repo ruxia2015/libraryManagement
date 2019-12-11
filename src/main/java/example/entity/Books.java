@@ -7,7 +7,6 @@ public class Books {
     private int id;
     private int isbn;
     private String bookName;
-    private String bookSynopsis;
     private String bookAuthor;
     private String bookPicture;
     private String bookType;
@@ -16,7 +15,7 @@ public class Books {
     private Date updateDate;
     private int bookTotal;
     private int bookQuantity;
-    private String booksParticulars;
+    private String bookParticulars;
 
 
     private List<User> userList;//一本书有多个读者
@@ -47,20 +46,12 @@ public class Books {
         this.bookName = bookName;
     }
 
-    public String getBookSynopsis() {
-        return bookSynopsis;
-    }
-
-    public void setBookSynopsis(String bookSynopsis) {
-        this.bookSynopsis = bookSynopsis;
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
     }
 
     public String getBookAuthor() {
         return bookAuthor;
-    }
-
-    public void setBookAuthor(String bookAuthor) {
-        this.bookAuthor = bookAuthor;
     }
 
     public String getBookPicture() {
@@ -119,14 +110,6 @@ public class Books {
         this.bookQuantity = bookQuantity;
     }
 
-    public String getBooksParticulars() {
-        return booksParticulars;
-    }
-
-    public void setBooksParticulars(String booksParticulars) {
-        this.booksParticulars = booksParticulars;
-    }
-
     public List<User> getUserList() {
         return userList;
     }
@@ -141,5 +124,13 @@ public class Books {
 
     public void setBorrowList(List<Borrow> borrowList) {
         this.borrowList = borrowList;
+    }
+
+    public String getBookParticulars() {
+        return bookParticulars;
+    }
+
+    public void setBookParticulars(String bookParticulars) {
+        this.bookParticulars = bookParticulars;
     }
 }

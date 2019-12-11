@@ -7,9 +7,9 @@ public class Borrow {
     private String userName;
     private String bookName;
     private int quantity;
-    private Date stareDate;
+    private Date startDate;
     private Date endDate;
-    private String returnDate;
+    private Date returnDate;
     private int userId;
     private int booksId;
 
@@ -49,12 +49,12 @@ public class Borrow {
         this.quantity = quantity;
     }
 
-    public Date getStareDate() {
-        return stareDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStareDate(Date stareDate) {
-        this.stareDate = stareDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Date getEndDate() {
@@ -65,11 +65,11 @@ public class Borrow {
         this.endDate = endDate;
     }
 
-    public String getReturnDate() {
+    public Date getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(String returnDate) {
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 

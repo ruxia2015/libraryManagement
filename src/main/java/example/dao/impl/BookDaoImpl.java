@@ -1,12 +1,12 @@
 package example.dao.impl;
 
 import example.dao.BookDao;
-import example.entity.BookType;
 import example.entity.Books;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +15,6 @@ import java.util.Map;
 public class BookDaoImpl implements BookDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
-    public List<BookType> queryBookType() {
-        return sqlSessionTemplate.selectList("queryBookType");
-    }
 
     public int count(String bookName){
         Map <String ,Object> params = new HashMap<String, Object>();
@@ -46,6 +43,21 @@ public class BookDaoImpl implements BookDao {
     public int updateBooksQuantity(int id){
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("id",id);
-        return sqlSessionTemplate.selectOne("updateBooksQuantity",params);
+        return sqlSessionTemplate.update("updateBooksQuantity",params);
+    }
+
+    public int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookPicture, String bookType, double bookPrice, Date date, int bookTotal, int bookQuantity) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("bookIsbn",bookIsbn);
+        params.put("bookName",bookName);
+        params.put("bookParticulars",bookParticulars);
+        params.put("bookPicture",bookPicture);
+        params.put("bookType",bookType);
+        params.put("bookPrice",bookPrice);
+        params.put("createDate",date);
+        params.put("bookTotal",bookTotal);
+        params.put("bookQuantity",bookQuantity);
+
+        return sqlSessionTemplate.insert("addBook",params);
     }
 }

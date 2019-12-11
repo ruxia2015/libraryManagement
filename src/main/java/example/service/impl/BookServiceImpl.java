@@ -7,15 +7,14 @@ import example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
     private BookDao bookDao;
-    public List<BookType> queryBookType() {
-        return bookDao.queryBookType();
-    }
+
     public int count(String bookName){
         return bookDao.count(bookName);
     }
@@ -34,5 +33,10 @@ public class BookServiceImpl implements BookService {
 
     public int updateBooksQuantity(int id) {
         return bookDao.updateBooksQuantity(id);
+    }
+
+    public int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookPicture, String bookType, Double bookPrice, Date date, int bookTotal, int bookQuantity) {
+        return bookDao.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookPicture, bookType,
+                bookPrice, date,  bookTotal,  bookQuantity);
     }
 }

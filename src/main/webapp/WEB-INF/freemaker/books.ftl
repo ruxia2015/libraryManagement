@@ -73,7 +73,7 @@
         <#--}-->
 
         function returnBook(id) {
-            window.location.href = "${rc.contextPath}/book/returnBook?id="+id;
+            window.location.href = "${rc.contextPath}/book/returnBook?id="id;
         }
     </script>
 </head>
@@ -119,11 +119,11 @@
                 <#list  booksList as bookList>
                     <tr>
                         <td>
-                            ${bookList_index}
+                            ${bookList_index+1}
                         </td>
                         <td>${bookList.isbn}</td>
                         <td>${bookList.bookName}</td>
-                        <td>${bookList.bookAuthor}</td>
+                        <td>${bookList.bookAuthor!""}</td>
                         <td>${bookList.bookType}</td>
                         <td>${bookList.bookPrice}元</td>
                         <td>${bookList.bookTotal}</td>
@@ -158,7 +158,10 @@
                 <thead id="dataPage">
                 </thead>
             </table>
+
         </div>
+            <a href="${rc.contextPath}/book/index" >返回首页</a>
+            <a href="${rc.contextPath}/book/addBook" >新增书籍</a>
     </div>
 
 </body>

@@ -6,7 +6,7 @@
 	<resultMap id="bookTypeMap" type="example.entity.BookType">
 	</resultMap>
 
-	<select id="queryBookType" resultType="example.entity.BookType">
+	<select id="queryAllBookType" resultType="example.entity.BookType">
 		select * FROM book_type
 	</select>
 

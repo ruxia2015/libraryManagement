@@ -1,6 +1,7 @@
 package example.controller;
 
 import example.entity.Books;
+import example.entity.Borrow;
 import example.entity.User;
 import example.service.BookService;
 import example.service.BorrowBookService;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/borrowBook")
@@ -40,23 +42,33 @@ public class BorrowBookController {
         return modelAndView;
     }
     @RequestMapping("/succeedBorrow")
-    public ModelAndView succeedBorrow(String userName, String bookName, String quantity, String startDate, String returnDate){
-    try {
-        Integer quantity1 = Integer.parseInt(quantity);
-        Date startDate1 = sdf.parse(startDate);
-        Date returnDate1 = sdf.parse(returnDate);
-        User user = loginService.findUserByName2(userName);
-        int userId = user.getId();
-        Books books = bookService.findBooksByName(bookName);
-        int bookId = books.getId();
-        ModelAndView modelAndView = new ModelAndView("succeedBorrow");
-        int i = borrowBookService.borrowBook(userName, bookName, quantity1, startDate1, returnDate1, userId, bookId);
-        modelAndView.addObject("books",books);
-        modelAndView.addObject("i",i);
-        return modelAndView;
-    }catch (Exception e){
-        e.printStackTrace();
-        return null;
+    public ModelAndView succeedBorrow(String userName, String bookName, String quantity, String startDate, String returnDate) {
+        try {
+            Integer quantity1 = Integer.parseInt(quantity);
+            Date startDate1 = sdf.parse(startDate);
+            Date returnDate1 = sdf.parse(returnDate);
+            User user = loginService.findUserByName2(userName);
+            int userId = user.getId();
+            Books books = bookService.findBooksByName(bookName);
+            int bookId = books.getId();
+            ModelAndView modelAndView = new ModelAndView("succeedBorrow");
+            int i = borrowBookService.borrowBook(userName, bookName, quantity1, startDate1, returnDate1, userId, bookId);
+            int y = bookService.updateBooksQuantity(bookId);
+            modelAndView.addObject("books", books);
+            modelAndView.addObject("i", i);
+            modelAndView.addObject("y", y);
+            return modelAndView;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-    }
+        @RequestMapping("/borrowMessage")
+        public ModelAndView borrowMessage(String userName){
+            List<Borrow> borrowList = borrowBookService.borrowMessage(userName);
+            ModelAndView modelAndView = new ModelAndView("borrowMessage");
+            modelAndView.addObject("borrowList",borrowList);
+            return modelAndView;
+        }
+
 }

@@ -33,4 +33,11 @@
 	<update id="updateBooksQuantity" >
 		update books set bookQuantity = bookQuantity-1 where id = #{id}
 	</update>
+
+	<insert id="addBook" >
+		INSERT INTO books ( isbn, bookName, bookAuthor, bookParticulars, bookType,bookPicture,
+		bookPrice, createDate, bookTotal, bookQuantity)
+		values (#{bookIsbn}, #{bookName},#{bookAuthor},  #{bookParticulars}, #{bookType}, #{bookPicture},
+		#{bookPrice}, #{createDate}, #{bookTotal}, #{bookQuantity})
+	</insert>
 </mapper>

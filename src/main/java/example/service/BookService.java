@@ -4,11 +4,11 @@ import example.entity.BookType;
 import example.entity.Books;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public interface BookService {
-    List<BookType> queryBookType();
     int count(String bookName);
     List<Books> queryAllBooks(String bookName);
 
@@ -17,4 +17,6 @@ public interface BookService {
     Books findBooksByName(String bookName);
 
     int updateBooksQuantity(int id);
+
+    int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookPicture, String bookType, Double bookPrice, Date date, int bookTotal, int bookQuantity);
 }
