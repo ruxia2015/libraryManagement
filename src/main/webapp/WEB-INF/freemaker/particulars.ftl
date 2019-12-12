@@ -14,7 +14,8 @@
 </head>
 <body>
 <div>
-    <img src="${book.bookPicture}">
+    <img src="${rc.contextPath}/${book.bookPicture}">
+
     <textarea >${book.bookParticulars}</textarea>
 </div>
 <div>

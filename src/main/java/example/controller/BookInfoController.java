@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.Date;
 import java.util.List;
@@ -38,11 +39,15 @@ public class BookInfoController {
 
         @RequestMapping("/addBookSucceed")
         public ModelAndView addBookSucceed(Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
-                                           @RequestParam("file") MultipartFile file,  Double bookPrice , Integer bookTotal, Integer bookQuantity)throws IOException {
+                                           @RequestParam("file") MultipartFile file,  Double bookPrice , Integer bookTotal, Integer bookQuantity, HttpServletRequest request)throws IOException {
 
             ModelAndView modelAndView = new ModelAndView("addBookSucceed");
             //先创建一个文件目录，若该目录不存在，则新建该目录
-            String outPutPath = "E:\\项目图片\\"+file.getOriginalFilename();
+            //String path = request.getContextPath();
+            String path = BookInfoController.class.getResource("/").getPath();
+            System.out.println(path);
+            String outPutPath = path+"statics/image/"+file.getOriginalFilename();
+            System.out.println(outPutPath);
             File fileNew = new File(outPutPath);
             File fileParent = fileNew.getParentFile();
             if(!fileParent.exists()){
@@ -50,7 +55,7 @@ public class BookInfoController {
             }
             try {
                 //获取输出流
-                OutputStream os=new FileOutputStream("E:\\项目图片\\"+file.getOriginalFilename());
+                OutputStream os=new FileOutputStream(outPutPath);
                 //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
                InputStream is=file.getInputStream();
                 int temp;
@@ -66,7 +71,7 @@ public class BookInfoController {
                 e.printStackTrace();
             }
 
-            String bookPicture = "E:\\项目图片\\"+file.getOriginalFilename();
+            String bookPicture = "image/"+file.getOriginalFilename();;
             Date date = new Date();
             int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
                     bookPrice, date,  bookTotal,  bookQuantity  );
