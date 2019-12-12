@@ -14,8 +14,8 @@
 </head>
 <body>
 <div>
-    <img src="${rc.contextPath}/image/骆驼祥子.jpg">
-    <textarea >${book.booksParticulars}</textarea>
+    <img src="${book.bookPicture}">
+    <textarea >${book.bookParticulars}</textarea>
 </div>
 <div>
    <input type="button" onclick="goBack()" value="返回">

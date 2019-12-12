@@ -47,7 +47,7 @@
             <tr>
                 <td>图书封面：</td>
                 <td>
-                    <input type="file" name="picture">
+                    <input type="file" name="file">
                 </td>
             </tr>
             <tr>

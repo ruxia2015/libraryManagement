@@ -35,8 +35,8 @@ public class BookServiceImpl implements BookService {
         return bookDao.updateBooksQuantity(id);
     }
 
-    public int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookPicture, String bookType, Double bookPrice, Date date, int bookTotal, int bookQuantity) {
-        return bookDao.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookPicture, bookType,
+    public int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType, String bookPicture,  Double bookPrice, Date date, int bookTotal, int bookQuantity) {
+        return bookDao.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
                 bookPrice, date,  bookTotal,  bookQuantity);
     }
 }

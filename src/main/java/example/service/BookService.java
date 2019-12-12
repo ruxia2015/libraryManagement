@@ -18,5 +18,5 @@ public interface BookService {
 
     int updateBooksQuantity(int id);
 
-    int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookPicture, String bookType, Double bookPrice, Date date, int bookTotal, int bookQuantity);
+    int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars,  String bookType, String bookPicture, Double bookPrice, Date date, int bookTotal, int bookQuantity);
 }
