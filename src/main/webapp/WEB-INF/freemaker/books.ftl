@@ -102,19 +102,19 @@
         <input type="text" id = "condition" placeholder="书名|作者">
         <input type="button" onclick="queruCondition()" value="查询">
     </form>
-        <div style="margin: 0px auto; width: 700px;">
+        <div style="margin: 0px auto; width: 1500px;">
             <table border="1" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td>序号</td>
-                    <td>国际编码</td>
-                    <td>图书名称</td>
-                    <td>作者</td>
-                    <td>图书分类</td>
-                    <td>图书价格</td>
-                    <td>图书总量</td>
-                    <td>可借数量</td>
-                    <td>详情</td>
-                    <td>操作</td>
+                    <td width="100px">序号</td>
+                    <td width="100px">国际编码</td>
+                    <td width="100px">图书名称</td>
+                    <td width="100px">作者</td>
+                    <td width="100px">图书分类</td>
+                    <td width="100px">图书价格</td>
+                    <td width="100px">图书总量</td>
+                    <td width="100px">可借数量</td>
+                    <td width="100px">详情</td>
+                    <td width="200px">操作</td>
                 </tr>
                 <#list  booksList as bookList>
                     <tr>
@@ -134,10 +134,18 @@
                         <#if bookList.bookQuantity == 0 >
                             <td>
                                 <a href ="javascript:return false" style="opacity: 0.2">借阅</a>
+                                &nbsp; &nbsp; &nbsp; &nbsp;
+                                <a href="${rc.contextPath}/book/updateBook?id=${bookList.id}" >修改</a>
+                                &nbsp; &nbsp; &nbsp; &nbsp;
+                                <a href="${rc.contextPath}/book/delectBook?id=${bookList.id}" >删除</a>
                             </td>
                         <#elseif bookList.bookQuantity gte 0>
                             <td>
                                 <a href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}" >借阅</a>
+                                &nbsp; &nbsp; &nbsp; &nbsp;
+                                <a href="${rc.contextPath}/book/updateBook?id=${bookList.id}" >修改</a>
+                                &nbsp; &nbsp; &nbsp; &nbsp;
+                                <a href="${rc.contextPath}/book/delectBook?id=${bookList.id}" >删除</a>
                             </td>
 <#--                        </#if>-->
 <#--                        <#if bookList.bookQuantity == bookList.bookTotal>-->
@@ -161,7 +169,11 @@
 
         </div>
             <a href="${rc.contextPath}/book/index" >返回首页</a>
-            <a href="${rc.contextPath}/book/addBook" >新增书籍</a>
+
+    </div>
+    <div>
+        <a href="${rc.contextPath}/book/addBook" >新增书籍</a>
+
     </div>
 
 </body>

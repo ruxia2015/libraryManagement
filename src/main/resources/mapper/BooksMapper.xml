@@ -40,4 +40,20 @@
 		values (#{bookIsbn}, #{bookName},#{bookAuthor},  #{bookParticulars}, #{bookType}, #{bookPicture},
 		#{bookPrice}, #{createDate}, #{bookTotal}, #{bookQuantity})
 	</insert>
+
+	<update id="updateBook">
+		update books
+		set
+			bookIsbn=#{bookIsbn},
+			 bookName=#{bookName},
+			 bookAuthor=#{bookAuthor},
+			 bookParticulars=#{bookParticulars},
+			 bookType=#{bookType},
+			 bookPicture=#{bookPicture},
+			 bookPrice=#{bookPrice},
+			 updateDate=#{updateDate},
+			 bookTotal=#{bookTotal},
+			 bookQuantity=#{bookQuantity}
+	 where id = #{id}
+	</update>
 </mapper>

@@ -4,6 +4,7 @@ import example.entity.BookType;
 import example.entity.Books;
 import example.service.BookService;
 import example.service.BookTypeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,38 +45,78 @@ public class BookInfoController {
             ModelAndView modelAndView = new ModelAndView("addBookSucceed");
             //先创建一个文件目录，若该目录不存在，则新建该目录
             //String path = request.getContextPath();
-            String path = BookInfoController.class.getResource("/").getPath();
-            System.out.println(path);
-            String outPutPath = path+"statics/image/"+file.getOriginalFilename();
-            System.out.println(outPutPath);
-            File fileNew = new File(outPutPath);
-            File fileParent = fileNew.getParentFile();
-            if(!fileParent.exists()){
-                fileParent.mkdirs();
-            }
-            try {
-                //获取输出流
-                OutputStream os=new FileOutputStream(outPutPath);
-                //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
-               InputStream is=file.getInputStream();
-                int temp;
-                //一个一个字节的读取并写入
-                while((temp=is.read())!=(-1))
-                {
-                    os.write(temp);
+//            String path = BookInfoController.class.getResource("/").getPath();
+////            System.out.println(path);
+//            String newPath = StringUtils.substringBeforeLast(path, "c");
+//            String outPutPath = newPath+"statics/image/"+file.getOriginalFilename();
+////            System.out.println(outPutPath);
+//            File fileNew = new File(outPutPath);
+//            File fileParent = fileNew.getParentFile();
+//            if(!fileParent.exists()){
+//                fileParent.mkdirs();
+//            }
+//            try {
+//                //获取输出流
+//                OutputStream os=new FileOutputStream(outPutPath);
+//                //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
+//               InputStream is=file.getInputStream();
+//                int temp;
+//                //一个一个字节的读取并写入
+//                while((temp=is.read())!=(-1))
+//                {
+//                    os.write(temp);
+//                }
+//                os.flush();
+//                os.close();
+//                is.close();
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
+            try{
+                Boolean b = new UtilityController().fileUpload(file);
+                if(b == true){
+                    String bookPicture = "image/"+file.getOriginalFilename();
+                    Date date = new Date();
+                    int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+                            bookPrice, date,  bookTotal,  bookQuantity  );
+                    modelAndView.addObject("i",i);
                 }
-                os.flush();
-                os.close();
-                is.close();
-            } catch (FileNotFoundException e) {
+            }catch (Exception e){
                 e.printStackTrace();
             }
+            return modelAndView;
+        }
 
-            String bookPicture = "image/"+file.getOriginalFilename();;
-            Date date = new Date();
-            int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
-                    bookPrice, date,  bookTotal,  bookQuantity  );
-            modelAndView.addObject("i",i);
+        @RequestMapping("updateBook")
+        public ModelAndView updateBook(int id){
+        ModelAndView modelAndView = new ModelAndView("updateBook");
+        Books books = bookService.queryBook(id);
+        List<BookType> bookTypeList = bookTypeService.queryAllBookType();
+        modelAndView.addObject("bookTypeList",bookTypeList);
+        modelAndView.addObject("books",books);
+        return modelAndView;
+        }
+
+        @RequestMapping("/updateBookSucceed")
+        public ModelAndView updateBookSucceed(int id, Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
+                                              @RequestParam("file") MultipartFile file,  Double bookPrice , Integer bookTotal, Integer bookQuantity){
+
+            ModelAndView modelAndView = new ModelAndView("updateBookSucceed");
+
+            try{
+                Boolean b = new UtilityController().fileUpload(file);
+                if(b == true){
+                    String bookPicture = "image/"+file.getOriginalFilename();
+                    Date date = new Date();
+                    int i = bookService.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+                            bookPrice, date,  bookTotal,  bookQuantity  );
+                    modelAndView.addObject("i",i);
+                    System.out.println(i);
+                    return modelAndView;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return modelAndView;
         }
 
@@ -118,5 +159,7 @@ public class BookInfoController {
         modelAndView.addObject("date",date);
         return modelAndView;
     }
+
+
 
 }

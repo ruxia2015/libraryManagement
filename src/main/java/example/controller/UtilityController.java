@@ -1,8 +1,10 @@
 package example.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,35 +15,37 @@ import java.util.Date;
 @RequestMapping("/util")
 public class UtilityController {
 
-//    //上传图片并返回上传结果
-//    @RequestMapping("/picture")
-//    public String  fileUpload(@RequestParam("file") CommonsMultipartFile file) throws IOException {
-//        //用来检测程序运行时间
-//        long  startTime=System.currentTimeMillis();
-////        System.out.println("fileName："+file.getOriginalFilename());
-//
-//        try {
-//            //获取输出流
-//            OutputStream os=new FileOutputStream("E:/"+new Date().getTime()+file.getOriginalFilename());
-//            //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
-//            InputStream is=file.getInputStream();
-//            int temp;
-//            //一个一个字节的读取并写入
-//            while((temp=is.read())!=(-1))
-//            {
-//                os.write(temp);
-//            }
-//            os.flush();
-//            os.close();
-//            is.close();
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        long  endTime=System.currentTimeMillis();
-////        System.out.println("方法一的运行时间："+String.valueOf(endTime-startTime)+"ms");
-//        return "/success";
-//    }
+    //上传图片并返回上传结果
+    @RequestMapping("/picture")
+    public Boolean  fileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+        try {
+            String path = BookInfoController.class.getResource("/").getPath();
+            String newPath = StringUtils.substringBeforeLast(path, "c");
+            String outPutPath = newPath+"statics/image/"+file.getOriginalFilename();
+            File fileNew = new File(outPutPath);
+            File fileParent = fileNew.getParentFile();
+            if(!fileParent.exists()){
+                fileParent.mkdirs();
+            }
+            //获取输出流
+            OutputStream os=new FileOutputStream(outPutPath);
+            //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
+            InputStream is=file.getInputStream();
+            int temp;
+            //一个一个字节的读取并写入
+            while((temp=is.read())!=(-1))
+            {
+                os.write(temp);
+            }
+            os.flush();
+            os.close();
+            is.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 
 

@@ -61,4 +61,21 @@ public class BookDaoImpl implements BookDao {
 
         return sqlSessionTemplate.insert("addBook",params);
     }
+
+    public int updateBook(int id ,Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        params.put("bookIsbn",bookIsbn);
+        params.put("bookName",bookName);
+        params.put("bookAuthor",bookAuthor);
+        params.put("bookParticulars",bookParticulars);
+        params.put("bookType",bookType);
+        params.put("bookPicture",bookPicture);
+        params.put("bookPrice",bookPrice);
+        params.put("updateDate",date);
+        params.put("bookTotal",bookTotal);
+        params.put("bookQuantity",bookQuantity);
+
+        return sqlSessionTemplate.update("updateBook",params);
+    }
 }
