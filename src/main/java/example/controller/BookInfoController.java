@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.*;
 import java.io.*;
 import java.util.Date;
 import java.util.List;
@@ -73,14 +74,18 @@ public class BookInfoController {
 //                e.printStackTrace();
 //            }
             try{
-                Boolean b = new UtilityController().fileUpload(file);
-                if(b == true){
-                    String bookPicture = "image/"+file.getOriginalFilename();
+                String bookPicture = "image/默认.jpg";
+                String  newBookPicture = new UtilityController().fileUpload(file,bookPicture);
+                if(newBookPicture == null){
+
+                }else {
+                    bookPicture = newBookPicture ;
+                }
                     Date date = new Date();
                     int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
                             bookPrice, date,  bookTotal,  bookQuantity  );
                     modelAndView.addObject("i",i);
-                }
+
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -99,27 +104,39 @@ public class BookInfoController {
 
         @RequestMapping("/updateBookSucceed")
         public ModelAndView updateBookSucceed(int id, Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
-                                              @RequestParam("file") MultipartFile file,  Double bookPrice , Integer bookTotal, Integer bookQuantity){
+                                              @RequestParam("file") MultipartFile file, String bookPicture,   Double bookPrice , Integer bookTotal, Integer bookQuantity){
 
             ModelAndView modelAndView = new ModelAndView("updateBookSucceed");
 
             try{
-                Boolean b = new UtilityController().fileUpload(file);
-                if(b == true){
-                    String bookPicture = "image/"+file.getOriginalFilename();
+                    String  newBookPicture = new UtilityController().fileUpload(file,bookPicture);
+                    if(newBookPicture == null){
+
+                    }else {
+                         bookPicture = newBookPicture ;
+                    }
                     Date date = new Date();
                     int i = bookService.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
                             bookPrice, date,  bookTotal,  bookQuantity  );
                     modelAndView.addObject("i",i);
                     System.out.println(i);
                     return modelAndView;
-                }
             }catch (Exception e){
                 e.printStackTrace();
             }
             return modelAndView;
         }
 
+        @RequestMapping("/deleteBook")
+        public String  show(int id){
+            int res= JOptionPane.showConfirmDialog(null, "是否删除", "是否删除", JOptionPane.YES_NO_OPTION);
+            if(res == JOptionPane.YES_OPTION){
+                int i = bookService.deleteBook(id);
+                return "redirect:/book/books";
+            }else {
+                return "redirect:/book/books";
+            }
+        }
 
 
     @RequestMapping("/books")

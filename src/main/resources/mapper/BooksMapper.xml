@@ -56,4 +56,8 @@
 			 bookQuantity=#{bookQuantity}
 	 where id = #{id}
 	</update>
+
+	<delete id="deleteBook">
+		delete from books where id = #{id}
+	</delete>
 </mapper>

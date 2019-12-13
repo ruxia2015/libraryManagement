@@ -7,6 +7,20 @@
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/additional-methods.js"></script>
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
     <script type="text/javascript">
+        function verifyNum() {
+            var num = document.getElementById("num").value;
+            if (num == "" || num == null) {
+                num = 0;
+            }
+            var pattern = /^[0-9]$/;
+            if (!pattern.test(num)) {
+                $("#hint").html("请输入数字");
+                $("#hint").css("display", "inline");
+                document.getElementById("num").val("");
+                return;
+            }
+
+        }
 
     </script>
     <style>
@@ -30,7 +44,10 @@
         <table>
             <tr>
                 <td width="100px"> 国际编码：</td>
-                <td width="100px"><input type="text" name="bookIsbn" placeholder="数字"></td>
+                <td width="100px">
+                    <input type="text" onblur="verifyNum()" id = "num" name="bookIsbn" placeholder="数字">
+                    <span id = "hint"></span>
+                </td>
             </tr>
             <tr>
                 <td>书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>

@@ -78,4 +78,10 @@ public class BookDaoImpl implements BookDao {
 
         return sqlSessionTemplate.update("updateBook",params);
     }
+
+    public int deleteBook(int id) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        return sqlSessionTemplate.delete("deleteBook",params);
+    }
 }

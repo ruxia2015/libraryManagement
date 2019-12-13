@@ -145,7 +145,7 @@
                                 &nbsp; &nbsp; &nbsp; &nbsp;
                                 <a href="${rc.contextPath}/book/updateBook?id=${bookList.id}" >修改</a>
                                 &nbsp; &nbsp; &nbsp; &nbsp;
-                                <a href="${rc.contextPath}/book/delectBook?id=${bookList.id}" >删除</a>
+                                <a href="${rc.contextPath}/book/deleteBook?id=${bookList.id}" >删除</a>
                             </td>
 <#--                        </#if>-->
 <#--                        <#if bookList.bookQuantity == bookList.bookTotal>-->

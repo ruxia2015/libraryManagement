@@ -44,4 +44,8 @@ public class BookServiceImpl implements BookService {
         return bookDao.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
                 bookPrice, date,  bookTotal,  bookQuantity);
     }
+
+    public int deleteBook(int id) {
+        return bookDao.deleteBook(id);
+    }
 }

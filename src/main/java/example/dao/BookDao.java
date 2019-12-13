@@ -19,4 +19,6 @@ public interface BookDao {
     int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars,  String bookType,String bookPicture, Double bookPrice, Date date, int bookTotal, int bookQuantity);
 
     int updateBook(int id , Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity);
+
+    int deleteBook(int id);
 }
