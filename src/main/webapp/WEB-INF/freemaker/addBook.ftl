@@ -9,17 +9,20 @@
     <script type="text/javascript">
         function verifyNum() {
             var num = document.getElementById("num").value;
-            if (num == "" || num == null) {
-                num = 0;
-            }
             var pattern = /^[0-9]$/;
             if (!pattern.test(num)) {
                 $("#hint").html("请输入数字");
                 $("#hint").css("display", "inline");
-                document.getElementById("num").val("");
-                return;
+                document.getElementById("num").innerHTML("");
+                return false;
             }
-
+            return true;
+        }
+        function submit() {
+            if(!verifyNum()){
+                return false
+            }
+            return true
         }
 
     </script>
@@ -40,11 +43,11 @@
     <h2>新增书籍</h2>
 </div>
 <div class=" div_table">
-    <form action="${rc.contextPath}/book/addBookSucceed" method="post" enctype="multipart/form-data">
+    <form action="${rc.contextPath}/book/addBookSucceed" onsubmit="return submitForm();" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td width="100px"> 国际编码：</td>
-                <td width="100px">
+                <td width="200px">
                     <input type="text" onblur="verifyNum()" id = "num" name="bookIsbn" placeholder="数字">
                     <span id = "hint"></span>
                 </td>
