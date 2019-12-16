@@ -5,6 +5,7 @@ import example.entity.User;
 import example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,7 +31,6 @@ public class LoginController extends HttpServlet {
     public String register(){
         return "register";
     }
-
 
     @RequestMapping("/selectUsers")
     public String  selectUsers(){
@@ -72,22 +72,53 @@ public class LoginController extends HttpServlet {
         return map;
     }
 
+    @RequestMapping("/retrievePwd")
+    public String retrievePwd(){
+        return "retrievePwd";
+    }
 
+    //找回密码
+    @RequestMapping("retrievePassword")
+    public String retrievePassword(String userName, String phone, Model model){
+
+        User user = loginService.findUserByName(userName);
+        if(user == null){
+            JOptionPane.showMessageDialog(null, "该账号不存在","数据错误",JOptionPane.ERROR_MESSAGE);
+            return "retrievePwd";
+        }
+        if(user.getPhone().equals(phone)){
+            model.addAttribute("user", user);
+            return "resetPwd";
+        }else{
+            JOptionPane.showMessageDialog(null, "手机号或用户名错误","数据错误",JOptionPane.ERROR_MESSAGE);
+            return "retrievePwd";
+        }
+    }
+
+    //重置密码
+    @RequestMapping("/resetSucceed")
+    public String resetSucceed(int userId, String pwd){
+        int i = loginService.resetPwd(pwd, userId);
+        if(i == 1){
+            JOptionPane.showMessageDialog(null, "修改密码成功","成功",JOptionPane.ERROR_MESSAGE);
+            return "login";
+        }else {
+            JOptionPane.showMessageDialog(null, "修改密码失败，请稍后重试！","成功",JOptionPane.ERROR_MESSAGE);
+            return "resetPwd";
+        }
+
+    }
 
     //如果name或者psd为null，在哪里去验证，并且返回前端
     @RequestMapping("/sgin")
-    public String  sgin(String name, String psd, ModelMap response, HttpServletRequest request){
+    public String  sgin(String name, String psd, HttpServletRequest request){
 
         Boolean b = loginService.userLogin(name,psd,request);
-        User user = loginService.findUserByName(name);
-        if(b ==false){
-            //弹出提示框显示用户名或密码错误
-            response.put("error","用户名或者密码错误");
 
-            return "login";//TODO 跳转到登录页面视图[jsp页面] ,在JSP页面中将错误信息显示出来就可以
+        if(b ==false){
+            return "loginError";//TODO 跳转到登录页面视图[jsp页面] ,在JSP页面中将错误信息显示出来就可以
         }
         return "index"; //此处不建议写跳转到视图，如果这个视图页面需要传入一些值，就需要再写一遍，建议使用转发（redirect），跳转到对应的请求地址
-
     }
 
 
@@ -134,8 +165,6 @@ public class LoginController extends HttpServlet {
         if(userName == null || userName.trim().equals("")){  //用户没输入
             return false;
         }
-
-
         User user = loginService.findUserByName(userName);
         //1、此处调用service类，根据用户名查找用户
         if (user == null) {  //用户名可用

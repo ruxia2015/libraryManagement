@@ -135,7 +135,7 @@
                                                 </#list>
                                             </select>
                                             &nbsp; &nbsp;
-                                            <input type="text" class="form-control" name="bookName" value="${bookName}"
+                                            <input type="text" class="form-control" name="bookName" value="${bookName}！''"
                                                    placeholder="书名|作者">
                                             &nbsp; &nbsp;
                                             <input type="submit" id="queryBtn" class="btn btn-sm btn-info" value="查询">

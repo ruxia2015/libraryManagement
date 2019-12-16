@@ -80,6 +80,9 @@
 		select * from book_users where userName = #{userName}
 	</select>
 
+	<update id="resetPwd">
+		update book_users set userPassword = #{pwd} where id = #{userId}
+	</update>
 	
 		<!-- auto generate default count -->
 

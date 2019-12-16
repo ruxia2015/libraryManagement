@@ -75,5 +75,9 @@ public class LoginServiceImpl implements LoginService {
         return userList;
     }
 
+    public int resetPwd(String pwd, int userId) {
+        return loginDao.resetPwd(pwd, userId);
+    }
+
 
 }

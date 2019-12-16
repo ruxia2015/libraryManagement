@@ -10,21 +10,42 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 </head>
 
-<script>
-    var _contextPath = "${pageContext.request.contextPath}";//js文件中无法使用jsp中的该对象，故在此处定一个变量，以便login.js文件引用
-    //错误信息提示，error由后台返回
-    <c:if test="${not empty error}">
-    alert("${error}")
-    </c:if>
-</script>
 <script type="text/javascript">
+    var _contextPath = "${pageContext.request.contextPath}";
     function register2() {
         window.location.href = _contextPath + "/user/register"
     }
 
-    // function selectUsers2() {
-    //     window.location.href = _contextPath + "/user/selectUsers"
-    // }
+    function retrievePwd() {
+        window.location.href = _contextPath + "/user/retrievePwd"
+    }
+
+    function emptyName() {
+        document.getElementById("showName").style.display = "none";
+    }
+    function emptyPwd() {
+        document.getElementById("showPwd").style.display = "none";
+    }
+
+    function submitForm() {
+        var userName = document.getElementById("username").value;
+        var passWord = document.getElementById("password").value;
+        if(userName == null || userName == ""){
+            document.getElementById("showName").style.display = "";
+            document.getElementById("showName").innerText = "账号不能为空";
+            document.getElementById("showName").style.color = "red";
+            return false;
+        }
+        if(passWord == null || passWord == ""){
+            document.getElementById("showPwd").style.display = "";
+            document.getElementById("showPwd").innerText="密码不能为空";
+            document.getElementById("showPwd").style.color = "red";
+            return false;
+        }
+        document.getElementById("showName").style.display = "none";
+        document.getElementById("showPwd").style.display = "none";
+            return true;
+    }
 </script>
 
 
@@ -34,17 +55,16 @@
     <p id="image_logo"><img src="${pageContext.request.contextPath}/image/1.jpg" style="width:90px;height:50px;"></p>
     <form id="loginForm" method="post"  onsubmit="return submitForm();" action="${pageContext.request.contextPath}/user/sgin">
         <div>
-            <p><label class="label_input">用户名:</label>&nbsp<input type="text" id="username" name="name" class="text_field" required/></p>
-            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password" name="psd" id="password" class="text_field"/></p>
+            <p>
+                <label class="label_input">用户名:</label>&nbsp<input type="text" id="username" onfocus="emptyName()" name="name" class="text_field"/><span id = "showName"></span>
+            </p>
+            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password" name="psd" onfocus="emptyPwd()" id="password" class="text_field"/><span id = "showPwd"></span></p>
         </div>
         <div id="login_control">
             <input type="submit" id="btn_login" value="登录"  />
             <input type="button" id="btn_enroll" value="注册" onclick="register2();"/>
-            <a id="forget_pwd" href="forget_pwd.html">忘记密码？</a>
+            <input type="button" id="btn_pwd" value="忘记密码" onclick="retrievePwd();"/>
         </div>
-<%--        <div>--%>
-<%--            <input type="button" id="selectUsers" value="读者查询" onclick="selectUsers2()"/>--%>
-<%--        </div>--%>
     </form>
 </div>
 

@@ -71,4 +71,11 @@ public class LoginDaoImpl implements LoginDao {
         params.put("userName",userName);
         return sqlSessionTemplate.selectList("user.queryAllUser",params);
     }
+
+    public int resetPwd(String pwd, int userId) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("pwd" ,pwd);
+        params.put("userId" ,userId);
+        return sqlSessionTemplate.update("resetPwd",params);
+    }
 }

@@ -26,5 +26,7 @@ public interface LoginService {
 
 
     List<User> queryAllUser(int pageNo, int pageNum, String userName);
+
+    int resetPwd(String pwd, int userId);
 }
 
