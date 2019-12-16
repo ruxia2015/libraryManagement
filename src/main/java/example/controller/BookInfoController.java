@@ -140,14 +140,16 @@ public class BookInfoController {
 
 
     @RequestMapping("/books")
-    public ModelAndView show(String bookName){
-        List<BookType> bookTypeList =bookTypeService.queryAllBookType();
-        List<Books> booksList = bookService.queryAllBooks(bookName);
-        int count = bookService.count( bookName);
+    public ModelAndView show(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer bookTypeId) {
+        List<BookType> bookTypeList = bookTypeService.queryAllBookType();
+        List<Books> booksList = bookService.queryAllBooks(bookName,bookTypeId);
+        int count = bookService.count(bookName,bookTypeId);
         ModelAndView modelAndView = new ModelAndView("books");
-        modelAndView.addObject("bookTypeList",bookTypeList);
-        modelAndView.addObject("booksList",booksList);
-        modelAndView.addObject("count",count);
+        modelAndView.addObject("bookTypeList", bookTypeList);
+        modelAndView.addObject("booksList", booksList);
+        modelAndView.addObject("count", count);
+        modelAndView.addObject("bookName", bookName);
+        modelAndView.addObject("bookTypeId", bookTypeId);
         return modelAndView;
     }
 

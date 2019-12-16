@@ -3,17 +3,17 @@ package example.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Page {
+public class Page<T> {
     private int pageNo ;  //当前页
     private int pageSize; //每一页的数据个数
     private int toatalNum; //总数据
-    private List<Object> list = new ArrayList<Object>();  //装数据的集合
+    private List<T> list = new ArrayList<T>();  //装数据的集合
 
     public Page(){
 
     }
 
-    public Page(int pageNo, int pageSize, int toatalNum, List<Object> list) {
+    public Page(int pageNo, int pageSize, int toatalNum, List<T> list) {
         this.pageNo = pageNo;
         this.pageSize = pageSize;
         this.toatalNum = toatalNum;
@@ -50,11 +50,11 @@ public class Page {
         this.toatalNum = toatalNum;
     }
 
-    public List<Object> getList() {
+    public List<T> getList() {
         return list;
     }
 
-    public void setList(List<Object> list) {
+    public void setList(List<T> list) {
         this.list = list;
     }
     //获得总页数

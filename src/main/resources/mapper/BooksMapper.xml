@@ -10,16 +10,24 @@
 		select * from books
 		<where>
 			<if test="bookName != null">
-				bookName like "%"#{bookName}"%" or bookAuthor like "%"#{bookName}"%"
+				and bookName like '%${bookName}%' or bookAuthor like '%${bookName}%'
+			</if>
+			<if test="bookTypeId != null">
+				and bookType = #{bookTypeId}
 			</if>
 		</where>
 	</select>
 
-	<select id="queryAllBooksCount" resultType="int" >
+	<select id="queryAllBooksCount" resultType="int">
 		select count(*) from books
-		<if test="bookName != null">
-			bookName like "%"#{bookName}"%" or bookAuthor like "%"#{bookName}"%"
-		</if>
+		<where>
+			<if test="bookName != null">
+				and bookName like '%${bookName}%' or bookAuthor like '%${bookName}%'
+			</if>
+			<if test="bookTypeId != null">
+				and bookType = #{bookTypeId}
+			</if>
+		</where>
 	</select>
 
 	<select id="queryBook" resultType="example.entity.Books">

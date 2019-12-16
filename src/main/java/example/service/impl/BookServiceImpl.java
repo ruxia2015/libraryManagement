@@ -15,12 +15,12 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookDao bookDao;
 
-    public int count(String bookName){
-        return bookDao.count(bookName);
+    public int count(String bookName,Integer bookTypeId){
+        return bookDao.count(bookName,bookTypeId);
     }
 
-    public List<Books> queryAllBooks(String bookName) {
-        return bookDao.queryAllBooks(bookName);
+    public List<Books> queryAllBooks(String bookName,Integer bookTypeId) {
+        return bookDao.queryAllBooks(bookName,bookTypeId);
     }
 
     public Books queryBook(int id) {

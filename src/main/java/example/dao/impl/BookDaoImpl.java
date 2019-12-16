@@ -16,15 +16,17 @@ public class BookDaoImpl implements BookDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
 
-    public int count(String bookName){
+    public int count(String bookName,Integer bookTypeId){
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("bookName",bookName);
+        params.put("bookTypeId",bookTypeId);
         return sqlSessionTemplate.selectOne("queryAllBooksCount" , params);
     }
 
-    public List<Books> queryAllBooks(String bookName){
+    public List<Books> queryAllBooks(String bookName,Integer bookTypeId){
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("bookName",bookName);
+        params.put("bookTypeId",bookTypeId);
         return sqlSessionTemplate.selectList("queryAllBooks",params);
     }
 
