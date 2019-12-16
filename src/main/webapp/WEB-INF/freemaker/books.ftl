@@ -122,20 +122,24 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">
-                                        <a href="${rc.contextPath}/book/addBook" class="btn btn-default">新增书本</a>
-
-                                        <label>图书分类</label>
-                                        <select name="bookTypeId">
-                                            <option value="">全部</option>
-                                            <#list bookTypeList as bookType>
-                                                <option value="${bookType.id}"
-                                            <#if bookTypeId?? && bookType.id ==bookTypeId>selected</#if> >${bookType.bookTypeName}</option>
-                                            </#list>
-                                            <input type="text" name="bookName" value="${bookName}" placeholder="书名|作者">
-                                            <input type="submit" id="queryBtn" value="查询">
-                                        </select>
-
-
+                                        <div class="input-group">
+                                            <a href="${rc.contextPath}/book/addBook" class="btn btn btn-default">新增书本</a>
+                                            &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <label class="col-form-label">图书分类</label>
+                                            &nbsp; &nbsp;
+                                            <select name="bookTypeId" class="form-control">
+                                                <option value="">全部</option>
+                                                <#list bookTypeList as bookType>
+                                                    <option value="${bookType.id}"
+                                                <#if bookTypeId?? && bookType.id ==bookTypeId>selected</#if> >${bookType.bookTypeName}</option>
+                                                </#list>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <input type="text" class="form-control" name="bookName" value="${bookName}"
+                                                   placeholder="书名|作者">
+                                            &nbsp; &nbsp;
+                                            <input type="submit" id="queryBtn" class="btn btn-sm btn-info" value="查询">
+                                        </div>
                                     </h3>
                                 </div>
                                 <!-- /.card-header -->
