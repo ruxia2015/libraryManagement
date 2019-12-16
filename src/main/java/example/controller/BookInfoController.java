@@ -27,25 +27,25 @@ public class BookInfoController {
     private BookTypeService bookTypeService;
 
     @RequestMapping("/index")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @RequestMapping("/addBook")
-    public ModelAndView addBook (){
+    public ModelAndView addBook() {
         ModelAndView modelAndView = new ModelAndView("addBook");
         List<BookType> bookTypeList = bookTypeService.queryAllBookType();
-        modelAndView.addObject("bookTypeList",bookTypeList);
+        modelAndView.addObject("bookTypeList", bookTypeList);
         return modelAndView;
     }
 
-        @RequestMapping("/addBookSucceed")
-        public ModelAndView addBookSucceed(Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
-                                           @RequestParam("file") MultipartFile file,  Double bookPrice , Integer bookTotal, Integer bookQuantity, HttpServletRequest request)throws IOException {
+    @RequestMapping("/addBookSucceed")
+    public ModelAndView addBookSucceed(Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
+                                       @RequestParam("file") MultipartFile file, Double bookPrice, Integer bookTotal, Integer bookQuantity, HttpServletRequest request) throws IOException {
 
-            ModelAndView modelAndView = new ModelAndView("addBookSucceed");
-            //先创建一个文件目录，若该目录不存在，则新建该目录
-            //String path = request.getContextPath();
+        ModelAndView modelAndView = new ModelAndView("addBookSucceed");
+        //先创建一个文件目录，若该目录不存在，则新建该目录
+        //String path = request.getContextPath();
 //            String path = BookInfoController.class.getResource("/").getPath();
 ////            System.out.println(path);
 //            String newPath = StringUtils.substringBeforeLast(path, "c");
@@ -73,77 +73,77 @@ public class BookInfoController {
 //            } catch (FileNotFoundException e) {
 //                e.printStackTrace();
 //            }
-            try{
-                String bookPicture = "image/默认.jpg";
-                String  newBookPicture = new UtilityController().fileUpload(file,bookPicture);
-                if(newBookPicture == null){
+        try {
+            String bookPicture = "image/默认.jpg";
+            String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
+            if (newBookPicture == null) {
 
-                }else {
-                    bookPicture = newBookPicture ;
-                }
-                    Date date = new Date();
-                    int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
-                            bookPrice, date,  bookTotal,  bookQuantity  );
-                    modelAndView.addObject("i",i);
-
-            }catch (Exception e){
-                e.printStackTrace();
+            } else {
+                bookPicture = newBookPicture;
             }
-            return modelAndView;
-        }
+            Date date = new Date();
+            int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+                    bookPrice, date, bookTotal, bookQuantity);
+            modelAndView.addObject("i", i);
 
-        @RequestMapping("updateBook")
-        public ModelAndView updateBook(int id){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping("updateBook")
+    public ModelAndView updateBook(int id) {
         ModelAndView modelAndView = new ModelAndView("updateBook");
         Books books = bookService.queryBook(id);
         List<BookType> bookTypeList = bookTypeService.queryAllBookType();
-        modelAndView.addObject("bookTypeList",bookTypeList);
-        modelAndView.addObject("books",books);
+        modelAndView.addObject("bookTypeList", bookTypeList);
+        modelAndView.addObject("books", books);
         return modelAndView;
-        }
+    }
 
-        @RequestMapping("/updateBookSucceed")
-        public ModelAndView updateBookSucceed(int id, Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
-                                              @RequestParam("file") MultipartFile file, String bookPicture,   Double bookPrice , Integer bookTotal, Integer bookQuantity){
+    @RequestMapping("/updateBookSucceed")
+    public ModelAndView updateBookSucceed(int id, Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
+                                          @RequestParam("file") MultipartFile file, String bookPicture, Double bookPrice, Integer bookTotal, Integer bookQuantity) {
 
-            ModelAndView modelAndView = new ModelAndView("updateBookSucceed");
+        ModelAndView modelAndView = new ModelAndView("updateBookSucceed");
 
-            try{
-                    String  newBookPicture = new UtilityController().fileUpload(file,bookPicture);
-                    if(newBookPicture == null){
+        try {
+            String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
+            if (newBookPicture == null) {
 
-                    }else {
-                         bookPicture = newBookPicture ;
-                    }
-                    Date date = new Date();
-                    int i = bookService.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
-                            bookPrice, date,  bookTotal,  bookQuantity  );
-                    modelAndView.addObject("i",i);
-                    System.out.println(i);
-                    return modelAndView;
-            }catch (Exception e){
-                e.printStackTrace();
+            } else {
+                bookPicture = newBookPicture;
             }
+            Date date = new Date();
+            int i = bookService.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+                    bookPrice, date, bookTotal, bookQuantity);
+            modelAndView.addObject("i", i);
+            System.out.println(i);
             return modelAndView;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return modelAndView;
+    }
 
-        @RequestMapping("/deleteBook")
-        public String  show(int id){
-            int res= JOptionPane.showConfirmDialog(null, "是否删除", "是否删除", JOptionPane.YES_NO_OPTION);
-            if(res == JOptionPane.YES_OPTION){
-                int i = bookService.deleteBook(id);
-                return "redirect:/book/books";
-            }else {
-                return "redirect:/book/books";
-            }
+    @RequestMapping("/deleteBook")
+    public String show(int id) {
+        int res = JOptionPane.showConfirmDialog(null, "是否删除", "是否删除", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            int i = bookService.deleteBook(id);
+            return "redirect:/book/books";
+        } else {
+            return "redirect:/book/books";
         }
+    }
 
 
     @RequestMapping("/books")
     public ModelAndView show(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer bookTypeId) {
         List<BookType> bookTypeList = bookTypeService.queryAllBookType();
-        List<Books> booksList = bookService.queryAllBooks(bookName,bookTypeId);
-        int count = bookService.count(bookName,bookTypeId);
+        List<Books> booksList = bookService.queryAllBooks(bookName, bookTypeId);
+        int count = bookService.count(bookName, bookTypeId);
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("bookTypeList", bookTypeList);
         modelAndView.addObject("booksList", booksList);
@@ -154,31 +154,32 @@ public class BookInfoController {
     }
 
     @RequestMapping("/particulars")
-    public ModelAndView particulars(int id){
+    public ModelAndView particulars(int id) {
         ModelAndView modelAndView = new ModelAndView("particulars");
         Books book = bookService.queryBook(id);
-        modelAndView.addObject("book",book);
-        return modelAndView;
-    }
-    @RequestMapping("/borrowBook")
-    public ModelAndView borrowBook(int id){
-        Date date = new Date();
-        ModelAndView modelAndView = new ModelAndView("borrowBook");
-        Books book = bookService.queryBook(id);
-        modelAndView.addObject("book",book);
-        modelAndView.addObject("date",date);
-        return modelAndView;
-    }
-    @RequestMapping("/returnBook")
-    public ModelAndView returnBook(int id){
-        Date date = new Date();
-        ModelAndView modelAndView = new ModelAndView("returnBook");
-        Books book = bookService.queryBook(id);
-        modelAndView.addObject("book",book);
-        modelAndView.addObject("date",date);
+        modelAndView.addObject("book", book);
         return modelAndView;
     }
 
+    @RequestMapping("/borrowBook")
+    public ModelAndView borrowBook(int id) {
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView("borrowBook");
+        Books book = bookService.queryBook(id);
+        modelAndView.addObject("book", book);
+        modelAndView.addObject("date", date);
+        return modelAndView;
+    }
+
+    @RequestMapping("/returnBook")
+    public ModelAndView returnBook(int id) {
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView("returnBook");
+        Books book = bookService.queryBook(id);
+        modelAndView.addObject("book", book);
+        modelAndView.addObject("date", date);
+        return modelAndView;
+    }
 
 
 }
