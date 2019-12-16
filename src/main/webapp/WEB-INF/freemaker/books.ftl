@@ -41,47 +41,47 @@
             })
         })
 
-        function goPage(pageNo) {
-            var userName = $("#condition").val();
-            $("#pageNum").val(pageNo);
-            //pageNum-->pageSize  仍然取下拉列表中的值
-            var obj = document.getElementById("pageSize");
-            var pageSize = obj.options[obj.selectedIndex].value;
-            refreshPage(pageNo, pageSize, userName);
-        }
-
-        function refreshBookPage(pageNo, pageSize, bookName) {
-            var list = document.getElementById("dataBody");
-            var html = "";
-            var index = 0;
-
-
-            list.innerHTML = html;
-
-            var listPage = document.getElementById("dataPage");
-            var htmlPage = "<tr>"
-
-            if (pageNo != 1) {
-                htmlPage = htmlPage + "<td><button onclick='goPage(1)'>首页</button></td>"
-                htmlPage = htmlPage + "<td><button   onclick='goPage(" + (pageNo - 1) + ")'>" + (pageNo - 1) + "</button></td>"
-            }
-            htmlPage = htmlPage + "<td>当前页" + pageNo + "</td>"
-            if (pageNo != pageCount) {
-                htmlPage = htmlPage + "<td><button   onclick='goPage(" + (pageNo + 1) + ")'>" + (pageNo + 1) + "</button></td>"
-                htmlPage = htmlPage + "<td><button onclick='goPage(" + pageCount + ")'>尾页</button></td>"
-            }
-
-
-            htmlPage = htmlPage + " <td>\n" +
-                "                <label>总页数：</label><span id = \"pagesNum\"></span>\n" +
-                "            </td>";
-            htmlPage = htmlPage + " <td><input type=\"text\"  placeholder=\"跳转的页数\" id = \"selestPageNo\">\n" +
-                "                        <input type=\"button\" onclick=\"skip();\" value=\"跳转\"></td>"
-            htmlPage = htmlPage + " </tr>"
-            listPage.innerHTML = htmlPage;
-            $("#pagesNum").text(resp.pageCount);
-
-        }
+        // function goPage(pageNo) {
+        //     var userName = $("#condition").val();
+        //     $("#pageNum").val(pageNo);
+        //     //pageNum-->pageSize  仍然取下拉列表中的值
+        //     var obj = document.getElementById("pageSize");
+        //     var pageSize = obj.options[obj.selectedIndex].value;
+        //     refreshPage(pageNo, pageSize, userName);
+        // }
+        //
+        // function refreshBookPage(pageNo, pageSize, bookName) {
+        //     var list = document.getElementById("dataBody");
+        //     var html = "";
+        //     var index = 0;
+        //
+        //
+        //     list.innerHTML = html;
+        //
+        //     var listPage = document.getElementById("dataPage");
+        //     var htmlPage = "<tr>"
+        //
+        //     if (pageNo != 1) {
+        //         htmlPage = htmlPage + "<td><button onclick='goPage(1)'>首页</button></td>"
+        //         htmlPage = htmlPage + "<td><button   onclick='goPage(" + (pageNo - 1) + ")'>" + (pageNo - 1) + "</button></td>"
+        //     }
+        //     htmlPage = htmlPage + "<td>当前页" + pageNo + "</td>"
+        //     if (pageNo != pageCount) {
+        //         htmlPage = htmlPage + "<td><button   onclick='goPage(" + (pageNo + 1) + ")'>" + (pageNo + 1) + "</button></td>"
+        //         htmlPage = htmlPage + "<td><button onclick='goPage(" + pageCount + ")'>尾页</button></td>"
+        //     }
+        //
+        //
+        //     htmlPage = htmlPage + " <td>\n" +
+        //         "                <label>总页数：</label><span id = \"pagesNum\"></span>\n" +
+        //         "            </td>";
+        //     htmlPage = htmlPage + " <td><input type=\"text\"  placeholder=\"跳转的页数\" id = \"selestPageNo\">\n" +
+        //         "                        <input type=\"button\" onclick=\"skip();\" value=\"跳转\"></td>"
+        //     htmlPage = htmlPage + " </tr>"
+        //     listPage.innerHTML = htmlPage;
+        //     $("#pagesNum").text(resp.pageCount);
+        //
+        // }
 
         <#--function borrowBook() {-->
         <#--     window.location.href("${rc.contextPath}/book/borrowBook?id=${bookList.id}")-->
@@ -89,8 +89,7 @@
         <#--}-->
 
         function returnBook(id) {
-            window.location.href = "${rc.contextPath}/book/returnBook?id="
-            id;
+            window.location.href = "${rc.contextPath}/book/returnBook?id="+id;
         }
     </script>
 </head>
