@@ -23,10 +23,12 @@ public class BookDaoImpl implements BookDao {
         return sqlSessionTemplate.selectOne("queryAllBooksCount" , params);
     }
 
-    public List<Books> queryAllBooks(String bookName,Integer bookTypeId){
+    public List<Books> queryAllBooks(String bookName,Integer bookTypeId, Integer pageNo, Integer pageSize){
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("bookName",bookName);
         params.put("bookTypeId",bookTypeId);
+        params.put("pageNo",pageNo);
+        params.put("pageSize",pageSize);
         return sqlSessionTemplate.selectList("queryAllBooks",params);
     }
 

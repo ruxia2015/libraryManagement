@@ -19,8 +19,8 @@ public class BookServiceImpl implements BookService {
         return bookDao.count(bookName,bookTypeId);
     }
 
-    public List<Books> queryAllBooks(String bookName,Integer bookTypeId) {
-        return bookDao.queryAllBooks(bookName,bookTypeId);
+    public List<Books> queryAllBooks(String bookName,Integer bookTypeId,Integer pageNo, Integer pageSize) {
+        return bookDao.queryAllBooks(bookName, bookTypeId, pageNo, pageSize);
     }
 
     public Books queryBook(int id) {

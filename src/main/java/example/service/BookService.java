@@ -9,8 +9,8 @@ import java.util.List;
 
 @Service
 public interface BookService {
-    int count(String bookName,Integer bookTypeId);
-    List<Books> queryAllBooks(String bookName,Integer bookTypeId);
+    int count(String bookName, Integer bookTypeId);
+    List<Books> queryAllBooks(String bookName, Integer bookTypeId, Integer pageNo, Integer pageSize);
 
     Books queryBook(int id);
 

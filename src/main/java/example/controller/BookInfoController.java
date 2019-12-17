@@ -2,6 +2,7 @@ package example.controller;
 
 import example.entity.BookType;
 import example.entity.Books;
+import example.entity.Page;
 import example.service.BookService;
 import example.service.BookTypeService;
 import org.apache.commons.lang3.StringUtils;
@@ -44,35 +45,6 @@ public class BookInfoController {
                                        @RequestParam("file") MultipartFile file, Double bookPrice, Integer bookTotal, Integer bookQuantity, HttpServletRequest request) throws IOException {
 
         ModelAndView modelAndView = new ModelAndView("addBookSucceed");
-        //先创建一个文件目录，若该目录不存在，则新建该目录
-        //String path = request.getContextPath();
-//            String path = BookInfoController.class.getResource("/").getPath();
-////            System.out.println(path);
-//            String newPath = StringUtils.substringBeforeLast(path, "c");
-//            String outPutPath = newPath+"statics/image/"+file.getOriginalFilename();
-////            System.out.println(outPutPath);
-//            File fileNew = new File(outPutPath);
-//            File fileParent = fileNew.getParentFile();
-//            if(!fileParent.exists()){
-//                fileParent.mkdirs();
-//            }
-//            try {
-//                //获取输出流
-//                OutputStream os=new FileOutputStream(outPutPath);
-//                //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
-//               InputStream is=file.getInputStream();
-//                int temp;
-//                //一个一个字节的读取并写入
-//                while((temp=is.read())!=(-1))
-//                {
-//                    os.write(temp);
-//                }
-//                os.flush();
-//                os.close();
-//                is.close();
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
         try {
             String bookPicture = "image/默认.jpg";
             String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
@@ -140,16 +112,23 @@ public class BookInfoController {
 
 
     @RequestMapping("/books")
-    public ModelAndView show(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer bookTypeId) {
+    public ModelAndView show(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer bookTypeId,
+                              @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
+        Page page = new Page();
+        page.setPageSize(pageSize);
         List<BookType> bookTypeList = bookTypeService.queryAllBookType();
-        List<Books> booksList = bookService.queryAllBooks(bookName, bookTypeId);
+        List<Books> booksList = bookService.queryAllBooks(bookName, bookTypeId ,pageNo, pageSize);
         int count = bookService.count(bookName, bookTypeId);
+        page.setToatalNum(count);
+        int pageNumCount = page.getTotalPageNum();
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("bookTypeList", bookTypeList);
         modelAndView.addObject("booksList", booksList);
         modelAndView.addObject("count", count);
         modelAndView.addObject("bookName", bookName);
         modelAndView.addObject("bookTypeId", bookTypeId);
+        modelAndView.addObject("count",count);
+        modelAndView.addObject("pageNumCount",pageNumCount);
         return modelAndView;
     }
 

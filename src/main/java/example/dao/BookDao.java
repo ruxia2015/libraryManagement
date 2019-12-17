@@ -8,7 +8,7 @@ import java.util.List;
 public interface BookDao {
 
     int count(String bookName,Integer bookTypeId);
-    List<Books> queryAllBooks(String bookName,Integer bookTypeId);
+    List<Books> queryAllBooks(String bookName,Integer bookTypeId,Integer pageNo, Integer pageSize);
 
     Books queryBook(int id);
 

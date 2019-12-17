@@ -16,6 +16,7 @@
 				and bookType = #{bookTypeId}
 			</if>
 		</where>
+		limit #{pageNo},#{pageSize}
 	</select>
 
 	<select id="queryAllBooksCount" resultType="int">
@@ -25,9 +26,10 @@
 				and bookName like '%${bookName}%' or bookAuthor like '%${bookName}%'
 			</if>
 			<if test="bookTypeId != null">
-				and bookType = #{bookTypeId}
+				and bookTypeId = #{bookTypeId}
 			</if>
 		</where>
+
 	</select>
 
 	<select id="queryBook" resultType="example.entity.Books">

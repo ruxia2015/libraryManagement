@@ -9,7 +9,7 @@ public class Books {
     private String bookName;
     private String bookAuthor;
     private String bookPicture;
-    private String bookType;
+    private int bookTypeId;
     private Double bookPrice;
     private Date createDate;
     private Date updateDate;
@@ -62,12 +62,12 @@ public class Books {
         this.bookPicture = bookPicture;
     }
 
-    public String getBookType() {
-        return bookType;
+    public int getBookTypeId() {
+        return bookTypeId;
     }
 
-    public void setBookType(String bookType) {
-        this.bookType = bookType;
+    public void setBookTypeId(int bookTypeId) {
+        this.bookTypeId = bookTypeId;
     }
 
     public Double getBookPrice() {

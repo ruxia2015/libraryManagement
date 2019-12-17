@@ -17,76 +17,11 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <script TYPE="text/javascript">
-
-        // window.onload = function () {
-        //     var pageNo = 1;
-        //     var bookName = $("#condition").val();
-        //     var obj =document.getElementById("pageSize");
-        //     var pageSize = obj.options[obj.selectedIndex].value;
-        //     obj.onchange = function(){
-        //         //传入当前页数
-        //         bookName = $("#condition").val();
-        //         pageNo= 1;
-        //         pageSize = obj.options[obj.selectedIndex].value;
-        //         refreshPage(pageNo,pageSize,bookName);
-        //     }
-        //     refreshPage(pageNo,pageSize,bookName)
-        //
-        // }
-
-
         $(document).ready(function () {
-            $("#pageSizeSelect").change(function () {
+            $("#bookTypeId").change(function () {
                $("#bookForm").submit();
             })
         })
-
-        // function goPage(pageNo) {
-        //     var userName = $("#condition").val();
-        //     $("#pageNum").val(pageNo);
-        //     //pageNum-->pageSize  仍然取下拉列表中的值
-        //     var obj = document.getElementById("pageSize");
-        //     var pageSize = obj.options[obj.selectedIndex].value;
-        //     refreshPage(pageNo, pageSize, userName);
-        // }
-        //
-        // function refreshBookPage(pageNo, pageSize, bookName) {
-        //     var list = document.getElementById("dataBody");
-        //     var html = "";
-        //     var index = 0;
-        //
-        //
-        //     list.innerHTML = html;
-        //
-        //     var listPage = document.getElementById("dataPage");
-        //     var htmlPage = "<tr>"
-        //
-        //     if (pageNo != 1) {
-        //         htmlPage = htmlPage + "<td><button onclick='goPage(1)'>首页</button></td>"
-        //         htmlPage = htmlPage + "<td><button   onclick='goPage(" + (pageNo - 1) + ")'>" + (pageNo - 1) + "</button></td>"
-        //     }
-        //     htmlPage = htmlPage + "<td>当前页" + pageNo + "</td>"
-        //     if (pageNo != pageCount) {
-        //         htmlPage = htmlPage + "<td><button   onclick='goPage(" + (pageNo + 1) + ")'>" + (pageNo + 1) + "</button></td>"
-        //         htmlPage = htmlPage + "<td><button onclick='goPage(" + pageCount + ")'>尾页</button></td>"
-        //     }
-        //
-        //
-        //     htmlPage = htmlPage + " <td>\n" +
-        //         "                <label>总页数：</label><span id = \"pagesNum\"></span>\n" +
-        //         "            </td>";
-        //     htmlPage = htmlPage + " <td><input type=\"text\"  placeholder=\"跳转的页数\" id = \"selestPageNo\">\n" +
-        //         "                        <input type=\"button\" onclick=\"skip();\" value=\"跳转\"></td>"
-        //     htmlPage = htmlPage + " </tr>"
-        //     listPage.innerHTML = htmlPage;
-        //     $("#pagesNum").text(resp.pageCount);
-        //
-        // }
-
-        <#--function borrowBook() {-->
-        <#--     window.location.href("${rc.contextPath}/book/borrowBook?id=${bookList.id}")-->
-        <#--   -->
-        <#--}-->
 
         function returnBook(id) {
             window.location.href = "${rc.contextPath}/book/returnBook?id="+id;
@@ -114,7 +49,7 @@
             </div><!-- /.container-fluid -->
         </section>
         <form id="bookForm" class="sel_btn" action="${rc.contextPath}/book/books" method="get">
-            <input type="hidden" value="1" name="pageno">
+            <input type="hidden" value="1" name="pageNo">
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -127,7 +62,7 @@
                                             &nbsp; &nbsp; &nbsp; &nbsp;
                                             <label class="col-form-label">图书分类</label>
                                             &nbsp; &nbsp;
-                                            <select name="bookTypeId" class="form-control">
+                                            <select name="bookTypeId" id ="bookTypeId" class="form-control">
                                                 <option value="">全部</option>
                                                 <#list bookTypeList as bookType>
                                                     <option value="${bookType.id}"
@@ -234,7 +169,10 @@
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                        <li class="page-item">&nbsp;&nbsp;&nbsp;总页数&nbsp;&nbsp;<span
+                                                    id="pageNumCount">${pageNumCount}</span></li>
                                     </ul>
+
                                 </div>
                             </div>
                             <!-- /.card -->
@@ -253,59 +191,6 @@
     </div>
 </div>
 
-<#--<div id="div">-->
-<#--<input type="hidden" value="1" name="pageno">-->
-<#--<h1 style="text-align: center;">书库</h1>-->
-<#--&lt;#&ndash;<form id="bookForm" class="sel_btn" action="${rc.contextPath}/book/books" method="post">&ndash;&gt;-->
-<#--<label>图书分类</label>-->
-<#--<select name="book_Type" onmousedown="if(this.options.length>3){this.size=6}" onblur="this.size=0">-->
-<#--<option value="0">全部</option>-->
-<#--<#list bookTypeList as typeList>-->
-<#--<option value="${typeList.id}" >${typeList.bookTypeName}</option>-->
-<#--</#list>-->
-<#--</select>-->
-<#--<input type="hidden" id="pageNo" value="1">-->
-<#--<label>每页数据条数：</label>-->
-<#--<select id="pageSize">-->
-<#--<option selected="selected">5</option>-->
-<#--<option>10</option>-->
-<#--<option>2</option>-->
-<#--<option>100</option>-->
-<#--</select>-->
-<#--<label>总条数：</label><span id="count">${count}</span>-->
-<#--<input type="text" id="condition" placeholder="书名|作者">-->
-<#--<input type="button" onclick="queruCondition()" value="查询">-->
-<#--&lt;#&ndash;</form>&ndash;&gt;-->
-<#--<div style="margin: 0px auto; width: 1500px;">-->
-<#--<table border="1" cellspacing="0" cellpadding="0">-->
-<#--<tr>-->
-<#--<td>序号</td>-->
-<#--<td>国际编码</td>-->
-<#--<td>图书名称</td>-->
-<#--<td>作者</td>-->
-<#--<td>图书分类</td>-->
-<#--<td>图书价格</td>-->
-<#--<td>图书总量</td>-->
-<#--<td>可借数量</td>-->
-<#--<td>详情</td>-->
-<#--<td width="200px">操作</td>-->
-<#--</tr>-->
-
-
-<#--</table>-->
-<#--<table>-->
-<#--<thead id="dataPage">-->
-<#--</thead>-->
-<#--</table>-->
-
-<#--</div>-->
-<#--<a href="${rc.contextPath}/book/index">返回首页</a>-->
-
-<#--</div>-->
-<#--<div>-->
-<#--<a href="${rc.contextPath}/book/addBook">新增书籍</a>-->
-
-<#--</div>-->
 
 </body>
 </html>
