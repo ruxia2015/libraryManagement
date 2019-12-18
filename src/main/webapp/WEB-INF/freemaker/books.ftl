@@ -52,7 +52,6 @@
             </div><!-- /.container-fluid -->
         </section>
         <form id="bookForm" class="sel_btn" action="${rc.contextPath}/book/books" method="get">
-            <input type="hidden" value="0" name="pageNo">
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -173,12 +172,20 @@
 
                                     </ul>
 
+                                    <input type="hidden" value="1" name="pageNo">
                                     <ul class="pagination pagination-sm m-0 float-right" id="pageNo">
+                                        <#if pageNo =1>
+
+                                            <#else >
+
+                                        </#if>
+                                        <li class="page-item"><a class="page-link" href="#">首页</a></li>
                                         <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">尾页</a></li>
                                         <li class="page-item">&nbsp;&nbsp;&nbsp;总页数&nbsp;&nbsp;<span
                                                     id="pageNumCount">${pageNumCount}</span></li>
                                     </ul>

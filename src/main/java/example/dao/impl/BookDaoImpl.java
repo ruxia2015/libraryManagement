@@ -24,10 +24,11 @@ public class BookDaoImpl implements BookDao {
     }
 
     public List<Books> queryAllBooks(String queryName,Integer bookTypeId, Integer pageNo, Integer pageSize){
+        int startNo = (pageNo-1)*pageSize;
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("queryName",queryName);
         params.put("bookTypeId",bookTypeId);
-        params.put("pageNo",pageNo);
+        params.put("pageNo",startNo);
         params.put("pageSize",pageSize);
         return sqlSessionTemplate.selectList("queryAllBooks",params);
     }
