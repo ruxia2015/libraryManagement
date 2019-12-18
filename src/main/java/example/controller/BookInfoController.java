@@ -136,9 +136,8 @@ public class BookInfoController {
         modelAndView.addObject("bookTypeList", bookTypeList);
         modelAndView.addObject("booksList", booksList);
         modelAndView.addObject("count", count);
-        modelAndView.addObject("bookName", queryName);
+        modelAndView.addObject("queryName", queryName);
         modelAndView.addObject("bookTypeId", bookTypeId);
-        modelAndView.addObject("count",count);
         modelAndView.addObject("pageNumCount",pageNumCount);
         return modelAndView;
     }

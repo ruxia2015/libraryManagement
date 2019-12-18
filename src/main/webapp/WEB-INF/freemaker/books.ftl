@@ -73,7 +73,7 @@
                                                 </#list>
                                             </select>
                                             &nbsp; &nbsp;
-                                            <input type="text" class="form-control" name="queryName" id = "queryName" placeholder="书名|作者">
+                                            <input type="text" class="form-control" name="queryName" id = "queryName" placeholder="书名|作者" value="${(queryName)!''}">
                                             &nbsp; &nbsp;
                                             <input type="submit" id="queryBtn" class="btn btn-sm btn-info" value="查询">
                                         </div>
@@ -99,51 +99,59 @@
                                         </thead>
                                         <tbody id="dataPage">
                                         <#list  booksList as bookList>
-                                            <tr>
-                                            <td>
-                                            ${bookList_index+1}
-                                            </td>
-                                            <td>${bookList.bookIsbn}</td>
-                                            <td>${bookList.bookName}</td>
-                                            <td>${bookList.bookAuthor!""}</td>
-                                            <td>${bookList.bookTypeName}</td>
-                                            <td>${bookList.bookPrice}元</td>
-                                            <td>${bookList.bookTotal}</td>
-                                            <td>${bookList.bookQuantity}</td>
-                                            <td>
-                                        <a href="${rc.contextPath}/book/particulars?id=${bookList.id}" >图书详情</a>
-                                            </td>
+                                            <#if booksList?? && (booksList?size > 0) >
+                                                <tr>
+                                                    <td>
+                                                        ${bookList_index+1}
+                                                    </td>
+                                                    <td>${bookList.bookIsbn!""}</td>
+                                                    <td>${bookList.bookName!""}</td>
+                                                    <td>${bookList.bookAuthor!""}</td>
+                                                    <td>${bookList.bookTypeName!""}</td>
+                                                    <td>${bookList.bookPrice!""}元</td>
+                                                    <td>${bookList.bookTotal!""}</td>
+                                                    <td>${bookList.bookQuantity!""}</td>
+                                                    <td>
+                                                        <a href="${rc.contextPath}/book/particulars?id=${bookList.id}" >图书详情</a>
+                                                    </td>
 
-                                            <td>
-                                            <#if bookList.bookQuantity == 0 >
-                                                <a class="btn btn-primary btn-sm disabled" href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}"">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                借阅
-                                                </a>
-                                            <#elseif bookList.bookQuantity gte 0>
-                                                <a class="btn btn-primary btn-sm " href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}"">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                借阅
-                                                </a>
+                                                    <td>
+                                                        <#if bookList.bookQuantity == 0 >
+                                                            <a class="btn btn-primary btn-sm disabled" href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}"">
+                                                            <i class="fas fa-folder">
+                                                            </i>
+                                                            借阅
+                                                            </a>
+                                                        <#elseif bookList.bookQuantity gte 0>
+                                                            <a class="btn btn-primary btn-sm " href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}"">
+                                                            <i class="fas fa-folder">
+                                                            </i>
+                                                            借阅
+                                                            </a>
+                                                        </#if>
+
+                                                        <a
+                                                                class="btn btn-info btn-sm" href="${rc.contextPath}/book/updateBook?id=${bookList.id}">
+                                                            <i class="fas fa-pencil-alt">
+                                                            </i>
+                                                            编辑
+                                                        </a>
+                                                        <a
+                                                                class="btn btn-danger btn-sm" href="${rc.contextPath}/book/delectBook?id=${bookList.id}">
+                                                            <i class="fas fa-trash">
+                                                            </i>
+                                                            删除
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                                <#else >
+                                                <tr>
+                                                    <td>
+                                                        很抱歉，未找到您要搜索的书籍。
+                                                    </td>
+                                                </tr>
                                             </#if>
-
-                                        <a
-                                        class="btn btn-info btn-sm" href="${rc.contextPath}/book/updateBook?id=${bookList.id}">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                编辑
-                                            </a>
-                                        <a
-                                        class="btn btn-danger btn-sm" href="${rc.contextPath}/book/delectBook?id=${bookList.id}">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            删除
-                                            </a>
-
-                                            </td>
-                                            </tr>
                                         </#list>
 
                                         </tbody>
@@ -165,7 +173,7 @@
 
                                     </ul>
 
-                                    <ul class="pagination pagination-sm m-0 float-right" id="pageNumber">
+                                    <ul class="pagination pagination-sm m-0 float-right" id="pageNo">
                                         <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>

@@ -17,7 +17,7 @@
 		select b.*,t.bookTypeName  from books as b  left join book_type as t
 		on b.bookTypeId = t.id
 		<where>
-			<if test="queryName != null">
+			<if test="queryName != null and queryName != ''">
 				and b.bookName like concat ('%',#{queryName},'%') or b.bookAuthor like concat ('%',#{queryName},'%')
 			</if>
 			<if test="bookTypeId != null">
@@ -28,9 +28,10 @@
 	</select>
 
 	<select id="queryAllBooksCount" resultType="int">
-		select count(*) from books
+		select count(*) from  books as b  left join book_type as t
+		on b.bookTypeId = t.id
 		<where>
-			<if test="queryName != null">
+			<if test="queryName != null and queryName != ''">
 				and bookName like concat ('%',#{queryName},'%') or bookAuthor like concat ('%',#{queryName},'%')
 			</if>
 			<if test="bookTypeId != null">
