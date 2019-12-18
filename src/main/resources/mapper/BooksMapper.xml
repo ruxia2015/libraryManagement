@@ -4,16 +4,24 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="books">
 	<resultMap id="booksMap" type="example.entity.Books">
+		<id property="id" column="bookTypeId"/>
+		<result property="bookTypeName" column="bookTypeName"/>
+<!--		<association property="BookType" javaType="example.entity.Books">-->
+<!--			&lt;!&ndash; 这里的id为user的id，如果写上表示给user的id属性赋值 &ndash;&gt;-->
+<!--			<id property="id" column="bookTypeId"/>-->
+<!--			<result property="bookTypeName" column="bookTypeName"/>-->
+<!--		</association>-->
 	</resultMap>
 
 	<select id="queryAllBooks" resultType="example.entity.Books" >
-		select * from books
+		select b.*,t.bookTypeName  from books as b  left join book_type as t
+		on b.bookTypeId = t.id
 		<where>
-			<if test="bookName != null">
-				and bookName like '%${bookName}%' or bookAuthor like '%${bookName}%'
+			<if test="queryName != null">
+				and b.bookName like concat ('%',#{queryName},'%') or b.bookAuthor like concat ('%',#{queryName},'%')
 			</if>
 			<if test="bookTypeId != null">
-				and bookType = #{bookTypeId}
+				and b.bookTypeId = #{bookTypeId}
 			</if>
 		</where>
 		limit #{pageNo},#{pageSize}
@@ -22,8 +30,8 @@
 	<select id="queryAllBooksCount" resultType="int">
 		select count(*) from books
 		<where>
-			<if test="bookName != null">
-				and bookName like '%${bookName}%' or bookAuthor like '%${bookName}%'
+			<if test="queryName != null">
+				and bookName like concat ('%',#{queryName},'%') or bookAuthor like concat ('%',#{queryName},'%')
 			</if>
 			<if test="bookTypeId != null">
 				and bookTypeId = #{bookTypeId}
@@ -45,7 +53,7 @@
 	</update>
 
 	<insert id="addBook" >
-		INSERT INTO books (bookIsbn, bookName, bookAuthor, bookParticulars, bookType,bookPicture,
+		INSERT INTO books (bookIsbn, bookName, bookAuthor, bookParticulars, bookTypeId, bookPicture,
 		bookPrice, createDate, bookTotal, bookQuantity)
 		values (#{bookIsbn}, #{bookName},#{bookAuthor},  #{bookParticulars}, #{bookType}, #{bookPicture},
 		#{bookPrice}, #{createDate}, #{bookTotal}, #{bookQuantity})
@@ -58,7 +66,7 @@
 			 bookName=#{bookName},
 			 bookAuthor=#{bookAuthor},
 			 bookParticulars=#{bookParticulars},
-			 bookType=#{bookType},
+			 bookTypeId=#{bookTypeId},
 			 bookPicture=#{bookPicture},
 			 bookPrice=#{bookPrice},
 			 updateDate=#{updateDate},

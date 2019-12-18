@@ -1,7 +1,6 @@
 package example.service.impl;
 
 import example.dao.BookDao;
-import example.entity.BookType;
 import example.entity.Books;
 import example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,12 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookDao bookDao;
 
-    public int count(String bookName,Integer bookTypeId){
-        return bookDao.count(bookName,bookTypeId);
+    public int count(String queryName,Integer bookTypeId){
+        return bookDao.count(queryName,bookTypeId);
     }
 
-    public List<Books> queryAllBooks(String bookName,Integer bookTypeId,Integer pageNo, Integer pageSize) {
-        return bookDao.queryAllBooks(bookName, bookTypeId, pageNo, pageSize);
+    public List<Books> queryAllBooks(String queryName,Integer bookTypeId,Integer pageNo, Integer pageSize) {
+        return bookDao.queryAllBooks(queryName, bookTypeId, pageNo, pageSize);
     }
 
     public Books queryBook(int id) {
@@ -35,13 +34,13 @@ public class BookServiceImpl implements BookService {
         return bookDao.updateBooksQuantity(id);
     }
 
-    public int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType, String bookPicture,  Double bookPrice, Date date, int bookTotal, int bookQuantity) {
-        return bookDao.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+    public int addBook(String bookIsbn, String bookName, String bookAuthor, String bookParticulars, int bookTypeId, String bookPicture,  Double bookPrice, Date date, int bookTotal, int bookQuantity) {
+        return bookDao.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookTypeId, bookPicture,
                 bookPrice, date,  bookTotal,  bookQuantity);
     }
 
-    public int updateBook(int id ,Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity) {
-        return bookDao.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+    public int updateBook(int id ,String bookIsbn, String bookName, String bookAuthor, String bookParticulars,  int bookTypeId, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity) {
+        return bookDao.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars,  bookTypeId, bookPicture,
                 bookPrice, date,  bookTotal,  bookQuantity);
     }
 

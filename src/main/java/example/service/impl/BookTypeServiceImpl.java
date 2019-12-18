@@ -15,4 +15,8 @@ public class BookTypeServiceImpl implements BookTypeService {
     public List<BookType> queryAllBookType() {
         return bookTypeDao.queryAllBookType();
     }
+
+    public BookType queryBookTypeByName(String bookTypeName) {
+        return bookTypeDao.queryBookTypeByName(bookTypeName);
+    }
 }

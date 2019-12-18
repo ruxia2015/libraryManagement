@@ -41,12 +41,15 @@ public class BookInfoController {
     }
 
     @RequestMapping("/addBookSucceed")
-    public ModelAndView addBookSucceed(Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
+    public ModelAndView addBookSucceed(String bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookTypeName,
                                        @RequestParam("file") MultipartFile file, Double bookPrice, Integer bookTotal, Integer bookQuantity, HttpServletRequest request) throws IOException {
 
         ModelAndView modelAndView = new ModelAndView("addBookSucceed");
+        BookType bookType = bookTypeService.queryBookTypeByName(bookTypeName);
+        int bookTypeId = bookType.getId();
+        String bookPicture= "image/默认.jpg";
         try {
-            String bookPicture = "image/默认.jpg";
+
             String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
             if (newBookPicture == null) {
 
@@ -54,7 +57,7 @@ public class BookInfoController {
                 bookPicture = newBookPicture;
             }
             Date date = new Date();
-            int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+            int i = bookService.addBook(bookIsbn, bookName, bookAuthor, bookParticulars, bookTypeId, bookPicture,
                     bookPrice, date, bookTotal, bookQuantity);
             modelAndView.addObject("i", i);
 
@@ -75,10 +78,12 @@ public class BookInfoController {
     }
 
     @RequestMapping("/updateBookSucceed")
-    public ModelAndView updateBookSucceed(int id, Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType,
+    public ModelAndView updateBookSucceed(int id, String bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookTypeName,
                                           @RequestParam("file") MultipartFile file, String bookPicture, Double bookPrice, Integer bookTotal, Integer bookQuantity) {
 
         ModelAndView modelAndView = new ModelAndView("updateBookSucceed");
+        BookType bookType = bookTypeService.queryBookTypeByName(bookTypeName);
+        int bookTypeId = bookType.getId();
 
         try {
             String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
@@ -88,7 +93,7 @@ public class BookInfoController {
                 bookPicture = newBookPicture;
             }
             Date date = new Date();
-            int i = bookService.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookType, bookPicture,
+            int i = bookService.updateBook(id, bookIsbn, bookName, bookAuthor, bookParticulars, bookTypeId, bookPicture,
                     bookPrice, date, bookTotal, bookQuantity);
             modelAndView.addObject("i", i);
             System.out.println(i);
@@ -112,20 +117,26 @@ public class BookInfoController {
 
 
     @RequestMapping("/books")
-    public ModelAndView show(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer bookTypeId,
-                              @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
+    public ModelAndView show(@RequestParam(required = false) String queryName, @RequestParam(required = false) Integer bookTypeId,
+                              @RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize) {
+        if(pageNo == null){
+            pageNo = 0;
+        }
+        if(pageSize == null){
+            pageSize =5;
+        }
         Page page = new Page();
         page.setPageSize(pageSize);
         List<BookType> bookTypeList = bookTypeService.queryAllBookType();
-        List<Books> booksList = bookService.queryAllBooks(bookName, bookTypeId ,pageNo, pageSize);
-        int count = bookService.count(bookName, bookTypeId);
+        List<Books> booksList = bookService.queryAllBooks(queryName, bookTypeId ,pageNo, pageSize);
+        int count = bookService.count(queryName, bookTypeId);
         page.setToatalNum(count);
         int pageNumCount = page.getTotalPageNum();
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("bookTypeList", bookTypeList);
         modelAndView.addObject("booksList", booksList);
         modelAndView.addObject("count", count);
-        modelAndView.addObject("bookName", bookName);
+        modelAndView.addObject("bookName", queryName);
         modelAndView.addObject("bookTypeId", bookTypeId);
         modelAndView.addObject("count",count);
         modelAndView.addObject("pageNumCount",pageNumCount);

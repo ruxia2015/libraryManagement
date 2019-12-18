@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Books {
     private int id;
-    private int bookIsbn;
+    private String bookIsbn;
     private String bookName;
     private String bookAuthor;
     private String bookPicture;
@@ -18,6 +18,7 @@ public class Books {
     private String bookParticulars;
 
 
+    private String bookTypeName;
     private List<User> userList;//一本书有多个读者
     private List<Borrow> borrowList;//一本书有多个借书单
 
@@ -30,11 +31,11 @@ public class Books {
         this.id = id;
     }
 
-    public int getBookIsbn() {
+    public String getBookIsbn() {
         return bookIsbn;
     }
 
-    public void setBookIsbn(int bookIsbn) {
+    public void setBookIsbn(String bookIsbn) {
         this.bookIsbn = bookIsbn;
     }
 
@@ -68,6 +69,14 @@ public class Books {
 
     public void setBookTypeId(int bookTypeId) {
         this.bookTypeId = bookTypeId;
+    }
+
+    public String getBookTypeName() {
+        return bookTypeName;
+    }
+
+    public void setBookTypeName(String bookTypeName) {
+        this.bookTypeName = bookTypeName;
     }
 
     public Double getBookPrice() {

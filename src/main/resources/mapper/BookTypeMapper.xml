@@ -10,4 +10,9 @@
 		select * FROM book_type
 	</select>
 
+	<select id="queryBookTypeByName" resultType="example.entity.BookType">
+		select * FROM book_type
+		where bookTypeName = #{bookTypeName}
+	</select>
+
 </mapper>

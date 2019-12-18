@@ -21,6 +21,9 @@
             $("#bookTypeId").change(function () {
                $("#bookForm").submit();
             })
+            $("#pageSizeSelect").change(function () {
+                $("#bookForm").submit();
+            })
         })
 
         function returnBook(id) {
@@ -49,7 +52,7 @@
             </div><!-- /.container-fluid -->
         </section>
         <form id="bookForm" class="sel_btn" action="${rc.contextPath}/book/books" method="get">
-            <input type="hidden" value="1" name="pageNo">
+            <input type="hidden" value="0" name="pageNo">
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -70,8 +73,7 @@
                                                 </#list>
                                             </select>
                                             &nbsp; &nbsp;
-                                            <input type="text" class="form-control" name="bookName" value="${bookName}！''"
-                                                   placeholder="书名|作者">
+                                            <input type="text" class="form-control" name="queryName" id = "queryName" placeholder="书名|作者">
                                             &nbsp; &nbsp;
                                             <input type="submit" id="queryBtn" class="btn btn-sm btn-info" value="查询">
                                         </div>
@@ -104,7 +106,7 @@
                                             <td>${bookList.bookIsbn}</td>
                                             <td>${bookList.bookName}</td>
                                             <td>${bookList.bookAuthor!""}</td>
-                                            <td>${bookList.bookType}</td>
+                                            <td>${bookList.bookTypeName}</td>
                                             <td>${bookList.bookPrice}元</td>
                                             <td>${bookList.bookTotal}</td>
                                             <td>${bookList.bookQuantity}</td>
@@ -152,7 +154,7 @@
                                     <ul class="pagination pagination-sm m-0 float-left">
                                         <li class="page-item">
                                             每页数据条数： &nbsp;
-                                            <select id="pageSizeSelect" >
+                                            <select id="pageSizeSelect" name = "pageSize">
                                                 <option selected="selected">5</option>
                                                 <option>10</option>
                                                 <option>2</option>

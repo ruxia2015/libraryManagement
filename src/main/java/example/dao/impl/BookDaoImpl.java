@@ -16,16 +16,16 @@ public class BookDaoImpl implements BookDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
 
-    public int count(String bookName,Integer bookTypeId){
+    public int count(String queryName,Integer bookTypeId){
         Map <String ,Object> params = new HashMap<String, Object>();
-        params.put("bookName",bookName);
+        params.put("queryName",queryName);
         params.put("bookTypeId",bookTypeId);
         return sqlSessionTemplate.selectOne("queryAllBooksCount" , params);
     }
 
-    public List<Books> queryAllBooks(String bookName,Integer bookTypeId, Integer pageNo, Integer pageSize){
+    public List<Books> queryAllBooks(String queryName,Integer bookTypeId, Integer pageNo, Integer pageSize){
         Map <String ,Object> params = new HashMap<String, Object>();
-        params.put("bookName",bookName);
+        params.put("queryName",queryName);
         params.put("bookTypeId",bookTypeId);
         params.put("pageNo",pageNo);
         params.put("pageSize",pageSize);
@@ -50,13 +50,13 @@ public class BookDaoImpl implements BookDao {
         return sqlSessionTemplate.update("updateBooksQuantity",params);
     }
 
-    public int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars,  String bookType, String bookPicture, Double bookPrice, Date date, int bookTotal, int bookQuantity) {
+    public int addBook(String bookIsbn, String bookName, String bookAuthor, String bookParticulars,  Integer  bookTypeId, String bookPicture, Double bookPrice, Date date, int bookTotal, int bookQuantity) {
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("bookIsbn",bookIsbn);
         params.put("bookName",bookName);
         params.put("bookAuthor",bookAuthor);
         params.put("bookParticulars",bookParticulars);
-        params.put("bookType",bookType);
+        params.put("bookTypeId",bookTypeId);
         params.put("bookPicture",bookPicture);
         params.put("bookPrice",bookPrice);
         params.put("createDate",date);
@@ -66,14 +66,14 @@ public class BookDaoImpl implements BookDao {
         return sqlSessionTemplate.insert("addBook",params);
     }
 
-    public int updateBook(int id ,Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity) {
+    public int updateBook(int id ,String bookIsbn, String bookName, String bookAuthor, String bookParticulars,  int bookTypeId, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity) {
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("id", id);
         params.put("bookIsbn",bookIsbn);
         params.put("bookName",bookName);
         params.put("bookAuthor",bookAuthor);
         params.put("bookParticulars",bookParticulars);
-        params.put("bookType",bookType);
+        params.put("bookTypeId",bookTypeId);
         params.put("bookPicture",bookPicture);
         params.put("bookPrice",bookPrice);
         params.put("updateDate",date);

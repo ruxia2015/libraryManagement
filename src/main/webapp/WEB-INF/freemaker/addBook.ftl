@@ -7,16 +7,16 @@
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/additional-methods.js"></script>
     <script src="${rc.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
     <script type="text/javascript">
-        function verifyNum() {
-            var num = document.getElementById("num").value;
-            var pattern = /^[0-9]{1,20}$/;
-            if (!pattern.test(num)) {
-                $("#hint").html("请输入数字");
+        function bookIsbn1() {
+            var bookIsbn = document.getElementById("bookIsbn").value;
+            var pattern = /^[A-Za-z0-9-]+$/;
+            if (!pattern.test(bookIsbn)) {
+                $("#hint").html("数字、字母、-");
                 $("#hint").css({
                    display:"",
                     "color":"red"
                 });
-                document.getElementById("num").value="";
+                document.getElementById("bookIsbn").value="";
                 return false;
             }
             $("#hint").css({
@@ -55,8 +55,26 @@
                 display: "none"
             });
             return true;
+        }
+
+        function bookParticulars1() {
+            var bookParticulars= document.getElementById("bookParticulars").value;
+            var pattern =  /^[^ ]{1,20}$/;
+            if (!pattern.test(bookParticulars)) {
+                $("#showBookParticulars").html("不能包含特殊字符（空格）");
+                $("#showBookParticulars").css({
+                    display:"",
+                    "color":"red"
+                });
+                return false;
+            }
+            $("#showBookParticulars").css({
+                display: "none"
+            });
+            return true;
 
         }
+
         function bookPrice1() {
             var bookPrice = document.getElementById("bookPrice").value;
             var patten = /^([1-9][0-9]*)+(\.[0-9]{1,2})?$/;
@@ -66,7 +84,7 @@
                     display:"",
                     "color":"red"
                 });
-                document.getElementById("num").value="";
+                document.getElementById("bookPrice").value="";
                 return false;
             }
             $("#showBookPrice").css({
@@ -76,14 +94,14 @@
         }
         function bookTotal1() {
             var bookTotal = document.getElementById("bookTotal").value;
-            var patten = /^([1-9][0-9]*)*$/;
+            var patten = /^([1-9][0-9]*){1,20}$/;
             if(!patten.test(bookTotal)){
-                $("#showBookTotal").html("请输入数字");
+                $("#showBookTotal").html("请输入非0的数字");
                 $("#showBookTotal").css({
                     display:"",
                     "color":"red"
                 });
-                document.getElementById("num").value="";
+                document.getElementById("bookTotal").value="";
                 return false;
             }
             $("#showBookTotal").css({
@@ -94,7 +112,7 @@
         function bookQuantity1() {
             var bookTotal = document.getElementById("bookTotal").value;
             var bookQuantity = document.getElementById("bookQuantity").value;
-            var patten = /^[0-9]*$/;
+            var patten = /^\d+$/;
             if(!patten.test(bookQuantity)){
                 $("#showBookQuantity").html("请输入数字");
                 $("#showBookQuantity").css({
@@ -118,12 +136,22 @@
         }
 
         function submitForm() {
-            if(!verifyNum()){
+            if(!bookIsbn1()){
+                return false;
+            }
+            if(!bookName1()){
+                return false;
+            }
+            if(!bookAuthor1()){
+                return false;
+            }
+            if(!bookParticulars1){
                 return false;
             }
             if(!bookPrice1()){
                 return false;
             }
+
             if(!bookTotal1()){
                 return false;
             }
@@ -163,7 +191,7 @@
             <tr>
                 <td width="100px"> 国际编码：</td>
                 <td width="300px">
-                    <input type="text" onblur="verifyNum()" id = "num" name="bookIsbn" placeholder="数字">
+                    <input type="text" onblur="bookIsbn1()" id = "bookIsbn" name="bookIsbn" placeholder="数字">
                     <span id = "hint"></span>
                 </td>
             </tr>
@@ -183,7 +211,10 @@
             </tr>
             <tr>
                 <td>图书详情：</td>
-                <td><textarea name="bookParticulars"></textarea></td>
+                <td>
+                    <textarea name="bookParticulars" id = "bookParticulars" onblur="bookParticulars1()"></textarea>
+                    <span id = "showBookParticulars"></span>
+                </td>
             </tr>
             <tr>
                 <td>图书封面：</td>
@@ -194,7 +225,7 @@
             <tr>
                 <td> 图书类别：</td>
                 <td>
-                    <select name="bookType">
+                    <select name="bookTypeName">
                         <#list bookTypeList as list>
                             <option  value="${list.bookTypeName}">${list.bookTypeName}</option>
                         </#list>

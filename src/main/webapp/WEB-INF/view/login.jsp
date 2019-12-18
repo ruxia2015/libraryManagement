@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 </head>
 
 <script type="text/javascript">

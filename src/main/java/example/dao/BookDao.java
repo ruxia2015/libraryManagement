@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface BookDao {
 
-    int count(String bookName,Integer bookTypeId);
-    List<Books> queryAllBooks(String bookName,Integer bookTypeId,Integer pageNo, Integer pageSize);
+    int count(String queryName,Integer bookTypeId);
+    List<Books> queryAllBooks(String queryName,Integer bookTypeId,Integer pageNo, Integer pageSize);
 
     Books queryBook(int id);
 
@@ -16,9 +16,9 @@ public interface BookDao {
 
     int updateBooksQuantity(int id);
 
-    int addBook(int bookIsbn, String bookName, String bookAuthor, String bookParticulars,  String bookType,String bookPicture, Double bookPrice, Date date, int bookTotal, int bookQuantity);
+    int addBook(String bookIsbn, String bookName, String bookAuthor, String bookParticulars,  Integer  bookTypeId,String bookPicture, Double bookPrice, Date date, int bookTotal, int bookQuantity);
 
-    int updateBook(int id , Integer bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookType, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity);
+    int updateBook(int id , String bookIsbn, String bookName, String bookAuthor, String bookParticulars,  int bookTypeId, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity);
 
     int deleteBook(int id);
 }
