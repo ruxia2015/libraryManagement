@@ -119,7 +119,9 @@ public class BookInfoController {
     @RequestMapping("/books")
     public ModelAndView show(@RequestParam(required = false) String queryName, @RequestParam(required = false) Integer bookTypeId,
                               @RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize) {
+        if(pageNo ==null){
             pageNo = 1;
+        }
         if(pageSize == null){
             pageSize =5;
         }
@@ -138,6 +140,7 @@ public class BookInfoController {
         modelAndView.addObject("bookTypeId", bookTypeId);
         modelAndView.addObject("pageNumCount",pageNumCount);
         modelAndView.addObject("pageNo",pageNo);
+        modelAndView.addObject("pageSize",pageSize);
         return modelAndView;
     }
 

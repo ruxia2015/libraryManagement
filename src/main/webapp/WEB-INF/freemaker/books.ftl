@@ -24,7 +24,14 @@
             $("#pageSizeSelect").change(function () {
                 $("#bookForm").submit();
             })
+            $("#pageSizeSelect").val(${pageSize});
+
         })
+
+        function goPage(pageNo) {
+            $("#pageNo").val(pageNo);
+            $("#bookForm").submit();
+        }
 
         function returnBook(id) {
             window.location.href = "${rc.contextPath}/book/returnBook?id="+id;
@@ -97,8 +104,8 @@
                                         </tr>
                                         </thead>
                                         <tbody id="dataPage">
-                                        <#list  booksList as bookList>
-                                            <#if booksList?? && (booksList?size > 0) >
+                                        <#if booksList?? && (booksList?size > 0) >
+                                             <#list  booksList as bookList>
                                                 <tr>
                                                     <td>
                                                         ${bookList_index+1}
@@ -144,15 +151,15 @@
 
                                                     </td>
                                                 </tr>
+                                             </#list>
                                                 <#else >
                                                 <tr>
-                                                    <td>
+                                                    <td  colspan="10">
                                                         很抱歉，未找到您要搜索的书籍。
                                                     </td>
                                                 </tr>
-                                            </#if>
-                                        </#list>
 
+                                        </#if>
                                         </tbody>
                                     </table>
                                 </div>
@@ -172,20 +179,26 @@
 
                                     </ul>
 
-                                    <input type="hidden" value="1" name="pageNo">
-                                    <ul class="pagination pagination-sm m-0 float-right" id="pageNo">
-                                        <#if pageNo =1>
-
-                                            <#else >
+                                    <input type="hidden" value="1" name="pageNo" id="pageNo">
+                                    <ul class="pagination pagination-sm m-0 float-right" >
+                                        <#if pageNumCount = 1 >
+                                            <li class="page-item"><a class="page-link" href="#">${pageNo}</a></li>
+                                            <#elseif pageNo =1 >
+                                                <li class="page-item"><input type="button" onblur="goPage(${pageNo})" value="${pageNo}"></li>
+                                                <li class="page-item"><input type="button" onblur="goPage(${pageNo+1})" value="${pageNo+1}"></li>
+                                                <li class="page-item"><input type="button" onblur="goPage(${pageNumCount})" value="尾页"></li>
+                                            <#elseif pageNo gt 1 && pageNo lt pageNumCount >
+                                            <li class="page-item"><input type="button" onblur="goPage(1)" value="首页"></li>
+                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo-1})" value="${pageNo-1}"></li>
+                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo})" value="${pageNo}"></li>
+                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo+1})" value="${pageNo+1}"></li>
+                                            <li class="page-item"><input type="button" onblur="goPage(${pageNumCount})" value="尾页"></li>
+                                            <#elseif pageNo = pageNumCount >
+                                            <li class="page-item"><input type="button" onblur="goPage(1)" value="首页"></li>
+                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo-1})" value="${pageNo-1}"></li>
+                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo})" value="${pageNo}"></li>
 
                                         </#if>
-                                        <li class="page-item"><a class="page-link" href="#">首页</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">尾页</a></li>
                                         <li class="page-item">&nbsp;&nbsp;&nbsp;总页数&nbsp;&nbsp;<span
                                                     id="pageNumCount">${pageNumCount}</span></li>
                                     </ul>
