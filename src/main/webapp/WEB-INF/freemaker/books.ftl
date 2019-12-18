@@ -25,13 +25,46 @@
                 $("#bookForm").submit();
             })
             $("#pageSizeSelect").val(${pageSize});
-
+            $("#pageNo").val(1);
         })
 
         function goPage(pageNo) {
             $("#pageNo").val(pageNo);
             $("#bookForm").submit();
         }
+
+        function refreshPage() {
+            $("#pageNo").val(1);
+            $("#pageSizeSelect").val(5);
+            $("#queryName").val("");
+            $("#bookTypeId").each(function (i, j) {
+                $(j).find("option:selected").attr("selected", false);
+                $(j).find("option").first().attr("selected", true);
+            })
+            $("#bookForm").submit();
+        }
+        function skipPage1() {
+            var skipPage = document.getElementById("skipPage").value;
+            var patten = /^([1-9][0-9]*){1,20}$/;
+            if(!patten.test(skipPage)){
+                document.getElementById("skipPage").value="";
+                return false;
+            }else if(skipPage > ${pageNumCount}){
+
+                return false;
+        }
+            return true;
+        }
+
+         function skipPageNo(){
+            var skipPage =document.getElementById("skipPage").value;
+             if(!skipPage1()){
+                 document.getElementById("skipPage").value="";
+             }else {
+                 goPage(skipPage);
+             }
+
+         }
 
         function returnBook(id) {
             window.location.href = "${rc.contextPath}/book/returnBook?id="+id;
@@ -51,7 +84,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">首页</a></li>
+                            <li class="breadcrumb-item"><a href="${rc.contextPath}/book/index">首页</a></li>
                             <li class="breadcrumb-item active">图书列表</li>
                         </ol>
                     </div>
@@ -78,10 +111,12 @@
                                                 <#if bookTypeId?? && bookType.id ==bookTypeId>selected</#if> >${bookType.bookTypeName}</option>
                                                 </#list>
                                             </select>
-                                            &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                                             <input type="text" class="form-control" name="queryName" id = "queryName" placeholder="书名|作者" value="${(queryName)!''}">
                                             &nbsp; &nbsp;
                                             <input type="submit" id="queryBtn" class="btn btn-sm btn-info" value="查询">
+                                            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                                            <input type="button" id="refreshing" class="btn btn-sm btn-info" onclick="refreshPage()" value="刷新">
                                         </div>
                                     </h3>
                                 </div>
@@ -179,28 +214,37 @@
 
                                     </ul>
 
+
+
                                     <input type="hidden" value="1" name="pageNo" id="pageNo">
                                     <ul class="pagination pagination-sm m-0 float-right" >
                                         <#if pageNumCount = 1 >
-                                            <li class="page-item"><a class="page-link" href="#">${pageNo}</a></li>
+                                            <li class="page-item"><a class="page-link" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${pageNo})">${pageNo}</a></li>
                                             <#elseif pageNo =1 >
-                                                <li class="page-item"><input type="button" onblur="goPage(${pageNo})" value="${pageNo}"></li>
-                                                <li class="page-item"><input type="button" onblur="goPage(${pageNo+1})" value="${pageNo+1}"></li>
-                                                <li class="page-item"><input type="button" onblur="goPage(${pageNumCount})" value="尾页"></li>
+                                                <li class="page-item"><input type="button" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${pageNo})" value="${pageNo}"></li>
+                                                <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageNo+1})" value="${pageNo+1}"></li>
+                                                <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageNumCount})" value="尾页"></li>
                                             <#elseif pageNo gt 1 && pageNo lt pageNumCount >
-                                            <li class="page-item"><input type="button" onblur="goPage(1)" value="首页"></li>
-                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo-1})" value="${pageNo-1}"></li>
-                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo})" value="${pageNo}"></li>
-                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo+1})" value="${pageNo+1}"></li>
-                                            <li class="page-item"><input type="button" onblur="goPage(${pageNumCount})" value="尾页"></li>
+                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(1)" value="首页"></li>
+                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageNo-1})" value="${pageNo-1}"></li>
+                                            <li class="page-item"><input type="button" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${pageNo})" value="${pageNo}"></li>
+                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageNo+1})" value="${pageNo+1}"></li>
+                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageNumCount})" value="尾页"></li>
                                             <#elseif pageNo = pageNumCount >
-                                            <li class="page-item"><input type="button" onblur="goPage(1)" value="首页"></li>
-                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo-1})" value="${pageNo-1}"></li>
-                                            <li class="page-item"><input type="button" onblur="goPage(${pageNo})" value="${pageNo}"></li>
+                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(1)" value="首页"></li>
+                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageNo-1})" value="${pageNo-1}"></li>
+                                            <li class="page-item"><input type="button" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${pageNo})" value="${pageNo}"></li>
 
                                         </#if>
+                                        <li>
+                                            <input type="text" id="skipPage" onblur="skipPage1()" placeholder="有效的页码数">
+                                        </li>
+                                        <li>
+                                            <input type="button" id="skipButton" class="btn btn-sm btn-info" onclick="skipPageNo()" value="跳转">
+                                        </li>
                                         <li class="page-item">&nbsp;&nbsp;&nbsp;总页数&nbsp;&nbsp;<span
-                                                    id="pageNumCount">${pageNumCount}</span></li>
+                                                    id="pageNumCount">${pageNumCount}</span>
+                                        </li>
                                     </ul>
 
                                 </div>
