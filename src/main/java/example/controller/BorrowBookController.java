@@ -25,13 +25,7 @@ public class BorrowBookController {
     @Autowired
     private LoginService loginService;
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//@RequestMapping("/addBorrow")
-//public ModelAndView modelAndView(String userName, String bookName, int bookQuantity, Date startDate, Date returnDate){
-//    int i = borrowBookService.borrowBook(userName, bookName, bookQuantity, startDate, returnDate);
-//    ModelAndView modelAndView = new ModelAndView("borrowBook");
-//    modelAndView.addObject("i",i);
-//    return modelAndView;
-//}
+
     @RequestMapping("/addBorrow")
     public ModelAndView showBorrow(int id){
         Date date = new Date();
@@ -70,5 +64,6 @@ public class BorrowBookController {
             modelAndView.addObject("borrowList",borrowList);
             return modelAndView;
         }
+    }
 
-}
+

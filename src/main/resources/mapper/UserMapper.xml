@@ -7,6 +7,31 @@
 	<resultMap id="userMap" type="example.entity.User">
 	</resultMap>
 
+	<resultMap id="userBorrowMap" type="example.entity.User">
+		<collection property="example.entity.Borrow" javaType="list" >
+			<!-- 配置主键，是关联Order的唯一标识 -->
+			<id property="id" column="userId" />
+			<result property="bookName" column="bookName" />
+			<result property="startDate" column="startDate" />
+			<result property="entDate" column="entDate" />
+			<result property="returnDate" column="returnDate" />
+		</collection>
+	</resultMap>
+
+	<select id="queryUserBorrow" resultMap="userBorrowMap">
+		select u.*,b.* FROM book_users as u left join borrow as b  on
+		u.id = b.userId
+		<where>
+			<if test="id != 0">
+				and u.id = #{id}
+			</if>
+			<if test="bookName != null and bookName !=''">
+				and b.bookName = #{bookName}
+			</if>
+		</where>
+		order by b.startDate desc
+	</select>
+
 	<!-- auto generate default query -->
 	<select id="findUser"
 		parameterType="java.util.Map"

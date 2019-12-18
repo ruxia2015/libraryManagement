@@ -13,6 +13,7 @@
 <!--		</association>-->
 	</resultMap>
 
+
 	<select id="queryAllBooks" resultType="example.entity.Books" >
 		select b.*,t.bookTypeName  from books as b  left join book_type as t
 		on b.bookTypeId = t.id
@@ -20,7 +21,7 @@
 			<if test="queryName != null and queryName != ''">
 				and b.bookName like concat ('%',#{queryName},'%') or b.bookAuthor like concat ('%',#{queryName},'%')
 			</if>
-			<if test="bookTypeId != null">
+			<if test="bookTypeId != null ">
 				and b.bookTypeId = #{bookTypeId}
 			</if>
 		</where>

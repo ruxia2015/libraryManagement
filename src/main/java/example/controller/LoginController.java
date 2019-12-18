@@ -203,6 +203,21 @@ public class LoginController extends HttpServlet {
         map.put("count",count);
         return map;
     }
+
+    //查找个人所有的借阅信息
+    @RequestMapping("/queryUserBorrow")
+    public ModelAndView queryUserBorrow(String userName, String bookName){
+       int id = 0;
+        if(userName != null){
+            User user = loginService.findUserByName2(userName);
+             id = user.getId();
+        }
+
+        List<User> userList = loginService.queryUserBorrow(id, bookName);
+        ModelAndView modelAndView = new ModelAndView("queryUserBorrow");
+        modelAndView.addObject("userList",userList);
+        return modelAndView;
+    }
 }
 
 

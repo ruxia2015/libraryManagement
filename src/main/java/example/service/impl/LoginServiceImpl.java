@@ -79,5 +79,9 @@ public class LoginServiceImpl implements LoginService {
         return loginDao.resetPwd(pwd, userId);
     }
 
+    public List<User> queryUserBorrow(int id, String bookName) {
+        return loginDao.queryUserBorrow(id, bookName);
+    }
+
 
 }

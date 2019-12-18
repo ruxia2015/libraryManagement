@@ -107,7 +107,7 @@
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="${pageContext.request.contextPath}/borrowBook/borrowMessage?userName=${sessionScope.user.userName}" class="small-box-footer">借阅信息 <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="${pageContext.request.contextPath}/user/queryUserBorrow" class="small-box-footer">借阅信息 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
