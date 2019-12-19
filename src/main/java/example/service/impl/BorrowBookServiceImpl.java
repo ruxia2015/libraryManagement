@@ -21,4 +21,9 @@ public class BorrowBookServiceImpl implements BorrowBookService {
     public List<Borrow> borrowMessage(String userName) {
         return borrowBookDao.borrowMessage(userName);
     }
+
+
+    public List<Borrow> queryAllBorrow(int id, String bookName) {
+        return borrowBookDao.queryAllBorrow(id, bookName);
+    }
 }

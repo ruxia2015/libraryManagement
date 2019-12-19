@@ -10,25 +10,18 @@ import java.util.List;
 @Service
 public interface LoginService {
 
-    User findUserByName(String name);
-    User findUserByName2(String userName);
-
+    User findUserByName(String userName);
 
     Boolean userLogin(String name, String psd, HttpServletRequest  request);
 
     Boolean addUser(String name, String psd, String phone, Date date);
 
-    List<User> selectAllUser();
-    List<User> selectAllUserList(int pageNo, int pageNum);
-    List<User> queryUser(String userName);
-
     int count(String userName);
 
-
-    List<User> queryAllUser(int pageNo, int pageNum, String userName);
+    List<User> queryAllUser(int id, int pageNo, int pageSize);
 
     int resetPwd(String pwd, int userId);
 
-    List<User> queryUserBorrow(int id, String bookName);
+
 }
 

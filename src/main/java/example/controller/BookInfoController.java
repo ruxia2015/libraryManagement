@@ -130,7 +130,7 @@ public class BookInfoController {
         List<BookType> bookTypeList = bookTypeService.queryAllBookType();
         List<Books> booksList = bookService.queryAllBooks(queryName, bookTypeId ,pageNo, pageSize);
         int count = bookService.count(queryName, bookTypeId);
-        page.setToatalNum(count);
+        page.setTotalNum(count);
         int pageNumCount = page.getTotalPageNum();
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("bookTypeList", bookTypeList);

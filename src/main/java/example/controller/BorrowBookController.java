@@ -41,7 +41,7 @@ public class BorrowBookController {
             Integer quantity1 = Integer.parseInt(quantity);
             Date startDate1 = sdf.parse(startDate);
             Date returnDate1 = sdf.parse(returnDate);
-            User user = loginService.findUserByName2(userName);
+            User user = loginService.findUserByName(userName);
             int userId = user.getId();
             Books books = bookService.findBooksByName(bookName);
             int bookId = books.getId();
@@ -64,6 +64,26 @@ public class BorrowBookController {
             modelAndView.addObject("borrowList",borrowList);
             return modelAndView;
         }
+
+
+        //通过名字查询对应的借阅信息
+    @RequestMapping("/queryAllBorrow")
+    public ModelAndView queryAllBorrow(String userName, String bookName){
+        int id = 0;
+        if(userName == null || userName.equals("")){
+
+        }else {
+            User user =loginService.findUserByName(userName);
+            id = user.getId();
+        }
+        List<Borrow> borrowList = borrowBookService.queryAllBorrow(id, bookName);
+        ModelAndView modelAndView = new ModelAndView("queryAllBorrow");
+        modelAndView.addObject("borrowList",borrowList);
+        modelAndView.addObject("userName",userName);
+        modelAndView.addObject("bookName",bookName);
+        return modelAndView;
+    }
+
     }
 
 

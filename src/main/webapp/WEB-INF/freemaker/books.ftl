@@ -63,7 +63,6 @@
              }else {
                  goPage(skipPage);
              }
-
          }
 
         function returnBook(id) {
@@ -246,20 +245,11 @@
                                                     id="pageNumCount">${pageNumCount}</span>
                                         </li>
                                     </ul>
-
                                 </div>
                             </div>
-                            <!-- /.card -->
-
-
-                            <!-- /.card -->
                         </div>
-                        <!-- /.col -->
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
-
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
         </form>
     </div>

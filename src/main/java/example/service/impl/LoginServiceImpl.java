@@ -17,22 +17,15 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private LoginDao loginDao;
 
-    public User findUserByName(String name) {
-        User user = loginDao.findUser(name);
-        return user;
+    public User findUserByName(String userName) {
+        return loginDao.findUserByName(userName);
     }
-    public User findUserByName2(String userName) {
-        User user = loginDao.findUserByName2(userName);
-        return user;
-    }
-
-
 
     public Boolean userLogin(String name, String psd, HttpServletRequest request) {
         if (name == null) {
 
         }
-        User user = loginDao.findUser(name);
+        User user = loginDao.findUserByName(name);
         if (user == null || !user.getUserPassword().equals(psd)) {
             return false;
         }
@@ -52,36 +45,16 @@ public class LoginServiceImpl implements LoginService {
 
     }
 
-    public List<User> selectAllUser() {
-        List<User> userList =  loginDao.selectAllUser();
-        return userList;
-    }
-
-    public List<User> selectAllUserList(int pageNo, int pageNum){
-        List<User> userList =  loginDao.selectAllUserList(pageNo,pageNum);
-        return userList;
-    }
-
-    public List<User> queryUser(String userName){
-        List<User> userList =  loginDao.queryUser(userName);
-        return userList;
-    }
 
     public int count(String userName){
         return loginDao.count(userName);
     }
-    public List<User> queryAllUser(int pageNo, int pageNum, String userName){
-        List<User> userList =  loginDao.queryAllUser(pageNo,pageNum,userName);
-        return userList;
+    public List<User> queryAllUser(int id, int pageNo, int pageSize){
+        return   loginDao.queryAllUser(id, pageNo , pageSize);
     }
 
     public int resetPwd(String pwd, int userId) {
         return loginDao.resetPwd(pwd, userId);
     }
-
-    public List<User> queryUserBorrow(int id, String bookName) {
-        return loginDao.queryUserBorrow(id, bookName);
-    }
-
 
 }

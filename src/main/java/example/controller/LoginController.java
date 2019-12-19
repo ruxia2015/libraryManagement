@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,54 +21,41 @@ public class LoginController extends HttpServlet {
     @Autowired
     private LoginService loginService;
 
+    //用户登录
     @RequestMapping("/login")
     public String login(){
         return "login";
     }
 
+    //用户注册
     @RequestMapping("/register")
     public String register(){
         return "register";
     }
 
-    @RequestMapping("/selectUsers")
-    public String  selectUsers(){
-        return "selectUsers";
-    }
-    @ResponseBody
-    @RequestMapping("/selectAllUser")
-    public Map<String , Object> selectAllUser(Integer pageIndex){
-        System.out.println("pageIndex=" +pageIndex);
-        Map <String ,Object> map = new HashMap<String, Object>();
-        List<User> userList = loginService.selectAllUser();
-        map.put("list",userList);
-        return map;
-    }
-
-//    @ResponseBody
-//    @RequestMapping("/selectAllUserList")
-//    public Map<String , Object> selectAllUserList(@RequestParam Integer pageNo,@RequestParam Integer pageSize){
-//        Page page = new Page();
-//        page.setPageSize(pageSize);
-//        Map <String ,Object> map = new HashMap<String, Object>();
-//       int count = loginService.count();
-//        List<User> userList = loginService.selectAllUserList(pageNo,pageSize);
-//        page.setToatalNum(count);
-//        int pageCount = page.getTotalPageNum();
-//        map.put("list",userList);
-//        map.put("pageCount",pageCount);
-//        map.put("count",count);
-//        return map;
-//    }
-
     //根据用户名查找用户
-    @ResponseBody
-    @RequestMapping("/queryUser")
-    public Map<String ,Object> queryUser(@RequestParam String queryUser){
-        Map <String ,Object> map = new HashMap<String, Object>();
-        List<User> listUser = loginService.queryUser(queryUser);
-        map.put("list",listUser);
-        return map;
+    @RequestMapping("/queryAllUser")
+    public String queryAllUser(@RequestParam(required = false) String userName, Model model,@RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize){
+        int id = 0 ;
+        if(pageNo ==null){
+            pageNo = 1;
+        }
+        if(pageSize == null){
+            pageSize =5;
+        }
+        User user = loginService.findUserByName(userName);
+        if(user != null){
+            id = user.getId();
+        }
+
+        List<User> userList = loginService.queryAllUser(id, pageNo, pageSize);
+        int count = loginService.count(userName);
+        Page page = new Page(pageNo,pageSize,count,userList);
+        int pageCount = page.getTotalPageNum();
+        model.addAttribute("page",page);
+        model.addAttribute("pageCount",pageCount);
+        model.addAttribute("userName",userName);
+        return "queryAllUser";
     }
 
     @RequestMapping("/retrievePwd")
@@ -187,37 +173,6 @@ public class LoginController extends HttpServlet {
     JOptionPane.showMessageDialog(null,"注册成功!");
     return "login";
 }
-
-    @ResponseBody
-    @RequestMapping("/queryAllUser")
-    public Map<String , Object> queryAllUser(@RequestParam Integer pageNo,@RequestParam Integer pageSize, @RequestParam String userName){
-        Page page = new Page();
-        page.setPageSize(pageSize);
-        Map <String ,Object> map = new HashMap<String, Object>();
-        int count = loginService.count(userName);
-        List<User> userList = loginService.queryAllUser(pageNo,pageSize, userName);
-        page.setToatalNum(count);
-        int pageCount = page.getTotalPageNum();
-        map.put("list",userList);
-        map.put("pageCount",pageCount);
-        map.put("count",count);
-        return map;
-    }
-
-    //查找个人所有的借阅信息
-    @RequestMapping("/queryUserBorrow")
-    public ModelAndView queryUserBorrow(String userName, String bookName){
-       int id = 0;
-        if(userName != null){
-            User user = loginService.findUserByName2(userName);
-             id = user.getId();
-        }
-
-        List<User> userList = loginService.queryUserBorrow(id, bookName);
-        ModelAndView modelAndView = new ModelAndView("queryUserBorrow");
-        modelAndView.addObject("userList",userList);
-        return modelAndView;
-    }
 }
 
 

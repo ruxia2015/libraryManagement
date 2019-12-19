@@ -9,4 +9,7 @@ public interface BorrowBookDao {
     int borrowBook(String userName, String bookName, int bookQuantity, Date startDate, Date returnDate , int userId,int bookId);
 
     List<Borrow> borrowMessage(String userName);
+
+
+    List<Borrow> queryAllBorrow(int id, String bookName);
 }

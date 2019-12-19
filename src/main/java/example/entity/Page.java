@@ -6,17 +6,17 @@ import java.util.List;
 public class Page<T> {
     private int pageNo ;  //当前页
     private int pageSize; //每一页的数据个数
-    private int toatalNum; //总数据
+    private int totalNum; //总数据
     private List<T> list = new ArrayList<T>();  //装数据的集合
 
     public Page(){
 
     }
 
-    public Page(int pageNo, int pageSize, int toatalNum, List<T> list) {
+    public Page(int pageNo, int pageSize, int totalNum, List<T> list) {
         this.pageNo = pageNo;
         this.pageSize = pageSize;
-        this.toatalNum = toatalNum;
+        this.totalNum = totalNum;
         this.list = list;
     }
 
@@ -42,12 +42,12 @@ public class Page<T> {
         this.pageSize = pageSize;
     }
 
-    public int getToatalNum() {
-        return toatalNum;
+    public int getTotalNum() {
+        return totalNum;
     }
 
-    public void setToatalNum(int toatalNum) {
-        this.toatalNum = toatalNum;
+    public void setTotalNum(int totalNum) {
+        this.totalNum = totalNum;
     }
 
     public List<T> getList() {
@@ -59,10 +59,10 @@ public class Page<T> {
     }
     //获得总页数
     public int getTotalPageNum(){
-        if(toatalNum%pageSize == 0){
-            return toatalNum/pageSize;
+        if(totalNum%pageSize == 0){
+            return totalNum/pageSize;
         }else {
-            return  toatalNum/pageSize+1;
+            return  totalNum/pageSize+1;
         }
     }
 

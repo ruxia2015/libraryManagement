@@ -33,4 +33,10 @@ public class BorrowBookDaoImpl implements BorrowBookDao {
         return sqlSessionTemplate.selectList("borrow.borrowMessage",params);
     }
 
+    public List<Borrow> queryAllBorrow(int id, String bookName) {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("id", id);
+        params.put("bookName", bookName);
+        return sqlSessionTemplate.selectList("borrow.queryAllBorrow",params);
+    }
 }

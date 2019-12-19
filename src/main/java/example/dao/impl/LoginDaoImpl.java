@@ -15,16 +15,16 @@ import java.util.Map;
 public class LoginDaoImpl implements LoginDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
-    public User findUser(String name) {
+    public User findUserByName(String name) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("userName",name);
-        return sqlSessionTemplate.selectOne("user.findUser",params);
+        return sqlSessionTemplate.selectOne("user.findUserByName",params);
     }
 
-    public User findUserByName2(String userName) {
+    public List<User> queryUserByName(String name) {
         Map<String,Object> params = new HashMap<String,Object>();
-        params.put("userName",userName);
-        return sqlSessionTemplate.selectOne("user.findUserByName2",params);
+        params.put("userName",name);
+        return sqlSessionTemplate.selectList("user.queryUserByName",params);
     }
 
     public int addUser(String name, String psd, String phone, Date date) {
@@ -36,39 +36,18 @@ public class LoginDaoImpl implements LoginDao {
         return sqlSessionTemplate.insert("user.addUser",params);
     }
 
-    public List<User> selectAllUser() {
-        return sqlSessionTemplate.selectList("selectAllUser");
-    }
-
-    public List<User> selectAllUserList(int pageNo,int pageNum){
-        int startNo = (pageNo-1)*pageNum;
-        Map <String ,Object> params = new HashMap<String, Object>();
-        params.put("pageNo" ,startNo);
-        params.put("pageNum" ,pageNum);
-        return sqlSessionTemplate.selectList("user.selectAllUserList",params);
-    }
-
-    //    public List<User> selectAllUser() {
-//    }
-
-    public List<User> queryUser(String userName){
-        Map <String ,Object> params = new HashMap<String, Object>();
-        params.put("userName" ,userName);
-        return sqlSessionTemplate.selectList("user.queryUser",params);
-    }
-
     public int count(String userName){
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("userName",userName);
         return sqlSessionTemplate.selectOne("user.count" , params);
     }
 
-    public List<User> queryAllUser(int pageNo, int pageNum, String userName){
-        int startNo = (pageNo-1)*pageNum;
+    public List<User> queryAllUser(int id, int pageNo, int pageSize){
+        int startNo = (pageNo-1)*pageSize;
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("pageNo" ,startNo);
-        params.put("pageNum" ,pageNum);
-        params.put("userName",userName);
+        params.put("pageSize" ,pageSize);
+        params.put("id",id);
         return sqlSessionTemplate.selectList("user.queryAllUser",params);
     }
 
@@ -77,12 +56,5 @@ public class LoginDaoImpl implements LoginDao {
         params.put("pwd" ,pwd);
         params.put("userId" ,userId);
         return sqlSessionTemplate.update("user.resetPwd",params);
-    }
-
-    public List<User> queryUserBorrow(int id, String bookName) {
-        Map <String ,Object> params = new HashMap<String, Object>();
-        params.put("id" ,id);
-        params.put("bookName" ,bookName);
-        return sqlSessionTemplate.selectList("user.queryUserBorrow",params);
     }
 }
