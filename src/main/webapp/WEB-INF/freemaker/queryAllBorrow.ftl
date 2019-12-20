@@ -36,7 +36,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>图书列表</h1>
+                        <h1>借阅列表</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -80,29 +80,46 @@
                                         <td width="150">开始时间</td>
                                         <td width="150">预计返回时间</td>
                                         <td width="150">实际返回时间</td>
+                                        <td width="100">操作</td>
                                     </tr>
                                     </thead>
                                     <tbody id="dataPage">
-                                    <#if borrowList?? && (borrowList?size > 0) >
-                                    <#list borrowList as list>
+                                    <#if borrowBookList?? && (borrowBookList?size > 0) >
+                                    <#list borrowBookList as borrowBook>
                                         <tr>
                                             <td>
-                                                ${list_index+1}
+                                                ${borrowBook_index+1}
                                             </td>
                                             <td>
-                                                ${list.userName}
+                                                ${borrowBook.userName}
                                             </td>
                                             <td>
-                                                ${list.bookName}
+                                                ${borrowBook.bookName}
                                             </td>
                                             <td>
-                                                ${list.startDate?string('yyyy-MM-dd')}
+                                                ${borrowBook.startDate?string('yyyy-MM-dd')}
                                             </td>
                                             <td>
-                                                ${list.returnDate?string('yyyy-MM-dd')}
+                                                ${borrowBook.returnDate?string('yyyy-MM-dd')}
                                             </td>
                                             <td>
-                                                ${(list.endDate?string('yyyy-MM-dd'))!""}
+                                                ${(borrowBook.endDate?string('yyyy-MM-dd'))!""}
+                                            </td>
+                                            <td>
+                                                <#if borrowBook.endDate??>
+                                                    <a class="btn btn-primary btn-sm disabled"  href="/borrowBook/returnBook?id=${borrowBook.id}">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    还书
+                                                    </a>
+                                                    <#else >
+                                                        <a class="btn btn-primary btn-sm " href="/borrowBook/returnBook?id=${borrowBook.id}">
+                                                        <i class="fas fa-folder">
+                                                        </i>
+                                                        还书
+                                                        </a>
+                                                </#if>
+
                                             </td>
                                         </tr>
                                     </#list>

@@ -24,13 +24,11 @@ public class IndexController {
     public String toList(ModelAndView modelAndView){
         List<Librarian> list = librarianService.queryLibrarianList();
         modelAndView.addObject("list",list);
-
         return "list";
     }
 
     @RequestMapping("listData")
     public String listData(){
-
         return "listData";
     }
 

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: ZHAOBING
@@ -120,21 +121,26 @@
                                     </tr>
                                     </thead>
                                     <tbody id="dataPage">
-                                        <c:if test="${!empty userList}">
-                                            <c:forEach items="${userList}" var = "user" varStatus="u">
+                                        <c:if test="${!empty page.list}">
+                                            <c:forEach items="${page.list}" var = "user" varStatus="u">
                                                 <tr>
                                                     <td>${u.count}</td>
                                                     <td>${user.userName}</td>
                                                     <td>${user.phone}</td>
-                                                    <td>${user.createDate}</td>
+                                                    <td>
+                                                        <fmt:formatDate value = "${user.createDate}" type = "date"/>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </c:if>
-<%--                                            <tr>--%>
-<%--                                                <td  colspan="10">--%>
-<%--                                                    很抱歉，未找到您要搜索的用户。--%>
-<%--                                                </td>--%>
-<%--                                            </tr>--%>
+                                        <c:if test="${empty page.list}">
+                                            <tr>
+                                                <td  colspan="10">
+                                                    很抱歉，未找到您要搜索的用户。
+                                                </td>
+                                            </tr>
+                                        </c:if>
+                                    </tbody>
                                 </tbody>
                                 </table>
                             </div>
@@ -155,23 +161,24 @@
 
                                 <input type="hidden" value="1" name="pageNo" id="pageNo">
                                 <ul class="pagination pagination-sm m-0 float-right" >
+
                                     <c:choose>
-                                        <c:when test="${pageCount} ==1 ">
+                                        <c:when test="${pageCount == 1}">
                                             <li class="page-item"><a class="page-link" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${page.pageNo})">${page.pageNo}</a></li>
                                         </c:when>
-                                        <c:when test="${page.pageNo} == 1">
+                                        <c:when test="${page.pageNo == 1}">
                                             <li class="page-item"><input type="button" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${page.pageNo})" value="${page.pageNo}"></li>
-                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(${page.pageNo+1})" value="${pageNo+1}"></li>
+                                            <li class="page-item"><input type="button" class="page-link" onclick="goPage(${page.pageNo+1})" value="${page.pageNo+1}"></li>
                                             <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageCount})" value="尾页"></li>
                                         </c:when>
-                                        <c:when test="${page.pageNo}  <  ${pageCount}">
+                                        <c:when test="${page.pageNo lt pageCount}">
                                             <li class="page-item"><input type="button" class="page-link" onclick="goPage(1)" value="首页"></li>
                                             <li class="page-item"><input type="button" class="page-link" onclick="goPage(${page.pageNo-1})" value="${page.pageNo-1}"></li>
                                             <li class="page-item"><input type="button" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${page.pageNo})" value="${page.pageNo}"></li>
                                             <li class="page-item"><input type="button" class="page-link" onclick="goPage(${page.pageNo+1})" value="${page.pageNo+1}"></li>
                                             <li class="page-item"><input type="button" class="page-link" onclick="goPage(${pageCount})" value="尾页"></li>
                                         </c:when>
-                                        <c:when test="${page.pageNo} == ${pageCount}">
+                                        <c:when test="${page.pageNo  ==  pageCount}">
                                             <li class="page-item"><input type="button" class="page-link" onclick="goPage(1)" value="首页"></li>
                                             <li class="page-item"><input type="button" class="page-link" onclick="goPage(${page.pageNo-1})" value="${page.pageNo-1}"></li>
                                             <li class="page-item"><input type="button" style="background-color: #C0C0C0" class="page-link" onclick="goPage(${page.pageNo})" value="${page.pageNo}"></li>

@@ -78,13 +78,10 @@ public class BookInfoController {
     }
 
     @RequestMapping("/updateBookSucceed")
-    public ModelAndView updateBookSucceed(int id, String bookIsbn, String bookName, String bookAuthor, String bookParticulars, String bookTypeName,
+    public ModelAndView updateBookSucceed(int id, String bookIsbn, String bookName, String bookAuthor, String bookParticulars, int bookTypeId,
                                           @RequestParam("file") MultipartFile file, String bookPicture, Double bookPrice, Integer bookTotal, Integer bookQuantity) {
 
         ModelAndView modelAndView = new ModelAndView("updateBookSucceed");
-        BookType bookType = bookTypeService.queryBookTypeByName(bookTypeName);
-        int bookTypeId = bookType.getId();
-
         try {
             String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
             if (newBookPicture == null) {
@@ -161,16 +158,5 @@ public class BookInfoController {
         modelAndView.addObject("date", date);
         return modelAndView;
     }
-
-    @RequestMapping("/returnBook")
-    public ModelAndView returnBook(int id) {
-        Date date = new Date();
-        ModelAndView modelAndView = new ModelAndView("returnBook");
-        Books book = bookService.queryBook(id);
-        modelAndView.addObject("book", book);
-        modelAndView.addObject("date", date);
-        return modelAndView;
-    }
-
 
 }

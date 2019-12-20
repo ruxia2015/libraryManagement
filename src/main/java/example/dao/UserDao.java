@@ -6,7 +6,7 @@ import example.entity.User;
 import java.util.Date;
 import java.util.List;
 
-public interface LoginDao {
+public interface UserDao {
     User findUserByName(String name);
 
     int addUser(String name, String psd, String phone, Date date);

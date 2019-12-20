@@ -2,7 +2,7 @@ package example.entity;
 
 import java.util.Date;
 
-public class Borrow {
+public class BorrowBook {
     private int id;
     private String userName;
     private String bookName;

@@ -16,12 +16,12 @@
     <h2>修改书籍</h2>
 </div>
 <div class=" div_table">
-    <form action="${rc.contextPath}/book/updateBookSucceed" method="post" enctype="multipart/form-data">
+    <form action="/book/updateBookSucceed" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${books.id}">
         <table>
             <tr>
                 <td width="100px"> 国际编码：</td>
-                <td width="100px"><input type="text" name="bookIsbn" placeholder="数字" value="${books.bookIsbn?c}"></td>
+                <td width="100px"><input type="text" name="bookIsbn" placeholder="数字" value="${books.bookIsbn}"></td>
             </tr>
             <tr>
                 <td>书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
@@ -38,21 +38,23 @@
             <tr>
                 <td>图书封面：</td>
                 <td>
-                    <input type="hidden" name="bookPicture" value="${books.bookPicture}"">
-                    <input type="file" name="file" value="${books.bookPicture}">
+                    <input type="hidden" name="bookPicture" value="${(books.bookPicture)!""}">
+                    <input type="file" name="file" value="${(books.bookPicture)!""}">
                     <#if books.bookPicture??>
-                        <img width="100" height="200" src="${rc.contextPath}/${books.bookPicture}">
+                        <img width="100" height="200" src="${(rc.contextPath)+"/"+(books.bookPicture)!""}">
                     </#if>
                 </td>
             </tr>
             <tr>
                 <td> 图书类别：</td>
                 <td>
-                    <select name="bookType">
-                        <#list bookTypeList as list>
-                            <option  value="${list.bookTypeName}">${list.bookTypeName}</option>
+                    <select name="bookTypeId">
+                        <#list bookTypeList as bookType>
+                            <#if  books.bookTypeName == bookType.bookTypeName >
+                                <option selected="selected" value="${bookType.id}">${bookType.bookTypeName}</option>
+                           </#if>
+                        <option  value="${bookType.id}">${bookType.bookTypeName}</option>
                         </#list>
-                        <option selected="selected">${books.bookType}</option>
                     </select>
                 </td>
             </tr>

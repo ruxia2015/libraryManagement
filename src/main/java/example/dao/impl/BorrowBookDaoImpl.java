@@ -1,7 +1,7 @@
 package example.dao.impl;
 
 import example.dao.BorrowBookDao;
-import example.entity.Borrow;
+import example.entity.BorrowBook;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,16 +27,30 @@ public class BorrowBookDaoImpl implements BorrowBookDao {
             return sqlSessionTemplate.insert("borrow.addBorrow",params);
         }
 
-    public List<Borrow> borrowMessage(String userName) {
+    public List<BorrowBook> borrowMessage(String userName) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("userName",userName);
         return sqlSessionTemplate.selectList("borrow.borrowMessage",params);
     }
 
-    public List<Borrow> queryAllBorrow(int id, String bookName) {
+    public List<BorrowBook> queryAllBorrow(int id, String bookName) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("id", id);
         params.put("bookName", bookName);
         return sqlSessionTemplate.selectList("borrow.queryAllBorrow",params);
     }
+
+    public BorrowBook findBorrowById(int id) {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("id", id);
+        return sqlSessionTemplate.selectOne("borrow.findBorrowById",params);
+    }
+
+    public int updateBorrow(int id, Date date) {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("id", id);
+        params.put("endDate",date);
+        return sqlSessionTemplate.update("borrow.updateBorrow",params);
+    }
+
 }

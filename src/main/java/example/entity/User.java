@@ -11,7 +11,7 @@ public class User {
     private Date createDate;
     private Date updateDate;
 
-    private List<Borrow> borrowList;//一个读者有多张借书单
+    private List<BorrowBook> borrowBookList;//一个读者有多张借书单
     private List<Books> booksList;  //一个读者有多本书
 
     public int getId() {
@@ -62,12 +62,12 @@ public class User {
         this.updateDate = updateDate;
     }
 
-    public List<Borrow> getBorrowList() {
-        return borrowList;
+    public List<BorrowBook> getBorrowBookList() {
+        return borrowBookList;
     }
 
-    public void setBorrowList(List<Borrow> borrowList) {
-        this.borrowList = borrowList;
+    public void setBorrowBookList(List<BorrowBook> borrowBookList) {
+        this.borrowBookList = borrowBookList;
     }
 
     public List<Books> getBooksList() {

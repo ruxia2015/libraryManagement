@@ -1,7 +1,7 @@
 package example.service.impl;
 
 import example.dao.BorrowBookDao;
-import example.entity.Borrow;
+import example.entity.BorrowBook;
 import example.service.BorrowBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,20 @@ public class BorrowBookServiceImpl implements BorrowBookService {
         return borrowBookDao.borrowBook(userName, bookName, bookQuantity, startDate, returnDate, userId, bookId );
     }
 
-    public List<Borrow> borrowMessage(String userName) {
+    public List<BorrowBook> borrowMessage(String userName) {
         return borrowBookDao.borrowMessage(userName);
     }
 
 
-    public List<Borrow> queryAllBorrow(int id, String bookName) {
+    public List<BorrowBook> queryAllBorrow(int id, String bookName) {
         return borrowBookDao.queryAllBorrow(id, bookName);
+    }
+
+    public BorrowBook findBorrowById(int id) {
+        return borrowBookDao.findBorrowById(id);
+    }
+
+    public int updateBorrow(int id, Date date) {
+        return borrowBookDao.updateBorrow(id,date);
     }
 }

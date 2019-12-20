@@ -1,8 +1,8 @@
 package example.service.impl;
 
-import example.dao.LoginDao;
+import example.dao.UserDao;
 import example.entity.User;
-import example.service.LoginService;
+import example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,9 @@ import java.util.List;
 
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class UserServiceImpl implements UserService {
     @Autowired
-    private LoginDao loginDao;
+    private UserDao loginDao;
 
     public User findUserByName(String userName) {
         return loginDao.findUserByName(userName);
@@ -42,7 +42,6 @@ public class LoginServiceImpl implements LoginService {
        }else {
            return false;
        }
-
     }
 
 

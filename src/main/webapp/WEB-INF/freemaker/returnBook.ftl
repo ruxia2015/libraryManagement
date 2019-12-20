@@ -13,18 +13,19 @@
     </script>
 </head>
 <h2>还书单</h2>
-    <form>
+    <form action="/borrowBook/returnBookSucceed" onsubmit="return submitForm();" method="post">
+        <input type="hidden"  name="id" value="${borrowBook.id}">
        <table>
            <tr>
                <td>还书人：</td>
                <td>
-                   <input readOnly="true"  type="text"  name="userName" value=" ${Session["user"].userName}">
+                   <input readOnly="true"  type="text"  name="userName" value=" ${borrowBook.userName}">
                </td>
            </tr>
            <tr>
                <td>书名：</td>
                <td>
-                   <input readOnly="true"  type="text"  name="bookName" value="${book.bookName}">
+                   <input readOnly="true"  type="text"  name="bookName" value="${borrowBook.bookName}">
                </td>
            </tr>
            <tr>
@@ -36,26 +37,29 @@
            <tr>
                <td>开始时间：</td>
                <td>
-                   <input readOnly="true"  type="text" name="startDate" ">
+                   <input readOnly="true"  type="text" name="startDate"  value="${borrowBook.startDate?string('yyyy-MM-dd')}">
                </td>
            </tr>
            <tr>
                <td>预计归还时间：</td>
                <td>
-                   <input readOnly="true"  type="text" name="returnDate" ">
+                   <input readOnly="true"  type="text" name="returnDate"  value="${borrowBook.returnDate?string('yyyy-MM-dd')}">
                </td>
            </tr>
            <tr>
                <td>实际归还时间：</td>
                <td>
-                   <input readOnly="true"  type="text" name="endDate" ">
+                   <input readOnly="true"  type="text" name="endDate"  value="${date?string('yyyy-MM-dd')}">
                </td>
            </tr>
            <tr>
                <td>是否逾期：</td>
                <td>
-                    <input type="radio" name="sex" value="是">
-                    <input checked="checked" type="radio" name="sex" value="否">
+                   <#if  date?date gt borrowBook.returnDate?date >
+                       <input type="text" readOnly="true" name="sex" value="是">
+                       <#else >
+                           <input  type="text" readOnly="true" name="sex" value="否">
+                   </#if>
                </td>
            </tr>
        </table>

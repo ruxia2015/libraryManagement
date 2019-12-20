@@ -20,7 +20,7 @@ public class Books {
 
     private String bookTypeName;
     private List<User> userList;//一本书有多个读者
-    private List<Borrow> borrowList;//一本书有多个借书单
+    private List<BorrowBook> borrowBookList;//一本书有多个借书单
 
 
     public int getId() {
@@ -127,12 +127,12 @@ public class Books {
         this.userList = userList;
     }
 
-    public List<Borrow> getBorrowList() {
-        return borrowList;
+    public List<BorrowBook> getBorrowBookList() {
+        return borrowBookList;
     }
 
-    public void setBorrowList(List<Borrow> borrowList) {
-        this.borrowList = borrowList;
+    public void setBorrowBookList(List<BorrowBook> borrowBookList) {
+        this.borrowBookList = borrowBookList;
     }
 
     public String getBookParticulars() {

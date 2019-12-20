@@ -132,10 +132,10 @@ INSERT INTO `book_users` VALUES ('16', '333', '2', '1', '2019-11-29 11:33:06', n
 INSERT INTO `book_users` VALUES ('17', '3334', '1', '4', '2019-11-29 11:37:44', null);
 
 -- ----------------------------
--- Table structure for borrow
+-- Table structure for borrowBook
 -- ----------------------------
-DROP TABLE IF EXISTS `borrow`;
-CREATE TABLE `borrow` (
+DROP TABLE IF EXISTS `borrowBook`;
+CREATE TABLE `borrowBook` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) DEFAULT NULL,
   `userName` varchar(255) DEFAULT NULL,
@@ -149,35 +149,35 @@ CREATE TABLE `borrow` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of borrow
+-- Records of borrowBook
 -- ----------------------------
-INSERT INTO `borrow` VALUES ('1', null, ' 张三', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-11 00:00:00');
-INSERT INTO `borrow` VALUES ('2', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
-INSERT INTO `borrow` VALUES ('3', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
-INSERT INTO `borrow` VALUES ('4', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
-INSERT INTO `borrow` VALUES ('5', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
-INSERT INTO `borrow` VALUES ('6', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
-INSERT INTO `borrow` VALUES ('7', null, ' 张三', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-11 00:00:00');
-INSERT INTO `borrow` VALUES ('8', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
-INSERT INTO `borrow` VALUES ('9', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
-INSERT INTO `borrow` VALUES ('10', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
-INSERT INTO `borrow` VALUES ('11', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
-INSERT INTO `borrow` VALUES ('12', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
-INSERT INTO `borrow` VALUES ('13', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
-INSERT INTO `borrow` VALUES ('14', null, ' 1', null, '水浒传', '1', '2019-12-09 00:00:00', null, '2019-12-19 00:00:00');
-INSERT INTO `borrow` VALUES ('15', null, '2', null, '三国演义', '1', '2019-12-10 00:00:00', null, '2019-12-19 00:00:00');
-INSERT INTO `borrow` VALUES ('16', null, '2', null, '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-20 00:00:00');
-INSERT INTO `borrow` VALUES ('17', '16', '333', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
-INSERT INTO `borrow` VALUES ('18', '5', '2', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-26 00:00:00');
-INSERT INTO `borrow` VALUES ('19', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
-INSERT INTO `borrow` VALUES ('20', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
-INSERT INTO `borrow` VALUES ('21', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
-INSERT INTO `borrow` VALUES ('22', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-19 00:00:00');
-INSERT INTO `borrow` VALUES ('23', '5', '2', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2020-01-04 00:00:00');
-INSERT INTO `borrow` VALUES ('24', '5', '2', '1', '骆驼祥子', '1', '2019-12-10 00:00:00', null, '2019-12-28 00:00:00');
-INSERT INTO `borrow` VALUES ('25', '3', '1', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-21 00:00:00');
-INSERT INTO `borrow` VALUES ('26', '3', '1', '4', '水浒传', '1', '2019-12-11 00:00:00', null, '2019-12-28 00:00:00');
-INSERT INTO `borrow` VALUES ('27', '5', '2', '25', '9999', '1', '2019-12-12 00:00:00', null, '2019-12-28 00:00:00');
+INSERT INTO `borrowBook` VALUES ('1', null, ' 张三', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-11 00:00:00');
+INSERT INTO `borrowBook` VALUES ('2', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
+INSERT INTO `borrowBook` VALUES ('3', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
+INSERT INTO `borrowBook` VALUES ('4', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
+INSERT INTO `borrowBook` VALUES ('5', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
+INSERT INTO `borrowBook` VALUES ('6', null, ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00');
+INSERT INTO `borrowBook` VALUES ('7', null, ' 张三', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-11 00:00:00');
+INSERT INTO `borrowBook` VALUES ('8', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrowBook` VALUES ('9', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrowBook` VALUES ('10', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrowBook` VALUES ('11', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrowBook` VALUES ('12', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrowBook` VALUES ('13', null, ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrowBook` VALUES ('14', null, ' 1', null, '水浒传', '1', '2019-12-09 00:00:00', null, '2019-12-19 00:00:00');
+INSERT INTO `borrowBook` VALUES ('15', null, '2', null, '三国演义', '1', '2019-12-10 00:00:00', null, '2019-12-19 00:00:00');
+INSERT INTO `borrowBook` VALUES ('16', null, '2', null, '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-20 00:00:00');
+INSERT INTO `borrowBook` VALUES ('17', '16', '333', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrowBook` VALUES ('18', '5', '2', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-26 00:00:00');
+INSERT INTO `borrowBook` VALUES ('19', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrowBook` VALUES ('20', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrowBook` VALUES ('21', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-27 00:00:00');
+INSERT INTO `borrowBook` VALUES ('22', '5', '2', '5', '红楼梦', '1', '2019-12-10 00:00:00', null, '2019-12-19 00:00:00');
+INSERT INTO `borrowBook` VALUES ('23', '5', '2', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2020-01-04 00:00:00');
+INSERT INTO `borrowBook` VALUES ('24', '5', '2', '1', '骆驼祥子', '1', '2019-12-10 00:00:00', null, '2019-12-28 00:00:00');
+INSERT INTO `borrowBook` VALUES ('25', '3', '1', '4', '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-21 00:00:00');
+INSERT INTO `borrowBook` VALUES ('26', '3', '1', '4', '水浒传', '1', '2019-12-11 00:00:00', null, '2019-12-28 00:00:00');
+INSERT INTO `borrowBook` VALUES ('27', '5', '2', '25', '9999', '1', '2019-12-12 00:00:00', null, '2019-12-28 00:00:00');
 
 -- ----------------------------
 -- Table structure for librarian

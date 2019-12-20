@@ -2,7 +2,7 @@ package example.controller;
 
 import example.entity.Page;
 import example.entity.User;
-import example.service.LoginService;
+import example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +16,10 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/user")
-public class LoginController extends HttpServlet {
+public class UserController extends HttpServlet {
 
     @Autowired
-    private LoginService loginService;
+    private UserService userService;
 
     //用户登录
     @RequestMapping("/login")
@@ -43,13 +43,13 @@ public class LoginController extends HttpServlet {
         if(pageSize == null){
             pageSize =5;
         }
-        User user = loginService.findUserByName(userName);
+        User user = userService.findUserByName(userName);
         if(user != null){
             id = user.getId();
         }
 
-        List<User> userList = loginService.queryAllUser(id, pageNo, pageSize);
-        int count = loginService.count(userName);
+        List<User> userList = userService.queryAllUser(id, pageNo, pageSize);
+        int count = userService.count(userName);
         Page page = new Page(pageNo,pageSize,count,userList);
         int pageCount = page.getTotalPageNum();
         model.addAttribute("page",page);
@@ -67,7 +67,7 @@ public class LoginController extends HttpServlet {
     @RequestMapping("retrievePassword")
     public String retrievePassword(String userName, String phone, Model model){
 
-        User user = loginService.findUserByName(userName);
+        User user = userService.findUserByName(userName);
         if(user == null){
             JOptionPane.showMessageDialog(null, "该账号不存在","数据错误",JOptionPane.ERROR_MESSAGE);
             return "retrievePwd";
@@ -84,7 +84,7 @@ public class LoginController extends HttpServlet {
     //重置密码
     @RequestMapping("/resetSucceed")
     public String resetSucceed(int userId, String pwd){
-        int i = loginService.resetPwd(pwd, userId);
+        int i = userService.resetPwd(pwd, userId);
         if(i == 1){
             JOptionPane.showMessageDialog(null, "修改密码成功","成功",JOptionPane.ERROR_MESSAGE);
             return "login";
@@ -99,7 +99,7 @@ public class LoginController extends HttpServlet {
     @RequestMapping("/sgin")
     public String  sgin(String name, String psd, HttpServletRequest request){
 
-        Boolean b = loginService.userLogin(name,psd,request);
+        Boolean b = userService.userLogin(name,psd,request);
 
         if(b ==false){
             return "loginError";//TODO 跳转到登录页面视图[jsp页面] ,在JSP页面中将错误信息显示出来就可以
@@ -116,7 +116,7 @@ public class LoginController extends HttpServlet {
         返回map对象的原因：可以将错误原因推送给前端，如果只是布尔类型的，就只有一个false，这两种方式都可以。根据个人习惯以及实际的情况
         如果是找的插件去验证，就要根据插件的要求进行返回。
 */
-        User user = loginService.findUserByName(userName);
+        User user = userService.findUserByName(userName);
         //1、此处调用service类，根据用户名查找用户
 
         if (user == null) {
@@ -133,7 +133,7 @@ public class LoginController extends HttpServlet {
         返回map对象的原因：可以将错误原因推送给前端，如果只是布尔类型的，就只有一个false，这两种方式都可以。根据个人习惯以及实际的情况
         如果是找的插件去验证，就要根据插件的要求进行返回。
 */
-        User user = loginService.findUserByName(name);
+        User user = userService.findUserByName(name);
         //1、此处调用service类，根据用户名查找用户
 
         if (user == null) {
@@ -151,7 +151,7 @@ public class LoginController extends HttpServlet {
         if(userName == null || userName.trim().equals("")){  //用户没输入
             return false;
         }
-        User user = loginService.findUserByName(userName);
+        User user = userService.findUserByName(userName);
         //1、此处调用service类，根据用户名查找用户
         if (user == null) {  //用户名可用
             return true;
@@ -162,7 +162,7 @@ public class LoginController extends HttpServlet {
 @RequestMapping("/registerMethod")
     public String  registerMethod(String name, String psd, String phone, Date createDate, ModelMap response){
         Date date  = new Date();
-        Boolean b = loginService.addUser(name, psd,phone,date );
+        Boolean b = userService.addUser(name, psd,phone,date );
     if(b ==false){
         //弹出提示框显示用户名或密码错误
         response.put("error","注册失败，请重试！");

@@ -43,7 +43,9 @@
 	</select>
 
 	<select id="queryBook" resultType="example.entity.Books">
-		select * from books where id= #{id}
+		select b.*,t.bookTypeName  from books as b  left join book_type as t
+		on b.bookTypeId = t.id
+		where b.id = #{id}
 	</select>
 
 	<select id="findBooksByName" resultType="example.entity.Books">

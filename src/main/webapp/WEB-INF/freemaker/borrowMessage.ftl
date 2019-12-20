@@ -40,7 +40,7 @@
             <td  width="150px">实际返回时间</td>
         </tr>
         <tr>
-            <#list borrowList as list>
+            <#list borrowBookList as list>
                 <tr>
                     <td>${list_index+1}</td>
                     <td>${list.userName}</td>

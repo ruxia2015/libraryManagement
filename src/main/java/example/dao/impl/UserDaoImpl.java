@@ -1,6 +1,6 @@
 package example.dao.impl;
 
-import example.dao.LoginDao;
+import example.dao.UserDao;
 import example.entity.User;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class LoginDaoImpl implements LoginDao {
+public class UserDaoImpl implements UserDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
     public User findUserByName(String name) {

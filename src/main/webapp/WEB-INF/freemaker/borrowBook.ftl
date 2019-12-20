@@ -20,7 +20,6 @@
     <table>
         <tr>
             <td>借书人：</td>
-            <#--               <td>${sessionScope.user.getUserName()}</td>-->
             <td>
                 <input readOnly="true"  type="text"  name="userName" value="${Session["user"].userName}">
             </td>
@@ -46,7 +45,10 @@
         <tr>
             <td>归还时间：</td>
             <td>
-                <input required="required" type="date"  name = "returnDate">
+                <select name="returnDate">
+                    <option selected="selected" value="${weekDate?string('yyyy-MM-dd')}">${weekDate?string('yyyy-MM-dd')}</option>
+                    <option value="${monthDate?string('yyyy-MM-dd')}">${monthDate?string('yyyy-MM-dd')}</option>
+                </select>
             </td>
         </tr>
     </table>
