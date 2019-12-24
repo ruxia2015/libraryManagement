@@ -44,7 +44,7 @@
 	</select>
 
 	<update id="updateBorrow" >
-		update borrow set endDate = #{endDate} where id = #{id}
+		update borrow set endDate = #{endDate} , overdue = #{overdue} where id = #{id}
 	</update>
 
 </mapper>

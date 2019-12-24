@@ -46,10 +46,11 @@ public class BorrowBookDaoImpl implements BorrowBookDao {
         return sqlSessionTemplate.selectOne("borrow.findBorrowById",params);
     }
 
-    public int updateBorrow(int id, Date date) {
+    public int updateBorrow(int id, Date date, int overdue) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("id", id);
         params.put("endDate",date);
+        params.put("overdue", overdue);
         return sqlSessionTemplate.update("borrow.updateBorrow",params);
     }
 

@@ -15,5 +15,5 @@ public interface BorrowBookDao {
 
     BorrowBook findBorrowById(int id);
 
-    int updateBorrow(int id, Date date);
+    int updateBorrow(int id, Date date, int overdue);
 }

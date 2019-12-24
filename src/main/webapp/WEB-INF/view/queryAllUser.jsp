@@ -98,7 +98,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <div class="input-group">
-                                            <a href="${rc.contextPath}/user/addUser" class="btn btn btn-default">新增用户</a>
+                                            <a href="${rc.contextPath}/user/register" class="btn btn btn-default">新增用户</a>
                                             &nbsp; &nbsp; &nbsp; &nbsp;
 
                                         <input type="text" class="form-control" name="userName" id = "userName" placeholder="用户名" value="${userName}">

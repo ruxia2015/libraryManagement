@@ -103,8 +103,10 @@ public class BorrowBookController {
         Date date = new Date();
         ModelAndView modelAndView = new ModelAndView("returnBook");
         BorrowBook borrowBook = borrowBookService.findBorrowById(id);
+        int days = UtilityController.differentDays(borrowBook.getReturnDate(),date);
         modelAndView.addObject("borrowBook", borrowBook);
         modelAndView.addObject("date", date);
+        modelAndView.addObject("days",days);
         return modelAndView;
     }
     //还书方法
@@ -112,7 +114,13 @@ public class BorrowBookController {
     public ModelAndView returnBookSucceed (int id ){
         ModelAndView modelAndView = new ModelAndView("returnBookSucceed");
         Date date = new Date();
-        int i = borrowBookService.updateBorrow(id, date);
+        BorrowBook borrowBook = borrowBookService.findBorrowById(id);
+        int days = UtilityController.differentDays(borrowBook.getReturnDate(),date);
+        int overdue = 0;
+        if(days>0){
+            overdue = 1 ;
+        }
+        int i = borrowBookService.updateBorrow(id, date, overdue);
        modelAndView.addObject("i",i);
         return modelAndView;
     }

@@ -52,16 +52,19 @@
                    <input readOnly="true"  type="text" name="endDate"  value="${date?string('yyyy-MM-dd')}">
                </td>
            </tr>
+           <#if  date?date gt borrowBook.returnDate?date >
            <tr>
                <td>是否逾期：</td>
-               <td>
-                   <#if  date?date gt borrowBook.returnDate?date >
-                       <input type="text" readOnly="true" name="sex" value="是">
-                       <#else >
-                           <input  type="text" readOnly="true" name="sex" value="否">
-                   </#if>
-               </td>
+               <td> <input type="text" readOnly="true" name="sex" value="是"></td>
+               <td>逾期天数：</td>
+               <td> <input type="text" readOnly="true" name="sex" value="${days}"></td>
            </tr>
+           <#else >
+               <tr>
+                   <td>是否逾期：</td>
+                   <td><input  type="text" readOnly="true" name="sex" value="否"></td>
+                </tr>
+           </#if>
        </table>
         <input type="submit" value="提交">
         <input type="button" onclick="goBack()" value="返回">

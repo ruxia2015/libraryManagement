@@ -198,8 +198,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">首页</a></li>
-                        <li class="breadcrumb-item"><a href="#">书籍</a></li>
+                        <li class="breadcrumb-item"><a href="${rc.contextPath}/book/index">首页</a></li>
+                        <li class="breadcrumb-item"><a href="${rc.contextPath}/book/books">书籍</a></li>
                         <li class="breadcrumb-item active">添加书籍</li>
                     </ol>
                 </div>

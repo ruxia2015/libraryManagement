@@ -31,7 +31,7 @@ public class BorrowBookServiceImpl implements BorrowBookService {
         return borrowBookDao.findBorrowById(id);
     }
 
-    public int updateBorrow(int id, Date date) {
-        return borrowBookDao.updateBorrow(id,date);
+    public int updateBorrow(int id, Date date, int overdue) {
+        return borrowBookDao.updateBorrow(id,date,  overdue);
     }
 }
