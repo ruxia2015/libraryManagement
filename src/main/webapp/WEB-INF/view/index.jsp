@@ -70,7 +70,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>${booksCount}</h3>
 
                                 <p>图书总量</p>
                             </div>
@@ -85,7 +85,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3>${usersCount}</h3>
 
                                 <p>读者数</p>
                             </div>
@@ -100,9 +100,9 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>${borrowCount}</h3>
 
-                                <p>已借书本</p>
+                                <p>借阅记录</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
@@ -115,14 +115,14 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>${overdueCount}</h3>
 
                                 <p>借阅逾期数</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">逾期信息 <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="${pageContext.request.contextPath}/borrowBook/queryAllOverdue" class="small-box-footer">逾期信息 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

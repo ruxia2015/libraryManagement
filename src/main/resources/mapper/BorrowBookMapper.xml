@@ -27,7 +27,34 @@
 				and b.bookName = #{bookName}
 			</if>
 		</where>
-		order by b.startDate desc
+		order by b.returnDate desc
+	</select>
+
+	<select id="borrowCount" resultType="int">
+		select count(*) as count from borrow left join book_users
+		on borrow.userId =  book_users.id
+		<where>
+			<if test="id != null">
+				and	 book_users.id = #{id}
+			</if>
+		</where>
+	</select>
+
+
+
+	<select id="queryAllOverdue" resultType="example.entity.BorrowBook">
+		select b.* FROM borrow as b  left join book_users as u  on
+		b.userId = u.id
+		<where>
+			overdue = 1
+			<if test="id != 0">
+				and	 u.id = #{id}
+			</if>
+			<if test="bookName != null and bookName !=''">
+				and b.bookName = #{bookName}
+			</if>
+		</where>
+		order by b.returnDate desc
 	</select>
 
 	<insert id="addBorrow" >
@@ -46,6 +73,18 @@
 	<update id="updateBorrow" >
 		update borrow set endDate = #{endDate} , overdue = #{overdue} where id = #{id}
 	</update>
+
+	<select id="overdueCount" resultType="int">
+		 select count(*) as count from borrow left join book_users
+		 on borrow.userId =  book_users.id
+		<where>
+			borrow.overdue = 1
+			<if test="id != null">
+				and	 book_users.id = #{id}
+			</if>
+		</where>
+
+	</select>
 
 </mapper>
 <!--

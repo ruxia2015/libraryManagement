@@ -16,7 +16,7 @@ public interface BookService {
 
     Books findBooksByName(String bookName);
 
-    int updateBooksQuantity(int id);
+    int updateBooksQuantity(int id, Integer quantity);
 
     int addBook(String bookIsbn, String bookName, String bookAuthor, String bookParticulars,  int bookTypeId, String bookPicture, Double bookPrice, Date date, int bookTotal, int bookQuantity);
 
@@ -24,4 +24,7 @@ public interface BookService {
     int updateBook(int id, String bookIsbn, String bookName, String bookAuthor, String bookParticulars,  int bookTypeId, String bookPicture, Double bookPrice, Date date, Integer bookTotal, Integer bookQuantity);
 
     int deleteBook(int id);
+
+
+    int addBooksQuantity(int bookId, int quantity);
 }

@@ -11,7 +11,7 @@ public class BorrowBook {
     private Date endDate;
     private Date returnDate;
     private int userId;
-    private int booksId;
+    private int bookId;
     private int overdue;
 
 
@@ -82,12 +82,12 @@ public class BorrowBook {
         this.userId = userId;
     }
 
-    public int getBooksId() {
-        return booksId;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setBooksId(int booksId) {
-        this.booksId = booksId;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public User getUser() {

@@ -5,9 +5,12 @@ import example.entity.Books;
 import example.entity.Page;
 import example.service.BookService;
 import example.service.BookTypeService;
-import org.apache.commons.lang3.StringUtils;
+import example.service.BorrowBookService;
+import example.service.UserService;
+import example.util.FileUploading;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,9 +29,21 @@ public class BookInfoController {
     private BookService bookService;
     @Autowired
     private BookTypeService bookTypeService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private BorrowBookService borrowBookService;
 
     @RequestMapping("/index")
-    public String index() {
+    public String index(Model model, @RequestParam(required = false) String queryName, @RequestParam(required = false) Integer bookTypeId , @RequestParam(required = false) Integer  id) {
+        int booksCount = bookService.count(queryName, bookTypeId);
+        int usersCount = userService.count(queryName);
+        int overdueCount = borrowBookService.overdueCount(id);
+        int borrowCount = borrowBookService.borrowCount(id);
+        model.addAttribute("booksCount", booksCount);
+        model.addAttribute("usersCount",usersCount);
+        model.addAttribute("overdueCount",overdueCount);
+        model.addAttribute("borrowCount",borrowCount);
         return "index";
     }
 
@@ -50,7 +65,7 @@ public class BookInfoController {
         String bookPicture= "image/默认.jpg";
         try {
 
-            String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
+            String newBookPicture =FileUploading.fileUpload(file, bookPicture);
             if (newBookPicture == null) {
 
             } else {
@@ -83,7 +98,7 @@ public class BookInfoController {
 
         ModelAndView modelAndView = new ModelAndView("updateBookSucceed");
         try {
-            String newBookPicture = new UtilityController().fileUpload(file, bookPicture);
+            String newBookPicture =FileUploading.fileUpload(file, bookPicture);
             if (newBookPicture == null) {
 
             } else {

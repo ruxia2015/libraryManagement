@@ -12,6 +12,23 @@
         function goBack() {
             window.history.back(-1);
         }
+
+        function reduceNum(){
+            var quantity =parseInt(document.getElementById("quantity").value) ;
+            if(quantity>1){
+                document.getElementById("quantity").value =(quantity-1);
+            }
+
+        }
+
+        function addNum(){
+            var quantity =parseInt(document.getElementById("quantity").value) ;
+            var bookQuantity =parseInt(document.getElementById("bookQuantity").value) ;
+
+            if(quantity != bookQuantity){
+                document.getElementById("quantity").value = (quantity+1);
+            }
+        }
     </script>
 </head>
 <body>
@@ -27,13 +44,16 @@
         <tr>
             <td>书名：</td>
             <td >
-                <input readOnly="true"  type="text"  name="bookName" value="${book.bookName}">
+                <input readOnly="true"  type="text"  name="bookName" value="${(book.bookName)!""}">
             </td>
         </tr>
         <tr>
             <td>数量：</td>
             <td>
-                <input readOnly="true"  type="text" name="quantity" value="1">
+                <input type="hidden" id = "bookQuantity" value="${book.bookQuantity}">
+                <input type="button" onclick="reduceNum()" value="-">
+                <input readOnly="true" style="width: 20px;"  type="text"  name="quantity" id ="quantity" value="1">
+                <input type="button" onclick="addNum()" value="+">
             </td>
         </tr>
         <tr>

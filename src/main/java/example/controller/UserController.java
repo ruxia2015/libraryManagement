@@ -2,6 +2,8 @@ package example.controller;
 
 import example.entity.Page;
 import example.entity.User;
+import example.service.BookService;
+import example.service.BorrowBookService;
 import example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,10 @@ public class UserController extends HttpServlet {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private BookService bookService;
+    @Autowired
+    private BorrowBookService borrowBookService;
 
     //用户登录
     @RequestMapping("/login")
@@ -100,11 +106,11 @@ public class UserController extends HttpServlet {
     public String  sgin(String name, String psd, HttpServletRequest request){
 
         Boolean b = userService.userLogin(name,psd,request);
-
         if(b ==false){
             return "loginError";//TODO 跳转到登录页面视图[jsp页面] ,在JSP页面中将错误信息显示出来就可以
         }
-        return "index"; //此处不建议写跳转到视图，如果这个视图页面需要传入一些值，就需要再写一遍，建议使用转发（redirect），跳转到对应的请求地址
+
+        return "redirect:/book/index"; //此处不建议写跳转到视图，如果这个视图页面需要传入一些值，就需要再写一遍，建议使用转发（redirect），跳转到对应的请求地址
     }
 
 

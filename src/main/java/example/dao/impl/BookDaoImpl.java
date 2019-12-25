@@ -45,9 +45,10 @@ public class BookDaoImpl implements BookDao {
         return sqlSessionTemplate.selectOne("findBooksByName",params);
     }
 
-    public int updateBooksQuantity(int id){
+    public int updateBooksQuantity(int id , Integer quantity){
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("id",id);
+        params.put("quantity", quantity);
         return sqlSessionTemplate.update("updateBooksQuantity",params);
     }
 
@@ -89,4 +90,13 @@ public class BookDaoImpl implements BookDao {
         params.put("id", id);
         return sqlSessionTemplate.delete("deleteBook",params);
     }
+
+    public int addBooksQuantity(int bookId, int quantity) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id",bookId);
+        params.put("quantity", quantity);
+        return sqlSessionTemplate.update("addBooksQuantity",params);
+    }
+
+
 }

@@ -10,10 +10,28 @@
         function goBack() {
             window.history.back(-1);
         }
+
+            function reduceNum(){
+                var quantity =parseInt(document.getElementById("quantity").value) ;
+                if(quantity>1){
+                    document.getElementById("quantity").value =(quantity-1);
+                }
+
+            }
+
+            function addNum(){
+                var quantity =parseInt(document.getElementById("quantity").value) ;
+                var bookQuantity =parseInt(document.getElementById("bookQuantity").value) ;
+
+                if(quantity != bookQuantity){
+                    document.getElementById("quantity").value = (quantity+1);
+                }
+            }
+
     </script>
 </head>
 <h2>还书单</h2>
-    <form action="/borrowBook/returnBookSucceed" onsubmit="return submitForm();" method="post">
+    <form action="${rc.contextPath}/borrowBook/returnBookSucceed" onsubmit="return submitForm();" method="post">
         <input type="hidden"  name="id" value="${borrowBook.id}">
        <table>
            <tr>
@@ -31,7 +49,11 @@
            <tr>
                <td>数量：</td>
                <td>
-                   <input readOnly="true"  type="text" name="quantity" value="1">
+<#--                   <input type="hidden" id = "bookQuantity" value="${borrowBook.quantity}">-->
+<#--                   <input type="button" onclick="reduceNum()" value="-">-->
+<#--                   <input readOnly="true" style="width: 20px;"  type="text" name="quantity" id="quantity" value="1">-->
+<#--                   <input type="button" onclick="addNum()" value="+">-->
+                   <input readOnly="true"  type="text" name="quantity" id="quantity" value="${borrowBook.quantity}">
                </td>
            </tr>
            <tr>

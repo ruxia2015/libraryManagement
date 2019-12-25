@@ -54,4 +54,22 @@ public class BorrowBookDaoImpl implements BorrowBookDao {
         return sqlSessionTemplate.update("borrow.updateBorrow",params);
     }
 
+    public List<BorrowBook> queryAllOverdue(int id, String bookName) {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("id", id);
+        params.put("bookName", bookName);
+        return sqlSessionTemplate.selectList("borrow.queryAllOverdue",params);
+    }
+
+    public int overdueCount(Integer id ) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        return sqlSessionTemplate.selectOne("overdueCount",params);
+    }
+
+    public int borrowCount(Integer id) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        return sqlSessionTemplate.selectOne("borrowCount",params);
+    }
 }

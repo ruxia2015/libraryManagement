@@ -16,7 +16,7 @@
     <h2>修改书籍</h2>
 </div>
 <div class=" div_table">
-    <form action="/book/updateBookSucceed" method="post" enctype="multipart/form-data">
+    <form action="${rc.contextPath}/book/updateBookSucceed" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${books.id}">
         <table>
             <tr>

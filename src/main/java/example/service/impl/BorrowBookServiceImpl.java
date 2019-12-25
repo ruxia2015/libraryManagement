@@ -34,4 +34,16 @@ public class BorrowBookServiceImpl implements BorrowBookService {
     public int updateBorrow(int id, Date date, int overdue) {
         return borrowBookDao.updateBorrow(id,date,  overdue);
     }
+
+    public List<BorrowBook> queryAllOverdue(int id, String bookName) {
+        return borrowBookDao.queryAllOverdue(id, bookName);
+    }
+
+    public int overdueCount(Integer id) {
+        return borrowBookDao.overdueCount(id);
+    }
+
+    public int borrowCount(Integer id) {
+        return borrowBookDao.borrowCount(id);
+    }
 }

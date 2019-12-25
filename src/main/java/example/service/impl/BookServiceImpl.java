@@ -30,8 +30,8 @@ public class BookServiceImpl implements BookService {
         return bookDao.findBooksByName(bookName);
     }
 
-    public int updateBooksQuantity(int id) {
-        return bookDao.updateBooksQuantity(id);
+    public int updateBooksQuantity(int id,Integer quantity) {
+        return bookDao.updateBooksQuantity(id, quantity);
     }
 
     public int addBook(String bookIsbn, String bookName, String bookAuthor, String bookParticulars, int bookTypeId, String bookPicture,  Double bookPrice, Date date, int bookTotal, int bookQuantity) {
@@ -47,4 +47,10 @@ public class BookServiceImpl implements BookService {
     public int deleteBook(int id) {
         return bookDao.deleteBook(id);
     }
+
+    public int addBooksQuantity(int bookId, int quantity) {
+        return bookDao.addBooksQuantity(bookId, quantity);
+    }
+
+
 }

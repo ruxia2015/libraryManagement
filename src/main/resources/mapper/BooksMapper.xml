@@ -53,7 +53,11 @@
 	</select>
 
 	<update id="updateBooksQuantity" >
-		update books set bookQuantity = bookQuantity-1 where id = #{id}
+		update books set bookQuantity = bookQuantity-#{quantity} where id = #{id}
+	</update>
+
+	<update id="addBooksQuantity" >
+		update books set bookQuantity = bookQuantity+#{quantity} where id = #{id}
 	</update>
 
 	<insert id="addBook" >

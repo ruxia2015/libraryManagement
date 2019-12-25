@@ -27,6 +27,24 @@
     }
 
     function submitForm() {
+        var code = document.getElementById("code").value;
+        $.ajax({
+            url:"${pageContext.request.contextPath}/code/checkCode",
+            dataType:"json",
+            data:{"code":code},
+            type:"post",
+            success:function (req) {
+                if(req == 1 ){
+                    document.getElementById("showCode").value = "";
+                    return true;
+                }else {
+                    document.getElementById("showCode").value = "验证失败！";
+                    return false;
+                }
+            }
+
+        })
+
         var userName = document.getElementById("username").value;
         var passWord = document.getElementById("password").value;
         if(userName == null || userName == ""){
@@ -45,6 +63,25 @@
         document.getElementById("showPwd").style.display = "none";
             return true;
     }
+    function changeImg() {
+        var imgSrc = $("#imgObj");
+        var src = imgSrc.attr("src");
+        imgSrc.attr("src", chgUrl(src));
+    }
+
+    // 时间戳
+    // 为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
+    function chgUrl(url) {
+        var timestamp = (new Date()).valueOf();
+        url = url.substring(0, 20);
+        if ((url.indexOf("&") >= 0)) {
+            url = url + "×tamp=" + timestamp;
+        } else {
+            url = url + "?timestamp=" + timestamp;
+        }
+        return url;
+    }
+
 </script>
 
 
@@ -58,6 +95,12 @@
                 <label class="label_input">用户名:</label>&nbsp<input type="text" id="username" onfocus="emptyName()" name="name" class="text_field"/><span id = "showName"></span>
             </p>
             <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password" name="psd" onfocus="emptyPwd()" id="password" class="text_field"/><span id = "showPwd"></span></p>
+        </div>
+        <div>
+            请输入验证码：<input type="text" name="code" id = "code" style="width: 80px;" />
+            <img id="imgObj" alt="验证码" src="${pageContext.request.contextPath}/code/getCode">
+            <a href="#" onclick="changeImg()">换一张</a><br/>
+            <span id = "showCode" ></span>
         </div>
         <div id="login_control">
             <input type="submit" id="btn_login" value="登录"  />

@@ -16,7 +16,7 @@
 <script type="text/javascript">
 
     function refreshPage() {
-        window.location.href = "${rc.contextPath}/borrowBook/queryAllBorrow";
+        window.location.href = "${rc.contextPath}/borrowBook/queryAllOverdue";
     }
 
     function submitForm() {
@@ -36,19 +36,19 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>借阅列表</h1>
+                        <h1>逾期列表</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="${rc.contextPath}/book/index">首页</a></li>
-                            <li class="breadcrumb-item active">借阅列表</li>
+                            <li class="breadcrumb-item active">逾期列表</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </section>
         <form method="post" class="sel_btn" onsubmit="return submitForm();" action="${rc.contextPath}
-        /borrowBook/queryAllBorrow" id = "borrowByName" >
+        /borrowBook/queryAllOverdue" id = "borrowByName" >
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -77,11 +77,10 @@
                                         <td width="100">序号</td>
                                         <td width="100">借书人</td>
                                         <td width="100">书名</td>
-                                        <td width="100">数量</td>
                                         <td width="150">开始时间</td>
                                         <td width="150">预计返回时间</td>
                                         <td width="150">实际返回时间</td>
-                                        <td width="100">操作</td>
+                                        <td width="100">逾期天数</td>
                                     </tr>
                                     </thead>
                                     <tbody id="dataPage">
@@ -98,9 +97,6 @@
                                                 ${borrowBook.bookName}
                                             </td>
                                             <td>
-                                                ${borrowBook.quantity}
-                                            </td>
-                                            <td>
                                                 ${borrowBook.startDate?string('yyyy-MM-dd')}
                                             </td>
                                             <td>
@@ -110,23 +106,10 @@
                                                 ${(borrowBook.endDate?string('yyyy-MM-dd'))!""}
                                             </td>
                                             <td>
-                                                <#if borrowBook.endDate??>
-                                                    <a class="btn btn-primary btn-sm disabled"  href="${rc.contextPath}/borrowBook/returnBook?id=${borrowBook.id}">
-                                                    <i class="fas fa-folder">
-                                                    </i>
-                                                    还书
-                                                    </a>
-                                                    <#else >
-                                                        <a class="btn btn-primary btn-sm " href="${rc.contextPath}/borrowBook/returnBook?id=${borrowBook.id}">
-                                                        <i class="fas fa-folder">
-                                                        </i>
-                                                        还书
-                                                        </a>
-                                                </#if>
-
+                                                ${integerList[borrowBook_index]}
                                             </td>
-                                        </tr>
-                                    </#list>
+                                            </tr>
+                                        </#list>
                                     <#else >
                                         <tr>
                                             <td  colspan="10">

@@ -19,5 +19,11 @@ public interface BorrowBookService {
 
     BorrowBook findBorrowById(int id);
 
-    int updateBorrow(int id, Date date ,int overdue);
+    int updateBorrow(int id, Date date , int overdue);
+
+    List<BorrowBook> queryAllOverdue(int id, String bookName);
+
+    int overdueCount(Integer id);
+
+    int borrowCount(Integer id);
 }

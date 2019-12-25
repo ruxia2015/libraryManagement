@@ -31,7 +31,7 @@
 </head>
 <body>
 <div id="div1">
-    <img width="100px" height="200px" src="${"/"+(book.bookPicture)!""}">
+    <img width="100px" height="200px" src="${(rc.contextPath+"/"+book.bookPicture)!""}">
 
 </div>
 <div>

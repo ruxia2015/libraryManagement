@@ -12,7 +12,7 @@
         intervalid = setInterval("fun()", 1000);
         function fun() {
             if (s == 0) {
-                window.location.href = "/borrowBook/queryAllBorrow";
+                window.location.href = "${rc.contextPath}/borrowBook/queryAllBorrow";
                 clearInterval(intervalid);
             }
             document.getElementById("mes").innerHTML = s;
@@ -21,7 +21,7 @@
         </script>
 </head>
 <body>
-    <#if i ==1 >
+    <#if i ==1  && y ==1 >
         还书成功
         <p>将在 <span id="mes">3</span> 秒钟后返回借阅信息界面！</p>
         <#else >
