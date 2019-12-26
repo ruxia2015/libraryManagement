@@ -15,17 +15,17 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDao loginDao;
+    private UserDao userDao;
 
     public User findUserByName(String userName) {
-        return loginDao.findUserByName(userName);
+        return userDao.findUserByName(userName);
     }
 
     public Boolean userLogin(String name, String psd, HttpServletRequest request) {
         if (name == null) {
 
         }
-        User user = loginDao.findUserByName(name);
+        User user = userDao.findUserByName(name);
         if (user == null || !user.getUserPassword().equals(psd)) {
             return false;
         }
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public Boolean  addUser(String name, String psd, String phone, Date date) {
-        int i = loginDao.addUser(name, psd, phone, date);
+        int i = userDao.addUser(name, psd, phone, date);
        if(i==1){
            return true;
        }else {
@@ -46,14 +46,26 @@ public class UserServiceImpl implements UserService {
 
 
     public int count(String userName){
-        return loginDao.count(userName);
+        return userDao.count(userName);
     }
     public List<User> queryAllUser(int id, int pageNo, int pageSize){
-        return   loginDao.queryAllUser(id, pageNo , pageSize);
+        return   userDao.queryAllUser(id, pageNo , pageSize);
     }
 
     public int resetPwd(String pwd, int userId) {
-        return loginDao.resetPwd(pwd, userId);
+        return userDao.resetPwd(pwd, userId);
+    }
+
+    public User findUserById(int id) {
+        return userDao.findUserById(id);
+    }
+
+    public int deleteUser(int id) {
+        return userDao.deleteUser(id);
+    }
+
+    public int updateUser(int id, String pwd, String phone, Date date) {
+        return userDao.updateUser(id, pwd, phone, date);
     }
 
 }

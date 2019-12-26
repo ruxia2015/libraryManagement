@@ -26,25 +26,43 @@
         document.getElementById("showPwd").style.display = "none";
     }
 
-    function submitForm() {
+    function verifyCode() {
+        var fal = false;
         var code = document.getElementById("code").value;
+
         $.ajax({
             url:"${pageContext.request.contextPath}/code/checkCode",
+            async:false,
             dataType:"json",
             data:{"code":code},
-            type:"post",
             success:function (req) {
-                if(req == 1 ){
-                    document.getElementById("showCode").value = "";
-                    return true;
+                if(req == 1){
+                    document.getElementById("showCode").innerText="";
+                    fal =  true;
+                }else if(req == 2){
+                    document.getElementById("code").value="";
+                    document.getElementById("showCode").innerText="验证错误";
+                    fal =  false;
                 }else {
-                    document.getElementById("showCode").value = "验证失败！";
-                    return false;
+                    document.getElementById("code").value="";
+                    document.getElementById("showCode").innerText="验证码为空";
+                    fal =  false;
                 }
+
             }
 
         })
+        return fal;
+    }
 
+    function showNo() {
+        document.getElementById("showCode").innerText="";
+    }
+    
+    function submitForm() {
+        if(!verifyCode()){
+            return false;
+        }
         var userName = document.getElementById("username").value;
         var passWord = document.getElementById("password").value;
         if(userName == null || userName == ""){
@@ -87,20 +105,22 @@
 
 <body>
 <div id="login_frame">
-
     <p id="image_logo"><img src="${pageContext.request.contextPath}/image/1.jpg" style="width:90px;height:50px;"></p>
     <form id="loginForm" method="post"  onsubmit="return submitForm();" action="${pageContext.request.contextPath}/user/sgin">
         <div>
             <p>
-                <label class="label_input">用户名:</label>&nbsp<input type="text" id="username" onfocus="emptyName()" name="name" class="text_field"/><span id = "showName"></span>
+<%--                class="text_field"--%>
+                <label class="label_input">用户名:</label>&nbsp;<input type="text" id="username" onfocus="emptyName()" name="name" /><span id = "showName"></span>
             </p>
-            <p><label class="label_input">密&nbsp&nbsp码:</label>&nbsp<input type="password" name="psd" onfocus="emptyPwd()" id="password" class="text_field"/><span id = "showPwd"></span></p>
-        </div>
-        <div>
-            请输入验证码：<input type="text" name="code" id = "code" style="width: 80px;" />
-            <img id="imgObj" alt="验证码" src="${pageContext.request.contextPath}/code/getCode">
-            <a href="#" onclick="changeImg()">换一张</a><br/>
-            <span id = "showCode" ></span>
+            <p>
+                <label class="label_input">密&nbsp&nbsp码:</label>&nbsp;<input type="password" name="psd" onfocus="emptyPwd()" id="password" /><span id = "showPwd"></span>
+            </p>
+            <p>
+                <label class="label_input">验证码:</label>&nbsp;<input type="text" name="code" onfocus="showNo()" id= "code" style="width: 80px;" />
+                <img id="imgObj" alt="验证码" src="${pageContext.request.contextPath}/code/getCode">
+                <a href="#" onclick="changeImg()">换一张</a><br/>
+                <span id= "showCode" ></span>
+            </p>
         </div>
         <div id="login_control">
             <input type="submit" id="btn_login" value="登录"  />

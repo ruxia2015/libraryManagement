@@ -75,7 +75,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="${pageContext.request.contextPath}/user/manageUser" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             读者管理
@@ -84,7 +84,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="${pageContext.request.contextPath}/user/queryAllUser" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>读者列表</p>
                             </a>

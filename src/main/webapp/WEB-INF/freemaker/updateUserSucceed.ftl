@@ -13,7 +13,7 @@
         intervalid = setInterval("fun()", 1000);
         function fun() {
             if (s == 0) {
-                window.location.href = "${rc.contextPath}/book/books";
+                window.location.href = "${rc.contextPath}/user/queryAllUser";
                 clearInterval(intervalid);
             }
             document.getElementById("mes").innerHTML = s;
@@ -28,6 +28,6 @@
 <#else >
     修改失败！请稍后重试
 </#if>
-<p>将在 <span id="mes">3</span> 秒钟后返回图书界面！</p>
+<p>将在 <span id="mes">3</span> 秒钟后返回读者信息界面！</p>
 </body>
 </html>

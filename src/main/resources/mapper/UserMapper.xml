@@ -12,6 +12,11 @@
 		SELECT  *  FROM book_users   where userName = #{userName}
 	</select>
 
+	<select id="findUserById"  resultType="example.entity.User" >
+		SELECT  *  FROM book_users   where id = #{id}
+	</select>
+
+
 	<select id="count" resultType="int">
 		select count(*) as count from book_users
 		<where>
@@ -52,6 +57,17 @@
 		update book_users set userPassword = #{pwd} where id = #{userId}
 	</update>
 
+	<update id="updateUser">
+		update book_users set
+		 userPassword = #{pwd},
+		 phone = #{phone},
+		 updateDate = #{updateDate}
+		 where id = #{id}
+	</update>
+
+	<delete id="deleteUser">
+		delete  from  book_users where id = #{id}
+	</delete>
 
 </mapper>
 <!--

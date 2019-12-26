@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -179,6 +180,38 @@ public class UserController extends HttpServlet {
     JOptionPane.showMessageDialog(null,"注册成功!");
     return "login";
 }
+
+    @RequestMapping("/updateUser")
+    public ModelAndView updateBook(int id) {
+        ModelAndView modelAndView = new ModelAndView("updateUser");
+        User user = userService.findUserById(id);
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
+    @RequestMapping("/updateUserSucceed")
+    public ModelAndView updateBookSucceed(int id, String pwd, String phone) {
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView("updateUserSucceed");
+        int i = userService.updateUser(id, pwd, phone, date );
+        modelAndView.addObject("i",i);
+        return modelAndView;
+    }
+
+    @RequestMapping("/deleteUser")
+    public String deleteUser(int id) {
+        int res = JOptionPane.showConfirmDialog(null, "是否删除", "是否删除", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            int i = userService.deleteUser(id);
+            if(i==1){
+                return "redirect:/user/queryAllUser";
+            }else {
+                return "redirect:/user/queryAllUser";
+            }
+        } else {
+            return "redirect:/user/queryAllUser";
+        }
+    }
 }
 
 

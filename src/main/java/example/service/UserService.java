@@ -23,5 +23,10 @@ public interface UserService {
     int resetPwd(String pwd, int userId);
 
 
+    User findUserById(int id);
+
+    int deleteUser(int id);
+
+    int updateUser(int id, String pwd, String phone, Date date);
 }
 

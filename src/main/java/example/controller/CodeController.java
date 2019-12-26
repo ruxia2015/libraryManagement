@@ -2,7 +2,9 @@ package example.controller;
 
 import example.util.CodeUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -51,7 +53,8 @@ public class CodeController {
 
 
     @RequestMapping("/checkCode")
-      public int  doPost(HttpServletRequest request, HttpServletResponse response)
+    @ResponseBody
+      public int doPost(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
             String code = request.getParameter("code");
             // 验证验证码

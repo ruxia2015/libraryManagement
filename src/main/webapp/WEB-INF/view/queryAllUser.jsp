@@ -118,17 +118,31 @@
                                         <th>用户名</th>
                                         <th>电话</th>
                                         <th>创建时间</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody id="dataPage">
                                         <c:if test="${!empty page.list}">
                                             <c:forEach items="${page.list}" var = "user" varStatus="u">
                                                 <tr>
+
                                                     <td>${u.count}</td>
                                                     <td>${user.userName}</td>
                                                     <td>${user.phone}</td>
                                                     <td>
                                                         <fmt:formatDate value = "${user.createDate}" type = "date"/>
+                                                    </td>
+                                                    <td>
+                                                    <a class="btn btn-info btn-sm" href="${rc.contextPath}/user/updateUser?id=${user.id}">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        编辑
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" href="${rc.contextPath}/user/deleteUser?id=${user.id}">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        删除
+                                                    </a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

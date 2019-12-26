@@ -170,14 +170,12 @@
                                                             </a>
                                                         </#if>
 
-                                                        <a
-                                                                class="btn btn-info btn-sm" href="${rc.contextPath}/book/updateBook?id=${bookList.id}">
+                                                        <a class="btn btn-info btn-sm" href="${rc.contextPath}/book/updateBook?id=${bookList.id}">
                                                             <i class="fas fa-pencil-alt">
                                                             </i>
                                                             编辑
                                                         </a>
-                                                        <a
-                                                                class="btn btn-danger btn-sm" href="${rc.contextPath}/book/deleteBook?id=${bookList.id}">
+                                                        <a class="btn btn-danger btn-sm" href="${rc.contextPath}/book/deleteBook?id=${bookList.id}">
                                                             <i class="fas fa-trash">
                                                             </i>
                                                             删除

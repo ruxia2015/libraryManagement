@@ -88,11 +88,4 @@ public class CodeUtil {
         return map;
     }
 
-    public static void main(String[] args) throws Exception {
-        //创建文件输出流对象
-        OutputStream out = new FileOutputStream("D://img/"+System.currentTimeMillis()+".jpg");
-        Map<String,Object> map = CodeUtil.generateCodeAndPic();
-        ImageIO.write((RenderedImage) map.get("codePic"), "jpeg", out);
-        System.out.println("验证码的值为："+map.get("code"));
-    }
 }

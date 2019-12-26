@@ -57,4 +57,25 @@ public class UserDaoImpl implements UserDao {
         params.put("userId" ,userId);
         return sqlSessionTemplate.update("user.resetPwd",params);
     }
+
+    public User findUserById(int id) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id" ,id);
+        return sqlSessionTemplate.selectOne("user.findUserById",params);
+    }
+
+    public int deleteUser(int id) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id" ,id);
+        return sqlSessionTemplate.delete("user.deleteUser",params);
+    }
+
+    public int updateUser(int id, String pwd, String phone, Date date) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("id" ,id);
+        params.put("pwd" ,pwd);
+        params.put("phone" ,phone);
+        params.put("updateDate" ,date);
+        return sqlSessionTemplate.update("user.updateUser",params);
+    }
 }
