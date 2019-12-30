@@ -32,7 +32,6 @@
                     display:"",
                     "color":"red"
                 });
-                document.getElementById("phone").value="";
                 return false;
             }
             $("#showPhone").css({
@@ -43,6 +42,7 @@
         }
 
         function submitForm2() {
+            alert("11");
             if(!pwd1()){
                 return false;
             }
@@ -67,14 +67,14 @@
             <tr>
                 <td width="100px"> 密码：</td>
                 <td width="100px">
-                    <input type="text" name="pwd"  value="${user.userPassword}">
+                    <input type="text" name="pwd" id ="pwd"  value="${user.userPassword}">
                     <span id = "showPwd"></span>
                 </td>
             </tr>
             <tr>
                 <td>电话：</td>
                 <td>
-                    <input type="text" name="phone" value="${(user.phone)!""}">
+                    <input type="text" name="phone" id="phone" value="${(user.phone)!""}">
                     <span id = "showPhone"></span>
                 </td>
             </tr>

@@ -212,6 +212,11 @@ public class UserController extends HttpServlet {
             return "redirect:/user/queryAllUser";
         }
     }
+
+    @RequestMapping("/workbench")
+    public String workbench(){
+        return "workbench";
+    }
 }
 
 

@@ -35,7 +35,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/index" class="nav-link active">
+                            <a href="${pageContext.request.contextPath}/user/workbench" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>工作台</p>
                             </a>
@@ -55,7 +55,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="${pageContext.request.contextPath}/book/books" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>管理图书</p>
                             </a>
@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                            <a href="${pageContext.request.contextPath}/borrowBook/queryAllBorrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>还书</p>
                             </a>

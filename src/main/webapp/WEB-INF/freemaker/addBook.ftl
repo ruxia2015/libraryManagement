@@ -174,17 +174,7 @@
         }
 
     </script>
-    <style>
-        .div_head{
-            margin:0 auto;
-            width:100px;
 
-        }
-        .div_table{
-            margin:0 auto;
-            width:300px;
-        }
-    </style>
 </head>
 
 <body>
