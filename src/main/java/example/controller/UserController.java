@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import java.util.*;
 
@@ -214,8 +215,32 @@ public class UserController extends HttpServlet {
     }
 
     @RequestMapping("/workbench")
-    public String workbench(){
+    public String workbench( HttpServletRequest request, Model model){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        model.addAttribute("user",user);
         return "workbench";
+    }
+    @RequestMapping("/workbench/a")
+    public String workbenchA( HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+        return "workbench/libraryBorrow/a";
+    }
+    @RequestMapping("/workbench/b")
+    public String workbenchB( HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+        return "workbench/libraryBorrow/b";
+    }
+    @RequestMapping("/workbench/c")
+    public String workbenchC( HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+        return "workbench/libraryBorrow/c";
     }
 }
 

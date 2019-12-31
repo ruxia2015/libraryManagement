@@ -53,7 +53,7 @@
                         <ol class="breadcrumb float-sm-right">
 <%--                            <li class="breadcrumb-item user">${sessionScope.user.etUserName} </li>--%>
                             <li class="breadcrumb-item"><a href="#">首页</a></li>
-                            <li class="breadcrumb-item active">工作台</li>
+                            <li class="breadcrumb-item ">工作台</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
