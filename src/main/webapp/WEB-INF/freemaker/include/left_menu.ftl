@@ -34,12 +34,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview ">
-                        <li class="nav-item">
-                            <a href="${rc.contextPath}/book/index" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>首页</p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="${rc.contextPath}/book/workbench" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
