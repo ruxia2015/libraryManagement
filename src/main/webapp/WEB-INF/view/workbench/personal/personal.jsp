@@ -43,28 +43,29 @@
     }
     // $(function () {
     //    $("#updatePersonal").validate({
-    //        rules:{
-    //            age:{
-    //                 range:[1,199]
-    //            },
-    //            sex:{
-    //                gender:true
-    //            },
-    //        },
-    //        messages:{
-    //            age:{
-    //                range: "请输入正确的数字"
-    //            },
-    //            sex: {
-    //                gender:"请输入男或女"
-    //            }
-    //        }
-    //    });
-    //     $.validator.addMethod("gender",function (value,element) {
-    //         var tal =/^['男'|'女']$/;
-    //         return this.optional(element) || (tal.test(value));
-    //     },"请输入男或女");
+    //     rules:{
+    //         age:{
+    //             range:[1,199]
+    //         },
+    //         sex:{
+    //             gender:true
+    //         },
+    //     },
+    //     messages:{
+    //         age:{
+    //             range: "请输入正确的数字"
+    //         },
+    //         sex: {
+    //             gender:"请输入男或女"
+    //         }
+    //     }
+    // });
+    // $.validator.addMethod("gender",function (value,element) {
+    //     var tal =/^['男'|'女']$/;
+    //     return this.optional(element) || (tal.test(value));
+    // },"请输入男或女");
     // })
+
 </script>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

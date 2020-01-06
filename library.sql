@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50630
 File Encoding         : 65001
 
-Date: 2019-12-24 09:39:39
+Date: 2020-01-06 14:39:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,14 +38,13 @@ CREATE TABLE `books` (
 -- ----------------------------
 -- Records of books
 -- ----------------------------
-INSERT INTO `books` VALUES ('2', '1234', '西游记', '吴承恩', '此书为中国四大名著之一', '1', 'image/西游记.jpg', '99.8', '2019-12-09 14:07:37', '2019-12-20 10:52:05', '50', '0');
-INSERT INTO `books` VALUES ('3', '12345', '三国演义', '罗贯中', '此书为中国四大名著之一', '1', 'image/三国演义.jpg', '99.8', '2019-12-09 14:10:01', '2019-12-20 15:13:42', '50', '18');
-INSERT INTO `books` VALUES ('4', '123456', '水浒传', '施耐庵', '此书为中国四大名著之一', '1', null, '99.8', '2019-12-09 14:11:27', null, '50', '46');
-INSERT INTO `books` VALUES ('5', '1234567', '红楼梦', '曹雪芹', '此书为中国四大名著之一', '1', null, '99.8', '2019-12-09 14:13:18', null, '50', '35');
-INSERT INTO `books` VALUES ('6', '7', '7', null, '7', '5', '7', '7', '2019-12-11 11:46:22', null, '7', '7');
+INSERT INTO `books` VALUES ('2', '1234', '西游记', '吴承恩', '此书为中国四大名著之一', '1', 'image/西游记.jpg', '99.8', '2019-12-09 14:07:37', '2019-12-25 10:40:53', '50', '0');
+INSERT INTO `books` VALUES ('3', '12345', '三国演义', '罗贯中', '此书为中国四大名著之一', '1', 'image/三国演义.jpg', '99.8', '2019-12-09 14:10:01', '2019-12-20 15:13:42', '50', '16');
+INSERT INTO `books` VALUES ('4', '123456', '水浒传', '施耐庵', '此书为中国四大名著之一', '1', null, '99.8', '2019-12-09 14:11:27', null, '50', '41');
+INSERT INTO `books` VALUES ('5', '1234567', '红楼梦', '曹雪芹', '此书为中国四大名著之一', '1', null, '99.8', '2019-12-09 14:13:18', null, '50', '24');
+INSERT INTO `books` VALUES ('6', '7', '7', '7', '7', '5', 'image/水浒传.jpg', '1212.9', '2019-12-11 11:46:22', '2019-12-27 14:39:21', '7', '7');
 INSERT INTO `books` VALUES ('7', '8', '8', null, '8', '4', '2.png', '8', '2019-12-11 14:07:43', null, '8', '8');
-INSERT INTO `books` VALUES ('8', '2', '2', null, '2.png', '5', null, '2', '2019-12-11 17:06:05', null, '2', '2');
-INSERT INTO `books` VALUES ('9', '22', '22', '22', '22', '6', '2.png', '22', '2019-12-11 17:17:06', null, '22', '22');
+INSERT INTO `books` VALUES ('9', '22', '22', '22', '22', '6', '2.png', '22', '2019-12-11 17:17:06', null, '22', '21');
 INSERT INTO `books` VALUES ('10', '33', '33', '33', '33', '7', 'file', '33', '2019-12-11 17:24:15', null, '33', '33');
 INSERT INTO `books` VALUES ('11', '44', '44', '44', '44', '8', 'E:/项目图片/timg.jpg', '44', '2019-12-11 17:35:45', null, '44', '44');
 INSERT INTO `books` VALUES ('12', '55', '55', '55', '55', '9', 'E:\\项目图片\\timg.jpg', '55', '2019-12-11 17:37:28', null, '55', '55');
@@ -61,7 +60,6 @@ INSERT INTO `books` VALUES ('21', '321', '321', '321', '321', '18', '/image/timg
 INSERT INTO `books` VALUES ('24', '9', '09', '09', '09', '19', 'image/', '98', '2019-12-12 12:00:19', '2019-12-12 17:22:23', '97', '98');
 INSERT INTO `books` VALUES ('25', '9999', '9988', '9988', '9988', '20', 'image/骆驼祥子.jpg', '9999', '2019-12-12 17:05:30', '2019-12-13 09:47:33', '9999', '9998');
 INSERT INTO `books` VALUES ('26', '88888', '8888', '8888', '8', '1', 'image/默认.jpg', '888', '2019-12-13 09:45:49', '2019-12-13 09:54:30', '88', '88');
-INSERT INTO `books` VALUES ('27', 'd', 'd', 'd', 'd', null, 'image/默认.jpg', '4', '2019-12-17 16:13:56', null, '4', '4');
 INSERT INTO `books` VALUES ('28', 'x', 'x', '西西', 'x', '5', null, '6', null, null, '6', '6');
 INSERT INTO `books` VALUES ('29', 'krrj-lx999', '狂人日记', '鲁迅', 'we', null, 'image/默认.jpg', '99.9', '2019-12-23 11:13:53', null, '999', '98');
 
@@ -111,14 +109,14 @@ CREATE TABLE `book_users` (
   `createDate` datetime DEFAULT NULL,
   `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book_users
 -- ----------------------------
-INSERT INTO `book_users` VALUES ('1', '张三', '123456', null, null, null);
-INSERT INTO `book_users` VALUES ('2', 'abc', '123', null, null, null);
-INSERT INTO `book_users` VALUES ('3', '1', '1', '1', null, null);
+INSERT INTO `book_users` VALUES ('1', '张三', '123456', '14556667878', null, '2019-12-26 15:32:18');
+INSERT INTO `book_users` VALUES ('2', 'abc', '123', '6665', null, '2019-12-26 16:36:52');
+INSERT INTO `book_users` VALUES ('3', '1', '1', '1', null, '2019-12-26 16:16:08');
 INSERT INTO `book_users` VALUES ('5', '2', '2222', '2', '2019-11-28 17:11:34', null);
 INSERT INTO `book_users` VALUES ('6', '12', '1', '3', '2019-11-28 17:44:18', null);
 INSERT INTO `book_users` VALUES ('7', 'qqw', '1', '3', '2019-11-28 17:45:41', null);
@@ -133,6 +131,8 @@ INSERT INTO `book_users` VALUES ('16', '333', '2', '1', '2019-11-29 11:33:06', n
 INSERT INTO `book_users` VALUES ('17', '3334', '1', '4', '2019-11-29 11:37:44', null);
 INSERT INTO `book_users` VALUES ('18', '9', '9999', '9999', '2019-12-19 17:07:30', null);
 INSERT INTO `book_users` VALUES ('19', '99', '99999', '9999', '2019-12-19 17:11:32', null);
+INSERT INTO `book_users` VALUES ('20', '66', '123456', '14556667878', '2019-12-24 13:45:20', null);
+INSERT INTO `book_users` VALUES ('21', '0000', '0000', '0000', '2020-01-06 09:41:29', null);
 
 -- ----------------------------
 -- Table structure for borrow
@@ -150,7 +150,7 @@ CREATE TABLE `borrow` (
   `returnDate` datetime DEFAULT NULL,
   `overdue` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of borrow
@@ -158,7 +158,7 @@ CREATE TABLE `borrow` (
 INSERT INTO `borrow` VALUES ('1', '1', ' 张三', null, '骆驼祥子', '1', '2019-12-09 00:00:00', '2019-12-20 11:03:33', '2019-12-11 00:00:00', null);
 INSERT INTO `borrow` VALUES ('2', '2', ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', '2019-12-20 14:18:43', '2019-12-17 00:00:00', null);
 INSERT INTO `borrow` VALUES ('3', '3', ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', '2019-12-20 15:53:13', '2019-12-17 00:00:00', null);
-INSERT INTO `borrow` VALUES ('4', '3', ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-17 00:00:00', null);
+INSERT INTO `borrow` VALUES ('4', '3', ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', '2019-12-24 11:26:34', '2019-12-17 00:00:00', '1');
 INSERT INTO `borrow` VALUES ('5', '4', ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', '2019-12-20 14:18:26', '2019-12-17 00:00:00', null);
 INSERT INTO `borrow` VALUES ('6', '2', ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', '2019-12-20 16:26:11', '2019-12-17 00:00:00', null);
 INSERT INTO `borrow` VALUES ('7', '1', ' 张三', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-11 00:00:00', null);
@@ -167,7 +167,7 @@ INSERT INTO `borrow` VALUES ('9', '8', ' 2', null, '骆驼祥子', '1', '2019-12
 INSERT INTO `borrow` VALUES ('10', '9', ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', '2019-12-24 09:23:28', '2019-12-26 00:00:00', '0');
 INSERT INTO `borrow` VALUES ('11', '1', ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00', null);
 INSERT INTO `borrow` VALUES ('12', '2', ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00', null);
-INSERT INTO `borrow` VALUES ('13', '3', ' 2', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00', null);
+INSERT INTO `borrow` VALUES ('13', '3', ' 1', null, '骆驼祥子', '1', '2019-12-09 00:00:00', null, '2019-12-26 00:00:00', null);
 INSERT INTO `borrow` VALUES ('14', '2', ' 1', null, '水浒传', '1', '2019-12-09 00:00:00', null, '2019-12-19 00:00:00', null);
 INSERT INTO `borrow` VALUES ('15', '5', '2', null, '三国演义', '1', '2019-12-10 00:00:00', '2019-12-24 09:20:56', '2019-12-19 00:00:00', '1');
 INSERT INTO `borrow` VALUES ('16', '6', '2', null, '水浒传', '1', '2019-12-10 00:00:00', null, '2019-12-20 00:00:00', null);
@@ -183,10 +183,19 @@ INSERT INTO `borrow` VALUES ('25', '2', '1', '4', '水浒传', '1', '2019-12-10 
 INSERT INTO `borrow` VALUES ('26', '2', '1', '4', '水浒传', '1', '2019-12-11 00:00:00', '2019-12-20 15:11:06', '2019-12-28 00:00:00', null);
 INSERT INTO `borrow` VALUES ('27', '5', '2', '25', '9999', '1', '2019-12-12 00:00:00', null, '2019-12-28 00:00:00', null);
 INSERT INTO `borrow` VALUES ('28', '3', '1', '3', '三国演义', '1', '2019-12-20 00:00:00', null, '2019-12-27 00:00:00', null);
-INSERT INTO `borrow` VALUES ('29', '3', '1', '5', '红楼梦', '1', '2019-12-20 00:00:00', '2019-12-24 09:25:27', '2020-01-20 00:00:00', '1');
-INSERT INTO `borrow` VALUES ('30', '3', '1', '5', '红楼梦', '1', '2019-12-24 00:00:00', '2019-12-24 09:27:10', '2020-01-24 00:00:00', '1');
-INSERT INTO `borrow` VALUES ('31', '3', '1', '4', '水浒传', '1', '2019-12-24 00:00:00', '2019-12-24 09:34:50', '2020-01-24 00:00:00', '1');
-INSERT INTO `borrow` VALUES ('32', '3', '1', '5', '红楼梦', null, '2019-12-24 09:39:08', null, '2020-01-24 09:39:14', null);
+INSERT INTO `borrow` VALUES ('29', '3', '1', '5', '红楼梦', '1', '2019-12-20 00:00:00', '2019-12-24 09:25:27', '2020-01-20 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('30', '3', '1', '5', '红楼梦', '1', '2019-12-24 00:00:00', '2019-12-24 09:27:10', '2020-01-24 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('31', '3', '1', '4', '水浒传', '1', '2019-12-24 00:00:00', '2019-12-24 09:34:50', '2020-01-24 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('32', '3', '1', '5', '红楼梦', null, '2019-12-24 09:39:08', '2019-12-24 10:27:38', '2020-01-24 09:39:14', '0');
+INSERT INTO `borrow` VALUES ('33', '3', '1', '5', '红楼梦', '1', '2019-12-24 00:00:00', '2019-12-24 10:33:14', '2020-01-24 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('34', '3', '1', '3', '三国演义', '1', '2019-12-24 00:00:00', '2019-12-24 10:30:14', '2020-01-24 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('35', '3', '1', '3', '三国演义', '1', '2019-12-24 00:00:00', '2019-12-24 10:40:32', '2020-01-24 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('36', '20', '66', '9', '22', '1', '2019-12-24 00:00:00', null, '2020-01-24 00:00:00', null);
+INSERT INTO `borrow` VALUES ('37', '3', '1', '6', '7', '10', '2019-12-24 00:00:00', '2019-12-25 10:56:49', '2019-12-31 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('38', '3', '1', '5', '红楼梦', '10', '2019-12-24 00:00:00', '2019-12-25 11:05:53', '2019-12-31 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('39', '3', '1', '4', '水浒传', '5', '2019-12-25 00:00:00', '2019-12-25 11:08:06', '2020-01-01 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('40', '3', '1', '4', '水浒传', '9', '2019-12-25 00:00:00', '2019-12-25 11:16:37', '2020-01-01 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('41', '3', '1', '4', '水浒传', '11', '2020-01-02 00:00:00', '2020-01-02 10:30:30', '2020-01-09 00:00:00', '0');
 
 -- ----------------------------
 -- Table structure for librarian
@@ -205,3 +214,24 @@ CREATE TABLE `librarian` (
 -- ----------------------------
 -- Records of librarian
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for personal
+-- ----------------------------
+DROP TABLE IF EXISTS `personal`;
+CREATE TABLE `personal` (
+  `userId` int(11) NOT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `age` int(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of personal
+-- ----------------------------
+INSERT INTO `personal` VALUES ('1', '啊啊', null, null, null);
+INSERT INTO `personal` VALUES ('2', null, null, null, null);
+INSERT INTO `personal` VALUES ('3', '', '52', '  b', '');
+INSERT INTO `personal` VALUES ('21', null, null, null, null);
