@@ -1,9 +1,12 @@
 package example.controller;
 
+import example.entity.BorrowBook;
 import example.entity.Page;
+import example.entity.Personal;
 import example.entity.User;
 import example.service.BookService;
 import example.service.BorrowBookService;
+import example.service.PersonalService;
 import example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,8 @@ public class UserController extends HttpServlet {
     private BookService bookService;
     @Autowired
     private BorrowBookService borrowBookService;
+    @Autowired
+    private PersonalService personalService;
 
     //用户登录
     @RequestMapping("/login")
@@ -178,6 +183,10 @@ public class UserController extends HttpServlet {
         return "register";
     }
     //弹出一个确认框，点击确认后，在跳转
+    User user = userService.findUserByName(name);
+    int uderId = user.getId();
+    int i = personalService.addPersonal(uderId);
+
     JOptionPane.showMessageDialog(null,"注册成功!");
     return "login";
 }
@@ -222,18 +231,34 @@ public class UserController extends HttpServlet {
         return "workbench";
     }
     @RequestMapping("/workbench/a")
-    public String workbenchA( HttpServletRequest request, Model model) {
+    public String workbenchA( HttpServletRequest request, Model model,@RequestParam(required = false)String bookName) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        int id = user.getId();
+        List<BorrowBook> borrowBookList = borrowBookService.queryAllBorrow(id,bookName);
+        model.addAttribute("borrowBookList",borrowBookList);
         model.addAttribute("user", user);
         return "workbench/libraryBorrow/a";
     }
     @RequestMapping("/workbench/b")
-    public String workbenchB( HttpServletRequest request, Model model) {
+    public String workbenchB( HttpServletRequest request, Model model,@RequestParam(required = false)String userName, @RequestParam(required = false)String bookName) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
-        return "workbench/libraryBorrow/b";
+        User user1 = userService.findUserByName(userName);
+        int id;
+        if(user1 == null){
+            id = user.getId();
+        }else {
+            id = user1.getId();
+        }
+        List<BorrowBook> borrowBookList = borrowBookService.queryAllBorrow(id,bookName);
+        Set<String> bookSet = new HashSet<String>();
+        for (BorrowBook borrowBook : borrowBookList) {
+            bookSet.add(borrowBook.getBookName());
+        }
+        model.addAttribute("bookSet",bookSet);
+            return "workbench/libraryBorrow/b";
     }
     @RequestMapping("/workbench/c")
     public String workbenchC( HttpServletRequest request, Model model) {
@@ -241,6 +266,17 @@ public class UserController extends HttpServlet {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
         return "workbench/libraryBorrow/c";
+    }
+
+    @RequestMapping("workbench/personal")
+    public ModelAndView nickname(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("workbench/personal/personal");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        int userId = user.getId();
+        Personal personal = personalService.findPersonalByID(userId);
+        modelAndView.addObject("personal",personal);
+        return modelAndView;
     }
 }
 

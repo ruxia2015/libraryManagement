@@ -63,13 +63,13 @@
                 phone: "电话号码不能为空"
             },
 
-        })
+        });
         $.validator.addMethod("pwdLength",function (value,element) {
             var tal = /^[a-zA-Z0-9-.!@#$%^&*()+?><]{4,20}$/;
             return this.optional(element) || (tal.test(value));
         },"密码为4到20位");
 
-    })
+    });
     function goBack() {
         window.history.back(-1)
     }

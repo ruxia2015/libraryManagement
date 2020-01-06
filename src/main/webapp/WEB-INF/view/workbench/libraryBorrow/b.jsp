@@ -196,34 +196,14 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview ">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item  ">
+                        <a href="${pageContext.request.contextPath}/user/workbench/personal" class="nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 个人信息
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="./index.html" class="nav-link ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>昵称</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./index2.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>性别</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./index3.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>年龄</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <%--                    <li class="nav-item">--%>
                     <%--                        <a href="pages/widgets.html" class="nav-link">--%>
@@ -300,7 +280,7 @@
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/user/workbench/b" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>B</p>
+                                    <p>浏览历史</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -722,12 +702,33 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">B</h1>
-                    </div><!-- /.col -->
+                        <p>你一共浏览过${bookSet.size()}本书</p>
+                     <table>
+                         <thead>
+                         <tr>
+                             <th width="100">序号</th>
+                             <th width="100">书名</th>
+                         </tr>
+                         </thead>
+                         <tbody>
+                         <c:if test="${!empty bookSet}">
+                             <c:forEach items="${bookSet}" var = "book" varStatus="b">
+                                 <tr>
+                                     <td>${b.count}</td>
+                                     <td>${book}</td>
+                                 </tr>
+                             </c:forEach>
+                         </c:if>
+                         <c:if test="${empty bookSet}">
+                             您的浏览记录为无。
+                         </c:if>
+                         </tbody>
+                     </table>
+                    </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/user/workbench">Home</a></li>
+                            <li class="breadcrumb-item active">浏览历史</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->

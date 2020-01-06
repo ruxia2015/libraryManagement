@@ -1,4 +1,6 @@
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
@@ -300,7 +302,7 @@
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/user/workbench/b" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>B</p>
+                                    <p>浏览历史</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -722,12 +724,83 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">A</h1>
-                    </div><!-- /.col -->
+                        <table border="1" cellspacing="0" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td width="100">序号</td>
+                                <td width="100">借书人</td>
+                                <td width="100">书名</td>
+                                <td width="100">数量</td>
+                                <td width="150">开始时间</td>
+                                <td width="150">预计返回时间</td>
+                                <td width="150">实际返回时间</td>
+                                <td width="100">操作</td>
+                            </tr>
+                            </thead>
+                            <tbody id="dataPage">
+
+                            <c:if test="${!empty borrowBookList}">
+                                <c:forEach items="${borrowBookList}" var = "borrowBook" varStatus="borrow">
+                            <tr>
+                                <td>
+                                    ${borrow.count}
+                                </td>
+                                <td>
+                                    ${borrowBook.userName}
+                                </td>
+                                <td>
+                                    ${borrowBook.bookName}
+                                </td>
+                                <td>
+                                    ${borrowBook.quantity}
+                                </td>
+
+                                <td>
+                                    <fmt:formatDate value="${borrowBook.startDate}" pattern="yyyy-MM-dd "/>
+                                </td>
+                                <td>
+                                    <fmt:formatDate value="${borrowBook.returnDate}" pattern="yyyy-MM-dd "/>
+                                </td>
+                                <c:if test="${not empty borrowBook.endDate}">
+                                    <td>
+                                        <fmt:formatDate value="${borrowBook.endDate}" pattern="yyyy-MM-dd "/>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm disabled"  href="${pageContext.request.contextPath}/borrowBook/returnBook?id=${borrowBook.id}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            还书
+                                        </a>
+                                    </td>
+                                </c:if>
+                                <c:if test="${empty borrowBook.endDate}">
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm " href="${pageContext.request.contextPath}/borrowBook/returnBook?id=${borrowBook.id}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            还书
+                                        </a>
+                                    </td>
+                                </c:if>
+
+                            </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty borrowBookList}">
+                            <tr>
+                                <td  colspan="10">
+                                    您的借阅信息为无。
+                                </td>
+                            </tr>
+                            </c:if>
+                        </tbody>
+                        </table>
+                    </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/user/workbench">Home</a></li>
+                            <li class="breadcrumb-item active">借阅历史</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
