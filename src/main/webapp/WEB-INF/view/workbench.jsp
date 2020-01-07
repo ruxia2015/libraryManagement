@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: ZHAOBING
@@ -46,7 +47,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Home</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
@@ -701,12 +702,27 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <c:if test="${! empty borrowBookList}">
+                            <p>您最近一次借书的时间：
+                                <fmt:formatDate value="${borrowBookList[0].startDate}" pattern="yyyy-MM-dd "/>
+                            </p>
+                            <P>
+                                您最近一次借书的书名：${borrowBookList[0].bookName}
+                            </P>
+                        </c:if>
+                       <c:if test="${empty borrowBookList}">
+                           <p>您还未借过书，快来
+                               <a href="${pageContext.request.contextPath}/book/books" >
+                                   图书大厅
+                               </a>
+                              找本书看看吧！
+                           </p>
+                       </c:if>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/book/index">首页</a></li>
+                            <li class="breadcrumb-item active">工作台</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->

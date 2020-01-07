@@ -47,8 +47,7 @@
                 </div>
             </div>
         </section>
-        <form method="post" class="sel_btn" onsubmit="return submitForm();" action="${rc.contextPath}
-        /borrowBook/queryAllBorrow" id = "borrowByName" >
+        <form method="post" class="sel_btn" onsubmit="return submitForm();" action="${rc.contextPath}/borrowBook/queryAllBorrow" id = "borrowByName" >
         <section class="content">
             <div class="container-fluid">
                 <div class="row">

@@ -34,39 +34,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/summernote/summernote-bs4.css">
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<script type="text/javascript">
-    function goBack(){
-        window.location.href="${pageContext.request.contextPath}/user/workbench"
-    }
-    // $(function () {
-    //    $("#updatePersonal").validate({
-    //     rules:{
-    //         age:{
-    //             range:[1,199]
-    //         },
-    //         sex:{
-    //             gender:true
-    //         },
-    //     },
-    //     messages:{
-    //         age:{
-    //             range: "请输入正确的数字"
-    //         },
-    //         sex: {
-    //             gender:"请输入男或女"
-    //         }
-    //     }
-    // });
-    // $.validator.addMethod("gender",function (value,element) {
-    //     var tal =/^['男'|'女']$/;
-    //     return this.optional(element) || (tal.test(value));
-    // },"请输入男或女");
-    // })
 
-</script>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -349,8 +321,8 @@
                         <form  id="updatePersonal" method="post"  action="${pageContext.request.contextPath}/personal/updatePersonal">
                             <table class="table table-bordered">
                                 <tr>
-                                    <td width="100">昵称</td>
-                                    <td width="100">
+                                    <td >昵称</td>
+                                    <td >
                                         <input type="text" id ="nickname" name="nickname" value="${personal.nickname}">
                                     </td>
                                 </tr>
@@ -363,7 +335,9 @@
                                 <tr>
                                     <td>性别</td>
                                     <td>
-                                        <input type="text" id ="sex" name="sex" value=" ${personal.sex}">
+                                        <input type="hidden" id ="gender" name="gender" value="${personal.sex}">
+                                        <label><input name="sex" type="radio" value="男"/>男</label>
+                                        <label><input name="sex" type="radio" value="女"/>女</label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -380,8 +354,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/user/workbench">Home</a></li>
-                            <li class="breadcrumb-item active">借阅历史</li>
+                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/book/index">首页</a></li>
+                            <li class="breadcrumb-item active">个人信息</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -435,5 +409,41 @@
 <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/dist/js/demo.js"></script>
+<script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/additional-methods.js"></script>
+<script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
+<script type="text/javascript">
+    var gender =document.getElementById("gender").value;
+    initradio('sex',gender);
+    function goBack(){
+        window.location.href="${pageContext.request.contextPath}/user/workbench"
+    }
+    $(function () {
+        $("#updatePersonal").validate({
+            rules:{
+                age:{
+                    range:[1,199]
+                },
+
+            },
+            messages:{
+                age:{
+                    range: "请输入正确的数字"
+                },
+            }
+        });
+    })
+
+    function initradio(rName,rValue){
+        var rObj = document.getElementsByName(rName);
+
+        for(var i = 0;i < rObj.length;i++){
+            if(rObj[i].value == rValue){
+                rObj[i].checked =  'checked';
+            }
+        }
+    }
+
+</script>
 </body>
 </html>

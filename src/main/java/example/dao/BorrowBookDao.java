@@ -22,4 +22,6 @@ public interface BorrowBookDao {
     int overdueCount(Integer id);
 
     int borrowCount(Integer id);
+
+    List<BorrowBook> queryAllBorrowByStartDate(int userId);
 }

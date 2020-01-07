@@ -201,7 +201,6 @@
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 个人信息
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                     </li>
@@ -727,7 +726,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/user/workbench">Home</a></li>
+                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/book/index">首页</a></li>
                             <li class="breadcrumb-item active">浏览历史</li>
                         </ol>
                     </div><!-- /.col -->

@@ -72,4 +72,10 @@ public class BorrowBookDaoImpl implements BorrowBookDao {
         params.put("id", id);
         return sqlSessionTemplate.selectOne("borrowCount",params);
     }
+
+    public List<BorrowBook> queryAllBorrowByStartDate(int userId) {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("id", userId);
+        return sqlSessionTemplate.selectList("borrow.queryAllBorrowByStartDate",params);
+    }
 }

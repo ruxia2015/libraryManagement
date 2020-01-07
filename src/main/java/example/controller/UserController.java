@@ -228,6 +228,9 @@ public class UserController extends HttpServlet {
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
         model.addAttribute("user",user);
+        int userId = user.getId();
+        List<BorrowBook> borrowBookList = borrowBookService.queryAllBorrowByStartDate(userId);
+        model.addAttribute("borrowBookList",borrowBookList);
         return "workbench";
     }
     @RequestMapping("/workbench/a")

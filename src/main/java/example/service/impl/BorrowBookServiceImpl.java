@@ -46,4 +46,8 @@ public class BorrowBookServiceImpl implements BorrowBookService {
     public int borrowCount(Integer id) {
         return borrowBookDao.borrowCount(id);
     }
+
+    public List<BorrowBook> queryAllBorrowByStartDate(int userId) {
+        return borrowBookDao.queryAllBorrowByStartDate(userId);
+    }
 }
