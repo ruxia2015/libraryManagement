@@ -6,9 +6,15 @@
 
 	<resultMap id="librarianMap" type="example.entity.Librarian">
 	</resultMap>
-	
 
-	
+
+	<select id="findLibrarianByName"  resultType="example.entity.Librarian" >
+		SELECT  *  FROM librarian   where name = #{userName}
+	</select>
+
+	<update id="changePwd">
+		update librarian set password = #{pwd} where id = #{id}
+	</update>
 	<!-- auto generate default query -->
 	<select id="queryLibrarian"
 		parameterType="java.util.Map"

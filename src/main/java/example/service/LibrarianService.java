@@ -2,19 +2,21 @@ package example.service;
 
 import example.dao.LibrarianDao;
 import example.entity.Librarian;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
-public class LibrarianService {
-    @Resource
-    private LibrarianDao librarianDao;
+public interface LibrarianService {
 
-    public List<Librarian> queryLibrarianList(){
+    Boolean Login(String name, String psd, HttpServletRequest request);
 
-        return librarianDao.queryLibrarianList();
-    }
+    Librarian findUserByName(String userName);
 
+    List<Librarian> queryLibrarianList();
+
+    int changePwd(String pwd, int id);
 }

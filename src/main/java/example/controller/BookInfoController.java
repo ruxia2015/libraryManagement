@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.swing.*;
 import java.io.*;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/book")
@@ -174,4 +176,10 @@ public class BookInfoController {
         return modelAndView;
     }
 
+    @RequestMapping("/queryBooksByName")
+    public Map<String ,Books> queryBooksByName(String isbn){
+        int limit =8;
+        Map<String ,Books> map = bookService.queryBooksByName(isbn,limit);
+        return map;
+    }
 }

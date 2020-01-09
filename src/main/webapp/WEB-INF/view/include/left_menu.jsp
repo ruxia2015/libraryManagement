@@ -41,82 +41,82 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/user/workbench" class="nav-link ">
+                            <a href="${pageContext.request.contextPath}/librarian/changePwd" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>工作台</p>
+                                <p>修改密码</p>
                             </a>
                         </li>
 
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            图书管理
-                            <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/book/books" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>管理图书</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/boxed.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>逾期未还</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/borrowBook/queryAllBorrow" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>还书</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="${pageContext.request.contextPath}/user/manageUser" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            读者管理
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/user/queryAllUser" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>读者列表</p>
-                            </a>
-                        </li>
+<%--                <li class="nav-item has-treeview">--%>
+<%--                    <a href="#" class="nav-link">--%>
+<%--                        <i class="nav-icon fas fa-copy"></i>--%>
+<%--                        <p>--%>
+<%--                            图书管理--%>
+<%--                            <i class="fas fa-angle-left right"></i>--%>
+<%--                            <span class="badge badge-info right">6</span>--%>
+<%--                        </p>--%>
+<%--                    </a>--%>
+<%--                    <ul class="nav nav-treeview">--%>
+<%--                        <li class="nav-item">--%>
+<%--                            <a href="${pageContext.request.contextPath}/book/books" class="nav-link">--%>
+<%--                                <i class="far fa-circle nav-icon"></i>--%>
+<%--                                <p>管理图书</p>--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
+<%--                        <li class="nav-item">--%>
+<%--                            <a href="pages/layout/boxed.html" class="nav-link">--%>
+<%--                                <i class="far fa-circle nav-icon"></i>--%>
+<%--                                <p>逾期未还</p>--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
+<%--                        <li class="nav-item">--%>
+<%--                            <a href="${pageContext.request.contextPath}/borrowBook/queryAllBorrow" class="nav-link">--%>
+<%--                                <i class="far fa-circle nav-icon"></i>--%>
+<%--                                <p>还书</p>--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
+<%--                    </ul>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item has-treeview">--%>
+<%--                    <a href="${pageContext.request.contextPath}/user/manageUser" class="nav-link">--%>
+<%--                        <i class="nav-icon fas fa-chart-pie"></i>--%>
+<%--                        <p>--%>
+<%--                            读者管理--%>
+<%--                            <i class="right fas fa-angle-left"></i>--%>
+<%--                        </p>--%>
+<%--                    </a>--%>
+<%--                    <ul class="nav nav-treeview">--%>
+<%--                        <li class="nav-item">--%>
+<%--                            <a href="${pageContext.request.contextPath}/user/queryAllUser" class="nav-link">--%>
+<%--                                <i class="far fa-circle nav-icon"></i>--%>
+<%--                                <p>读者列表</p>--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
 
-                    </ul>
-                </li>
+<%--                    </ul>--%>
+<%--                </li>--%>
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            操作员管理
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>操作员管理</p>
-                            </a>
-                        </li>
+<%--                <li class="nav-item has-treeview">--%>
+<%--                    <a href="#" class="nav-link">--%>
+<%--                        <i class="nav-icon fas fa-chart-pie"></i>--%>
+<%--                        <p>--%>
+<%--                            操作员管理--%>
+<%--                            <i class="right fas fa-angle-left"></i>--%>
+<%--                        </p>--%>
+<%--                    </a>--%>
+<%--                    <ul class="nav nav-treeview">--%>
+<%--                        <li class="nav-item">--%>
+<%--                            <a href="pages/charts/chartjs.html" class="nav-link">--%>
+<%--                                <i class="far fa-circle nav-icon"></i>--%>
+<%--                                <p>操作员管理</p>--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
 
-                    </ul>
-                </li>
+<%--                    </ul>--%>
+<%--                </li>--%>
 
             </ul>
         </nav>

@@ -12,7 +12,7 @@
         intervalid = setInterval("fun()", 1000);
         function fun() {
             if (s == 0) {
-                window.location.href = "${rc.contextPath}/borrowBook/queryAllBorrow";
+                window.location.href = "${rc.contextPath}/user/workbench/a";
                 clearInterval(intervalid);
             }
             document.getElementById("mes").innerHTML = s;

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.awt.print.Book;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -96,6 +97,24 @@ public class BookDaoImpl implements BookDao {
         params.put("id",bookId);
         params.put("quantity", quantity);
         return sqlSessionTemplate.update("addBooksQuantity",params);
+    }
+
+    public Books findBookByIsbn(String isbn) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("isbn",isbn);
+        return sqlSessionTemplate.selectOne("findBookByIsbn",params);
+    }
+
+    public List<Books> queryAllBookList() {
+        return sqlSessionTemplate.selectList("queryAllBookList");
+    }
+
+    public Map<String, Books> queryBooksByName(String isbn, int limit) {
+        Map <String ,Object> params = new HashMap<String, Object>();
+        params.put("isbn",isbn);
+        params.put("limit",limit);
+        return sqlSessionTemplate.selectMap("findBookByIsbn",params.toString());
+
     }
 
 

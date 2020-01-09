@@ -42,6 +42,10 @@
 
 	</select>
 
+	<select id="queryAllBookList" resultType="example.entity.Books">
+		select * from books
+	</select>
+
 	<select id="queryBook" resultType="example.entity.Books">
 		select b.*,t.bookTypeName  from books as b  left join book_type as t
 		on b.bookTypeId = t.id
@@ -50,6 +54,10 @@
 
 	<select id="findBooksByName" resultType="example.entity.Books">
 		select * from books where bookName= #{bookName}
+	</select>
+
+	<select id="findBookByIsbn" resultType="example.entity.Books">
+		select * from books where bookIsbn= #{isbn}
 	</select>
 
 	<update id="updateBooksQuantity" >
@@ -86,4 +94,19 @@
 	<delete id="deleteBook">
 		delete from books where id = #{id}
 	</delete>
+
+	<select id="queryBooksByName"  resultType="example.entity.Books">
+		<!-- <bind name="search" value="'%' + searchStr + '%'" /> -->
+		select * from
+		(select a.id,a.code,a.name
+		from books a
+		where 1=1
+		<if test="searchStr!=null and searchStr!=''">
+			and name LIKE CONCAT(CONCAT('%', #{searchStr,jdbcType=VARCHAR}), '%')
+		</if>
+		order by code asc
+		)b
+		where 1=1 limit #{limit}
+	</select>
+
 </mapper>

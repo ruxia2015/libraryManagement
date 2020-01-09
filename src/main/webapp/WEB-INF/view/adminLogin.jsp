@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>读者登录页面</title>
+    <title>管理员登录页面</title>
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery/jquery.min.js"></script>
@@ -11,15 +11,15 @@
 
 <script type="text/javascript">
     var _contextPath = "${pageContext.request.contextPath}";
-    function register2() {
-        window.location.href = _contextPath + "/user/register"
-    }
 
+    // function register2() {
+    //     window.location.href = _contextPath + "/librarian/register"
+    // }
     function retrievePwd() {
-        window.location.href = _contextPath + "/user/retrievePwd"
+        window.location.href = _contextPath + "/librarian/retrievePwd"
     }
-    function goAdminLogin() {
-        window.location.href = _contextPath + "/librarian/login"
+    function goUserLogin() {
+        window.location.href = _contextPath + "/user/login"
     }
 
     function emptyName() {
@@ -114,7 +114,7 @@
 <body>
 <div id="login_frame">
     <p id="image_logo"><img src="${pageContext.request.contextPath}/image/1.jpg" style="width:90px;height:50px;"></p>
-    <form id="loginForm" method="post"  onsubmit="return submitForm();" action="${pageContext.request.contextPath}/user/sgin">
+    <form id="loginForm" method="post"  onsubmit="return submitForm();" action="${pageContext.request.contextPath}/librarian/sgin">
         <div>
             <p>
 <%--                class="text_field"--%>
@@ -132,9 +132,9 @@
         </div>
         <div id="login_control">
             <input type="submit" id="btn_login" value="登录"  />
-            <input type="button" id="btn_enroll" value="注册" onclick="register2();"/>
-            <input type="button" id="btn_pwd" value="忘记密码" onclick="retrievePwd();"/>
-            <input type="button" id="btn_admin" value="管理员登录" onclick="goAdminLogin();"/>
+<%--            <input type="button" id="btn_enroll" value="注册" onclick="register2();"/>--%>
+<%--            <input type="button" id="btn_pwd" value="忘记密码" onclick="retrievePwd();"/>--%>
+            <input type="button" id="btn_admin" value="读者登录" onclick="goUserLogin();"/>
         </div>
     </form>
 </div>

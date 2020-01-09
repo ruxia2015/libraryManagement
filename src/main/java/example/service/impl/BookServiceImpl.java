@@ -6,8 +6,10 @@ import example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -50,6 +52,18 @@ public class BookServiceImpl implements BookService {
 
     public int addBooksQuantity(int bookId, int quantity) {
         return bookDao.addBooksQuantity(bookId, quantity);
+    }
+
+    public Books findBookByIsbn(String isbn) {
+        return bookDao.findBookByIsbn(isbn);
+    }
+
+    public List<Books> queryAllBookList() {
+        return bookDao.queryAllBookList();
+    }
+
+    public Map<String, Books> queryBooksByName(String isbn, int limit) {
+        return bookDao.queryBooksByName(isbn,limit);
     }
 
 

@@ -1,13 +1,7 @@
 package example.controller;
 
-import example.entity.BorrowBook;
-import example.entity.Page;
-import example.entity.Personal;
-import example.entity.User;
-import example.service.BookService;
-import example.service.BorrowBookService;
-import example.service.PersonalService;
-import example.service.UserService;
+import example.entity.*;
+import example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +27,8 @@ public class UserController extends HttpServlet {
     private BorrowBookService borrowBookService;
     @Autowired
     private PersonalService personalService;
+    @Autowired
+    private BookTypeService bookTypeService;
 
     //用户登录
     @RequestMapping("/login")
@@ -60,7 +56,6 @@ public class UserController extends HttpServlet {
         if(user != null){
             id = user.getId();
         }
-
         List<User> userList = userService.queryAllUser(id, pageNo, pageSize);
         int count = userService.count(userName);
         Page page = new Page(pageNo,pageSize,count,userList);
@@ -117,9 +112,36 @@ public class UserController extends HttpServlet {
             return "loginError";//TODO 跳转到登录页面视图[jsp页面] ,在JSP页面中将错误信息显示出来就可以
         }
 
-        return "redirect:/book/index"; //此处不建议写跳转到视图，如果这个视图页面需要传入一些值，就需要再写一遍，建议使用转发（redirect），跳转到对应的请求地址
+        return "redirect:/user/userBooks"; //此处不建议写跳转到视图，如果这个视图页面需要传入一些值，就需要再写一遍，建议使用转发（redirect），跳转到对应的请求地址
     }
 
+    @RequestMapping("/userBooks")
+    public ModelAndView show(@RequestParam(required = false) String queryName, @RequestParam(required = false) Integer bookTypeId,
+                             @RequestParam(required = false) Integer pageNo, @RequestParam(required = false) Integer pageSize) {
+        if(pageNo ==null){
+            pageNo = 1;
+        }
+        if(pageSize == null){
+            pageSize =5;
+        }
+        Page page = new Page();
+        page.setPageSize(pageSize);
+        List<BookType> bookTypeList = bookTypeService.queryAllBookType();
+        List<Books> booksList = bookService.queryAllBooks(queryName, bookTypeId ,pageNo, pageSize);
+        int count = bookService.count(queryName, bookTypeId);
+        page.setTotalNum(count);
+        int pageNumCount = page.getTotalPageNum();
+        ModelAndView modelAndView = new ModelAndView("userBooks");
+        modelAndView.addObject("bookTypeList", bookTypeList);
+        modelAndView.addObject("booksList", booksList);
+        modelAndView.addObject("count", count);
+        modelAndView.addObject("queryName", queryName);
+        modelAndView.addObject("bookTypeId", bookTypeId);
+        modelAndView.addObject("pageNumCount",pageNumCount);
+        modelAndView.addObject("pageNo",pageNo);
+        modelAndView.addObject("pageSize",pageSize);
+        return modelAndView;
+    }
 
 
     @ResponseBody
@@ -184,8 +206,8 @@ public class UserController extends HttpServlet {
     }
     //弹出一个确认框，点击确认后，在跳转
     User user = userService.findUserByName(name);
-    int uderId = user.getId();
-    int i = personalService.addPersonal(uderId);
+    int userId = user.getId();
+    int i = personalService.addPersonal(userId);
 
     JOptionPane.showMessageDialog(null,"注册成功!");
     return "login";
@@ -267,7 +289,7 @@ public class UserController extends HttpServlet {
     public String workbenchC( HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
+
         return "workbench/libraryBorrow/c";
     }
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50630
 File Encoding         : 65001
 
-Date: 2020-01-06 14:39:31
+Date: 2020-01-09 10:36:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,13 +33,13 @@ CREATE TABLE `books` (
   `bookTotal` int(255) DEFAULT NULL COMMENT '书的总数量',
   `bookQuantity` int(255) DEFAULT NULL COMMENT '可以借的数量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of books
 -- ----------------------------
 INSERT INTO `books` VALUES ('2', '1234', '西游记', '吴承恩', '此书为中国四大名著之一', '1', 'image/西游记.jpg', '99.8', '2019-12-09 14:07:37', '2019-12-25 10:40:53', '50', '0');
-INSERT INTO `books` VALUES ('3', '12345', '三国演义', '罗贯中', '此书为中国四大名著之一', '1', 'image/三国演义.jpg', '99.8', '2019-12-09 14:10:01', '2019-12-20 15:13:42', '50', '16');
+INSERT INTO `books` VALUES ('3', '12345', '三国演义', '罗贯中', '此书为中国四大名著之一', '1', 'image/三国演义.jpg', '99.8', '2019-12-09 14:10:01', '2019-12-20 15:13:42', '50', '15');
 INSERT INTO `books` VALUES ('4', '123456', '水浒传', '施耐庵', '此书为中国四大名著之一', '1', null, '99.8', '2019-12-09 14:11:27', null, '50', '41');
 INSERT INTO `books` VALUES ('5', '1234567', '红楼梦', '曹雪芹', '此书为中国四大名著之一', '1', null, '99.8', '2019-12-09 14:13:18', null, '50', '24');
 INSERT INTO `books` VALUES ('6', '7', '7', '7', '7', '5', 'image/水浒传.jpg', '1212.9', '2019-12-11 11:46:22', '2019-12-27 14:39:21', '7', '7');
@@ -62,6 +62,7 @@ INSERT INTO `books` VALUES ('25', '9999', '9988', '9988', '9988', '20', 'image/�
 INSERT INTO `books` VALUES ('26', '88888', '8888', '8888', '8', '1', 'image/默认.jpg', '888', '2019-12-13 09:45:49', '2019-12-13 09:54:30', '88', '88');
 INSERT INTO `books` VALUES ('28', 'x', 'x', '西西', 'x', '5', null, '6', null, null, '6', '6');
 INSERT INTO `books` VALUES ('29', 'krrj-lx999', '狂人日记', '鲁迅', 'we', null, 'image/默认.jpg', '99.9', '2019-12-23 11:13:53', null, '999', '98');
+INSERT INTO `books` VALUES ('30', 'krrj-lx999', '狂人日记2', '周树人', '。。。', null, 'image/西游记.jpg', '88', '2020-01-07 16:20:26', null, '8', '8');
 
 -- ----------------------------
 -- Table structure for book_type
@@ -109,12 +110,12 @@ CREATE TABLE `book_users` (
   `createDate` datetime DEFAULT NULL,
   `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book_users
 -- ----------------------------
-INSERT INTO `book_users` VALUES ('1', '张三', '123456', '14556667878', null, '2019-12-26 15:32:18');
+INSERT INTO `book_users` VALUES ('1', '张三', '123456', '14556667878', null, '2020-01-08 09:26:10');
 INSERT INTO `book_users` VALUES ('2', 'abc', '123', '6665', null, '2019-12-26 16:36:52');
 INSERT INTO `book_users` VALUES ('3', '1', '1', '1', null, '2019-12-26 16:16:08');
 INSERT INTO `book_users` VALUES ('5', '2', '2222', '2', '2019-11-28 17:11:34', null);
@@ -133,6 +134,7 @@ INSERT INTO `book_users` VALUES ('18', '9', '9999', '9999', '2019-12-19 17:07:30
 INSERT INTO `book_users` VALUES ('19', '99', '99999', '9999', '2019-12-19 17:11:32', null);
 INSERT INTO `book_users` VALUES ('20', '66', '123456', '14556667878', '2019-12-24 13:45:20', null);
 INSERT INTO `book_users` VALUES ('21', '0000', '0000', '0000', '2020-01-06 09:41:29', null);
+INSERT INTO `book_users` VALUES ('22', 'XU', '1234', null, '2020-01-07 16:48:44', null);
 
 -- ----------------------------
 -- Table structure for borrow
@@ -150,7 +152,7 @@ CREATE TABLE `borrow` (
   `returnDate` datetime DEFAULT NULL,
   `overdue` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of borrow
@@ -196,6 +198,9 @@ INSERT INTO `borrow` VALUES ('38', '3', '1', '5', '红楼梦', '10', '2019-12-24
 INSERT INTO `borrow` VALUES ('39', '3', '1', '4', '水浒传', '5', '2019-12-25 00:00:00', '2019-12-25 11:08:06', '2020-01-01 00:00:00', '0');
 INSERT INTO `borrow` VALUES ('40', '3', '1', '4', '水浒传', '9', '2019-12-25 00:00:00', '2019-12-25 11:16:37', '2020-01-01 00:00:00', '0');
 INSERT INTO `borrow` VALUES ('41', '3', '1', '4', '水浒传', '11', '2020-01-02 00:00:00', '2020-01-02 10:30:30', '2020-01-09 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('42', '3', '1', '3', '三国演义', '4', '2020-01-07 00:00:00', '2020-01-08 13:57:48', '2020-02-07 00:00:00', '0');
+INSERT INTO `borrow` VALUES ('43', '3', '1', '3', '三国演义', '1', '2020-01-07 00:00:00', null, '2020-01-14 00:00:00', null);
+INSERT INTO `borrow` VALUES ('44', '3', '1', '4', '水浒传', '1', '2020-01-08 00:00:00', '2020-01-08 13:56:00', '2020-01-15 00:00:00', '0');
 
 -- ----------------------------
 -- Table structure for librarian
@@ -209,11 +214,12 @@ CREATE TABLE `librarian` (
   `createDate` datetime DEFAULT NULL,
   `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of librarian
 -- ----------------------------
+INSERT INTO `librarian` VALUES ('1', 'admin', '123456', '123', '2020-01-07 14:21:57', null);
 
 -- ----------------------------
 -- Table structure for personal
@@ -233,5 +239,6 @@ CREATE TABLE `personal` (
 -- ----------------------------
 INSERT INTO `personal` VALUES ('1', '啊啊', null, null, null);
 INSERT INTO `personal` VALUES ('2', null, null, null, null);
-INSERT INTO `personal` VALUES ('3', '', '52', '  b', '');
-INSERT INTO `personal` VALUES ('21', null, null, null, null);
+INSERT INTO `personal` VALUES ('3', 'AAA', '3', '男', '');
+INSERT INTO `personal` VALUES ('21', '', null, null, '');
+INSERT INTO `personal` VALUES ('22', null, null, null, null);

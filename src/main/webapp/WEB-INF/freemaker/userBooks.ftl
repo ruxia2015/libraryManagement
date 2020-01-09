@@ -65,12 +65,6 @@
              }
          }
 
-        function returnBook(id) {
-            window.location.href = "${rc.contextPath}/book/returnBook?id="+id;
-        }
-        function borrowBooksByUser() {
-            window.location.href = "${rc.contextPath}/librarian/borrowBooks";
-        }
     </script>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -82,18 +76,18 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>图书列表</h1>
+                        <h1>图书大厅</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="${rc.contextPath}/book/index">首页</a></li>
+                            <li class="breadcrumb-item"><a href="${rc.contextPath}/user/workbench">个人信息</a></li>
                             <li class="breadcrumb-item active">图书列表</li>
                         </ol>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-        <form id="bookForm" class="sel_btn" action="${rc.contextPath}/book/books" method="get">
+        <form id="bookForm" class="sel_btn" action="${rc.contextPath}/user/userBooks" method="get">
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -102,7 +96,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <div class="input-group">
-                                            <a href="${rc.contextPath}/book/addBook" class="btn btn btn-default">新增书本</a>
+<#--                                            <a href="${rc.contextPath}/book/addBook" class="btn btn btn-default">新增书本</a>-->
                                             &nbsp; &nbsp; &nbsp; &nbsp;
                                             <label class="col-form-label">图书分类</label>
                                             &nbsp; &nbsp;
@@ -119,8 +113,6 @@
                                             <input type="submit" id="queryBtn" class="btn btn-sm btn-info" value="查询">
                                             &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                                             <input type="button" id="refreshing" class="btn btn-sm btn-info" onclick="refreshPage()" value="刷新">
-                                            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                                            <input type="button" id ="borrowBooks" onclick="borrowBooksByUser()" class="btn btn-sm btn-info" value="借书"/>
                                         </div>
                                     </h3>
                                 </div>
@@ -161,30 +153,19 @@
                                                     </td>
 
                                                     <td>
-<#--                                                        <#if bookList.bookQuantity == 0 >-->
-<#--                                                            <a class="btn btn-primary btn-sm disabled" href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}">-->
-<#--                                                            <i class="fas fa-folder">-->
-<#--                                                            </i>-->
-<#--                                                            借阅-->
-<#--                                                            </a>-->
-<#--                                                        <#elseif bookList.bookQuantity gte 0>-->
-<#--                                                            <a class="btn btn-primary btn-sm " href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}">-->
-<#--                                                            <i class="fas fa-folder">-->
-<#--                                                            </i>-->
-<#--                                                            借阅-->
-<#--                                                            </a>-->
-<#--                                                        </#if>-->
-
-                                                        <a class="btn btn-info btn-sm" href="${rc.contextPath}/book/updateBook?id=${bookList.id}">
-                                                            <i class="fas fa-pencil-alt">
+                                                        <#if bookList.bookQuantity == 0 >
+                                                            <a class="btn btn-primary btn-sm disabled" href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}">
+                                                            <i class="fas fa-folder">
                                                             </i>
-                                                            编辑
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm" href="${rc.contextPath}/book/deleteBook?id=${bookList.id}">
-                                                            <i class="fas fa-trash">
+                                                            借阅
+                                                            </a>
+                                                        <#elseif bookList.bookQuantity gte 0>
+                                                            <a class="btn btn-primary btn-sm " href="${rc.contextPath}/borrowBook/addBorrow?id=${bookList.id}">
+                                                            <i class="fas fa-folder">
                                                             </i>
-                                                            删除
-                                                        </a>
+                                                            借阅
+                                                            </a>
+                                                        </#if>
 
                                                     </td>
                                                 </tr>

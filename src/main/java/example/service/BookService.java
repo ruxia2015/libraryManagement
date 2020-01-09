@@ -4,8 +4,10 @@ import example.entity.BookType;
 import example.entity.Books;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface BookService {
@@ -27,4 +29,10 @@ public interface BookService {
 
 
     int addBooksQuantity(int bookId, int quantity);
+
+    Books findBookByIsbn(String isbn);
+
+    List<Books> queryAllBookList();
+
+    Map<String, Books> queryBooksByName(String isbn, int limit);
 }
