@@ -68,4 +68,8 @@ public class UserServiceImpl implements UserService {
         return userDao.updateUser(id, pwd, phone, date);
     }
 
+    public List<User> queryUserByName(String userName,Integer limit) {
+        return userDao.queryUserByName(userName,limit);
+    }
+
 }

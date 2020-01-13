@@ -27,5 +27,7 @@ public interface UserService {
     int deleteUser(int id);
 
     int updateUser(int id, String pwd, String phone, Date date);
+
+    List<User> queryUserByName(String userName,Integer limit);
 }
 

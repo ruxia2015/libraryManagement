@@ -66,6 +66,13 @@ public class UserController extends HttpServlet {
         return "queryAllUser";
     }
 
+    @ResponseBody
+    @RequestMapping("/queryUserByName")
+    public List queryUserByName(String userName,Integer limit){
+        List<User> userList =userService.queryUserByName(userName,limit);
+        return userList;
+    }
+
     @RequestMapping("/retrievePwd")
     public String retrievePwd(){
         return "retrievePwd";
@@ -175,6 +182,22 @@ public class UserController extends HttpServlet {
             return true;
         }else {
             return false;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/Exists/userName")
+    public Boolean ExistsUserName(String userName) {
+/*
+        返回map对象的原因：可以将错误原因推送给前端，如果只是布尔类型的，就只有一个false，这两种方式都可以。根据个人习惯以及实际的情况
+        如果是找的插件去验证，就要根据插件的要求进行返回。
+*/
+        User user = userService.findUserByName(userName);
+        //1、此处调用service类，根据用户名查找用户
+        if (user == null) {
+            return false;
+        }else {
+            return true;
         }
     }
 

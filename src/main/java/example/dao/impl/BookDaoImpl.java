@@ -109,13 +109,10 @@ public class BookDaoImpl implements BookDao {
         return sqlSessionTemplate.selectList("queryAllBookList");
     }
 
-    public Map<String, Books> queryBooksByName(String isbn, int limit) {
+    public List<Books> queryBooksByIsbn(String isbn, Integer limit) {
         Map <String ,Object> params = new HashMap<String, Object>();
         params.put("isbn",isbn);
         params.put("limit",limit);
-        return sqlSessionTemplate.selectMap("findBookByIsbn",params.toString());
-
+        return sqlSessionTemplate.selectList("books.queryBooksByIsbn",params);
     }
-
-
 }

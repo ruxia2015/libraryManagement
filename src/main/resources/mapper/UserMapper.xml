@@ -30,10 +30,12 @@
 	<select id="queryUserByName" resultType="example.entity.User">
 		select * from book_users
 		<where>
-			 <if test="userName != null">
-				userName like "%"#{userName}"%"
+			 <if test="userName != null and userName!=''">
+					 and userName like concat('%', #{userName,jdbcType=VARCHAR}, '%')
+
 			 </if>
 		</where>
+		limit #{limit}
 	</select>
 
 	<!--	根据用户名称查询出所有的用户，并且分页-->

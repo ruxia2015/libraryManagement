@@ -62,8 +62,8 @@ public class BookServiceImpl implements BookService {
         return bookDao.queryAllBookList();
     }
 
-    public Map<String, Books> queryBooksByName(String isbn, int limit) {
-        return bookDao.queryBooksByName(isbn,limit);
+    public List<Books> queryBooksByIsbn(String isbn, Integer limit) {
+        return bookDao.queryBooksByIsbn(isbn,limit);
     }
 
 

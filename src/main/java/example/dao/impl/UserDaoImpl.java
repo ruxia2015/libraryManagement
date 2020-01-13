@@ -21,9 +21,10 @@ public class UserDaoImpl implements UserDao {
         return sqlSessionTemplate.selectOne("user.findUserByName",params);
     }
 
-    public List<User> queryUserByName(String name) {
+    public List<User> queryUserByName(String userName,Integer limit) {
         Map<String,Object> params = new HashMap<String,Object>();
-        params.put("userName",name);
+        params.put("userName",userName);
+        params.put("limit",limit);
         return sqlSessionTemplate.selectList("user.queryUserByName",params);
     }
 

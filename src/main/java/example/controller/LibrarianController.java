@@ -122,19 +122,20 @@ public class LibrarianController {
     }
 
     @RequestMapping("/succeedBorrow")
-    public ModelAndView succeedBorrow(String username, String isbn ,Integer quantity, String startDate, String returnDate){
+    public ModelAndView succeedBorrow(String userName, String isbn ,Integer quantity, String startDate, String returnDate){
         ModelAndView modelAndView = new ModelAndView("librarian/succeedBorrow");
         try {
             Date startDate1 = sdf.parse(startDate);
             Date returnDate1 = sdf.parse(returnDate);
-            User user = userService.findUserByName(username);
+            User user = userService.findUserByName(userName);
             int userId = user.getId();
-            String userName = user.getUserName();
             Books books = bookService.findBookByIsbn(isbn);
             int bookId = books.getId();
             String bookName = books.getBookName();
-            int i = borrowBookService.borrowBook(userName, bookName, quantity, startDate1, returnDate1, userId, bookId);
-            int y = bookService.updateBooksQuantity(bookId, quantity);
+            Integer i = borrowBookService.borrowBook(userName, bookName, quantity, startDate1, returnDate1, userId, bookId);
+            Integer y = bookService.updateBooksQuantity(bookId, quantity);
+            modelAndView.addObject("i",i);
+            modelAndView.addObject("y",y);
             return modelAndView;
         }catch (Exception e){
             e.printStackTrace();

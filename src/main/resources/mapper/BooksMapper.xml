@@ -95,18 +95,14 @@
 		delete from books where id = #{id}
 	</delete>
 
-	<select id="queryBooksByName"  resultType="example.entity.Books">
-		<!-- <bind name="search" value="'%' + searchStr + '%'" /> -->
-		select * from
-		(select a.id,a.code,a.name
-		from books a
-		where 1=1
-		<if test="searchStr!=null and searchStr!=''">
-			and name LIKE CONCAT(CONCAT('%', #{searchStr,jdbcType=VARCHAR}), '%')
+	<select id="queryBooksByIsbn"  resultType="example.entity.Books">
+		select * from books
+		<where>
+		<if test="isbn!=null and isbn!=''">
+			and bookIsbn like concat('%', #{isbn,jdbcType=VARCHAR}, '%')
 		</if>
-		order by code asc
-		)b
-		where 1=1 limit #{limit}
+		</where>
+		limit #{limit}
 	</select>
 
 </mapper>

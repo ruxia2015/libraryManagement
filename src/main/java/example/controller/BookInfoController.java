@@ -1,8 +1,10 @@
 package example.controller;
 
+import com.sun.xml.internal.ws.api.message.HeaderList;
 import example.entity.BookType;
 import example.entity.Books;
 import example.entity.Page;
+import example.entity.User;
 import example.service.BookService;
 import example.service.BookTypeService;
 import example.service.BorrowBookService;
@@ -13,16 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.*;
 import java.io.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/book")
@@ -176,10 +176,26 @@ public class BookInfoController {
         return modelAndView;
     }
 
-    @RequestMapping("/queryBooksByName")
-    public Map<String ,Books> queryBooksByName(String isbn){
-        int limit =8;
-        Map<String ,Books> map = bookService.queryBooksByName(isbn,limit);
-        return map;
+    @ResponseBody
+    @RequestMapping("/queryBooksByIsbn")
+    public List queryBooksByIsbn(String isbn,Integer limit){
+        List<Books> booksList = bookService.queryBooksByIsbn(isbn,limit);
+        return booksList;
+    }
+    @ResponseBody
+    @RequestMapping("/Exists/isbn")
+    public Boolean ExistsUserName(String isbn) {
+/*
+        返回map对象的原因：可以将错误原因推送给前端，如果只是布尔类型的，就只有一个false，这两种方式都可以。根据个人习惯以及实际的情况
+        如果是找的插件去验证，就要根据插件的要求进行返回。
+*/
+        Books books = bookService.findBookByIsbn(isbn);
+        //1、此处调用service类，根据用户名查找用户
+
+        if (books == null) {
+            return false;
+        }else {
+            return true;
+        }
     }
 }

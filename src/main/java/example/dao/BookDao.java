@@ -31,5 +31,5 @@ public interface BookDao {
 
     List<Books> queryAllBookList();
 
-    Map<String, Books> queryBooksByName(String isbn, int limit);
+    List<Books> queryBooksByIsbn(String isbn, Integer limit);
 }

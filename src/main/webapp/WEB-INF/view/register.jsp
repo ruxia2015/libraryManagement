@@ -15,7 +15,7 @@
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/additional-methods.js"></script>
     <script src="${pageContext.request.contextPath}/AdminLTE-3.0.1/plugins/jquery-validation/localization/messages_zh.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/register.js"></script>
+    <script src="${pageContext.request.contextPath}/js/register.js"></script>
 </head>
 <script type="text/javascript" >
     $(function(){

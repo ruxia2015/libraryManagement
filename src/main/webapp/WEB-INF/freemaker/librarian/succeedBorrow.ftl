@@ -23,7 +23,12 @@
 <body>
     <#if i ==1 && y ==1>
         借书成功
+        <p>将在 <span id="mes">3</span> 秒钟后返回图书大厅！</p>
     </#if>
-       <p>将在 <span id="mes">3</span> 秒钟后返回图书大厅！</p>
+    <#if i!=1>
+        <p>借书失败</p>
+        <p>将在 <span id="mes">3</span> 秒钟后返回图书大厅！</p>
+    </#if>
+
 </body>
 </html>
